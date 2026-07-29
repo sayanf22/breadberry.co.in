@@ -4,10 +4,11 @@ import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { PageHero } from "@/components/layout/PageHero";
 import { Eyebrow } from "@/components/ui/SectionHeading";
-import { PortfolioGrid } from "@/components/home/CuratedSelection";
+import { PortfolioGrid } from "@/components/products/PortfolioGrid";
 import { ProductFilter } from "@/components/products/ProductFilter";
 import { QuoteCta } from "@/components/home/QuoteCta";
 import { products } from "@/lib/products";
+import { portfolio } from "@/lib/portfolio";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -20,48 +21,55 @@ export default function ProductsPage() {
   return (
     <>
       <PageHero
-        eyebrow="Our curated selection"
-        title="A portfolio built for professional kitchens"
-        description={`${site.company} sources and supplies a meticulously curated range of premium global ingredients, giving executive chefs, pastry chefs and specialty bakers reliable access to every line they depend on.`}
+        eyebrow="The Breadberry Co. signature line"
+        title="Frozen berries &amp; fruit purees"
+        description={`${products.length} lines held under rigorous cold-chain protocols to preserve flavour depth, vibrant colour and nutritional integrity — built for high-end confectionery and designer cakes.`}
         crumbs={[{ label: "Home", href: "/" }, { label: "Products" }]}
       />
 
-      {/* Portfolio categories */}
+      {/* Breadberry Co. catalogue */}
       <section
-        aria-labelledby="portfolio-heading"
-        className="pt-[clamp(2.5rem,5vw,4rem)]"
+        id="range"
+        aria-label="Frozen berries and fruit purees"
+        className="py-[clamp(2.5rem,6vw,4.5rem)]"
       >
         <Container>
-          <h2 id="portfolio-heading" className="sr-only">
-            Product categories
-          </h2>
-          <PortfolioGrid />
+          <Suspense
+            fallback={
+              <div className="h-14 w-full max-w-sm animate-pulse rounded-pill bg-surface" />
+            }
+          >
+            <ProductFilter />
+          </Suspense>
         </Container>
       </section>
 
-      {/* Breadberry Co. catalogue */}
-      <section id="range" className="py-[clamp(2.5rem,6vw,4.5rem)]">
+      {/* Wider Adhira portfolio */}
+      <section
+        aria-labelledby="portfolio-heading"
+        className="pb-[clamp(3rem,7vw,5rem)]"
+      >
         <Container>
-          <Reveal className="border-b border-line pb-[clamp(1.25rem,2.5vw,1.75rem)]">
-            <Eyebrow>The Breadberry Co. signature line</Eyebrow>
-            <h2 className="mt-3 max-w-[26ch] text-h2">
-              Frozen berries &amp; fruit purees
-            </h2>
-            <p className="text-lead mt-4 max-w-[54ch] text-muted">
-              {products.length} lines held under rigorous cold-chain protocols
-              to preserve flavour depth, vibrant colour and nutritional
-              integrity — built for high-end confectionery and designer cakes.
-            </p>
+          <Reveal>
+            <div className="flex flex-col gap-5 border-t border-line pt-[clamp(2rem,4vw,3rem)] lg:flex-row lg:items-end lg:justify-between lg:gap-12">
+              <div>
+                <Eyebrow>Our curated selection</Eyebrow>
+                <h2
+                  id="portfolio-heading"
+                  className="mt-3 max-w-[26ch] text-h2"
+                >
+                  {portfolio.length} categories, one standard
+                </h2>
+              </div>
+              <p className="text-muted lg:max-w-[34ch] lg:text-right">
+                {site.company} also supplies these lines to the same
+                specification, on the same delivery network.
+              </p>
+            </div>
           </Reveal>
 
-          <div className="mt-[clamp(1.75rem,3.5vw,2.5rem)]">
-            <Suspense
-              fallback={
-                <div className="h-14 w-full max-w-sm animate-pulse rounded-pill bg-surface" />
-              }
-            >
-              <ProductFilter />
-            </Suspense>
+          <div className="mt-[clamp(1.5rem,3.5vw,2.25rem)]">
+            <PortfolioGrid />
           </div>
         </Container>
       </section>

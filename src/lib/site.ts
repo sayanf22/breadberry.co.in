@@ -20,6 +20,16 @@ export const site = {
   url: "https://breadberry.co.in",
 } as const;
 
+/**
+ * Social profiles. TODO: replace with the real handles — the footer row
+ * renders only while this array has entries, so clear it rather than
+ * shipping dead links.
+ */
+export const social: { label: string; href: string }[] = [
+  { label: "Instagram", href: "https://instagram.com/breadberry.co" },
+  { label: "LinkedIn", href: "https://linkedin.com/company/adhira-enterprises" },
+];
+
 export type NavLink = { label: string; href: string };
 
 export const navLinks: NavLink[] = [

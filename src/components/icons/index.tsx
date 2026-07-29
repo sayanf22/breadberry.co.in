@@ -212,3 +212,23 @@ export function UsersIcon(props: IconProps) {
     </svg>
   );
 }
+
+export function InstagramIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <rect x="3.4" y="3.4" width="17.2" height="17.2" rx="4.8" />
+      <circle cx="12" cy="12" r="3.8" />
+      <circle cx="17.1" cy="6.9" r="0.9" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+export function LinkedInIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <rect x="3.4" y="3.4" width="17.2" height="17.2" rx="3.2" />
+      <path d="M7.6 10.4v6.2M7.6 7.8v.1" />
+      <path d="M11.6 16.6v-6.2M11.6 12.9c0-1.4.9-2.5 2.3-2.5s2.3 1.1 2.3 2.5v3.7" />
+    </svg>
+  );
+}

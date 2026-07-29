@@ -5,6 +5,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { PageHero } from "@/components/layout/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { QuoteCta } from "@/components/home/QuoteCta";
+import { MissionVision } from "@/components/about/MissionVision";
 import { VideoDialog } from "@/components/ui/VideoDialog";
 import { site } from "@/lib/site";
 
@@ -33,21 +34,6 @@ const timeline = [
     year: "Today",
     title: `${site.clientsServed} kitchens served`,
     body: "Five curated ingredient categories, supplied to over a thousand kitchens, cake studios, cafés and retail brands.",
-  },
-];
-
-const values = [
-  {
-    title: "Ingredients first",
-    body: "Exceptional creations begin with uncompromising ingredients. Everything we carry has to earn its place on that basis alone.",
-  },
-  {
-    title: "Craft, extended",
-    body: "Through Breadberry Co. we take our passion for quality into specialised culinary and baking avenues, continuing a tradition of excellence.",
-  },
-  {
-    title: "Your standard, matched",
-    body: "We treat your ingredients with the same care and exactness that you apply to your final presentation. Nothing less is useful to you.",
   },
 ];
 
@@ -154,33 +140,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* Values */}
-      <section
-        aria-labelledby="values-heading"
-        className="pb-[clamp(3rem,7vw,5rem)]"
-      >
-        <Container>
-          <Reveal>
-            <SectionHeading
-              eyebrow="What we hold to"
-              title={<span id="values-heading">Three working principles</span>}
-            />
-          </Reveal>
-
-          <div className="mt-[clamp(2rem,4vw,3rem)] grid gap-[clamp(0.75rem,1.6vw,1.25rem)] lg:grid-cols-3">
-            {values.map((item, index) => (
-              <Reveal
-                key={item.title}
-                delay={index * 80}
-                className="rounded-card border-l-2 border-green-deep/30 bg-surface-2 p-[clamp(1.25rem,2.4vw,1.75rem)]"
-              >
-                <h3 className="font-display text-h3 text-navy">{item.title}</h3>
-                <p className="mt-2.5 text-muted">{item.body}</p>
-              </Reveal>
-            ))}
-          </div>
-        </Container>
-      </section>
+      <MissionVision />
 
       <QuoteCta />
     </>
