@@ -46,9 +46,10 @@ function LinkList({
     <ul className="mt-5">
       {items.map((item) => (
         <li key={item.label} className="border-b border-white/8">
+          {/* py-3 keeps the row at ~44px for touch. */}
           <Link
             href={item.href}
-            className="block py-2.5 text-[0.8125rem] text-cream/60 transition-colors duration-300 hover:text-mint"
+            className="block py-3 text-[0.8125rem] text-cream/60 transition-colors duration-300 hover:text-mint"
           >
             {item.label}
           </Link>

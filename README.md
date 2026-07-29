@@ -15,6 +15,31 @@ no theme or template.
 - Server Actions for form handling. No client-side form library
 - Zero runtime dependencies beyond Next, React and Tailwind
 
+## Browser support
+
+Tailwind CSS v4 compiles to `oklch()`, `color-mix()` and `@property`, so its own
+floor is the floor here:
+
+| Browser | Minimum |
+| ------- | ------- |
+| Chrome / Edge | 111 |
+| Safari (macOS + iOS) | 16.4 |
+| Firefox | 128 |
+
+Below that, colours degrade rather than the layout collapsing. Everything the
+site adds on top of Tailwind stays inside that envelope:
+
+- `mask-image` and `mask-composite` ship with `-webkit-` prefixes
+- `backdrop-filter` ships with `-webkit-backdrop-filter` (Tailwind emits both)
+- `overflow: clip` (Safari 16) is used instead of `hidden` on `body`, so it
+  never becomes a scroll container and breaks the sticky header
+- Checkbox state uses `:checked` and sibling (`peer-checked`) selectors, not
+  `:has()`. `:has()` only adds the label tint, so the control still reads
+  correctly without it
+- `text-wrap: pretty` and `inert` are progressive enhancements. The mobile sheet
+  is `visibility: hidden` when closed, which already removes it from the tab
+  order, so `inert` is belt-and-braces
+
 ## Getting started
 
 ```bash

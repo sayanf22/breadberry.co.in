@@ -72,7 +72,7 @@ export function Difference() {
       {/* Full-bleed dark slab. Sits outside the page container so it reaches
           both viewport edges, rounded on all four corners so it reads as a
           block tucked between the sections above and below. */}
-      <div className="relative isolate overflow-hidden rounded-[clamp(1.5rem,4vw,2.75rem)] bg-night py-[clamp(2.75rem,6.5vw,4.5rem)]">
+      <div className="relative isolate overflow-hidden rounded-[clamp(1.25rem,4vw,2.75rem)] bg-night py-[clamp(2.25rem,6.5vw,4.5rem)]">
         {/* Faint green wash only — a blue glow is what made the black read
             as navy in the first place. */}
         <div
@@ -108,8 +108,13 @@ export function Difference() {
           className="edge-fade mt-[clamp(1.75rem,3.5vw,2.5rem)] overflow-hidden"
         >
           <ul
-            className="marquee-track items-start gap-4 px-2 pb-3"
-            style={{ "--marquee-duration": "92s" } as CSSProperties}
+            className="marquee-track items-start gap-3 px-2 pb-3 sm:gap-4"
+            style={
+              {
+                "--marquee-duration": "92s",
+                "--marquee-duration-sm": "58s",
+              } as CSSProperties
+            }
           >
             {track.map((item, index) => (
               <li

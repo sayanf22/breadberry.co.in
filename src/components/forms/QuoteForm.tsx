@@ -138,19 +138,25 @@ export function QuoteForm() {
 
         <div className="grid gap-2.5 sm:grid-cols-2">
           {products.map((product) => (
+            /*
+             * The checked state is driven by `checked:` on the input itself and
+             * `peer-checked:` on the tick — both plain sibling selectors, so the
+             * control still reads correctly without :has() support. The label
+             * tint is the only part that uses :has(), as a nice-to-have.
+             */
             <label
               key={product.slug}
-              className="group flex cursor-pointer items-center gap-3 rounded-2xl border border-line bg-white px-4 py-3 transition-[border-color,box-shadow] duration-300 hover:border-blue/45 has-[:checked]:border-blue/60 has-[:checked]:bg-blue-mist"
+              className="flex cursor-pointer items-center gap-3 rounded-2xl border border-line bg-white px-4 py-3 transition-[border-color,background-color] duration-300 hover:border-green-deep/45 has-[:checked]:border-green-deep/60 has-[:checked]:bg-[#eef6f0]"
             >
-              <span className="relative grid size-5 shrink-0 place-items-center rounded-md border border-line bg-white transition-colors duration-300 group-has-[:checked]:border-blue group-has-[:checked]:bg-blue">
+              <span className="relative grid size-5 shrink-0 place-items-center">
                 <input
                   type="checkbox"
                   name="products"
                   value={product.name}
                   defaultChecked={selected.includes(product.name)}
-                  className="absolute inset-0 cursor-pointer appearance-none rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue"
+                  className="peer absolute inset-0 cursor-pointer appearance-none rounded-md border border-line bg-white transition-colors duration-300 checked:border-green-deep checked:bg-green-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-deep"
                 />
-                <CheckIcon className="size-3 text-white opacity-0 transition-opacity duration-200 group-has-[:checked]:opacity-100" />
+                <CheckIcon className="pointer-events-none relative size-3 text-white opacity-0 transition-opacity duration-200 peer-checked:opacity-100" />
               </span>
               <span className="text-[0.875rem] text-ink">{product.name}</span>
             </label>

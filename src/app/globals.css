@@ -20,6 +20,11 @@
   --color-green-deep: #14785a;
   --color-green-deeper: #0f5f47;
 
+  /* Pale green client band. Luminance 0.86, so it carries dark type:
+     forest reaches 9.3:1 and forest-deep 11:1. */
+  --color-lime-soft: #c3ffab;
+  --color-lime-edge: #b2f397;
+
   /* Deep green band + warm off-white used on the trust and client blocks */
   --color-forest: #0e4638;
   --color-forest-deep: #0a3a2e;
@@ -116,6 +121,10 @@
     font-feature-settings: "cv05" 1;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    /* `clip` rather than `hidden` so this never becomes a scroll container
+       and breaks the sticky header. Supported from Safari 16 / Chrome 90,
+       which is wider than Tailwind v4's own baseline, so it needs no
+       fallback — Lightning CSS strips one anyway. */
     overflow-x: clip;
   }
 
@@ -461,6 +470,17 @@
   display: flex;
   width: max-content;
   animation: bb-marquee var(--marquee-duration, 42s) linear infinite;
+  /* Promote once rather than per-frame: keeps long tracks smooth on phones. */
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* A phone shows a much narrower window of the same track, so the desktop
+   duration crawls. Components can opt into a shorter one. */
+@media (max-width: 639px) {
+  .marquee-track {
+    animation-duration: var(--marquee-duration-sm, var(--marquee-duration, 42s));
+  }
 }
 
 .marquee-track:hover,

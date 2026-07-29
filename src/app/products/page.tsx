@@ -22,7 +22,7 @@ export default function ProductsPage() {
     <>
       <PageHero
         eyebrow="The Breadberry Co. signature line"
-        title="Frozen berries &amp; fruit purees"
+        title="Frozen berries & fruit purees"
         description={`${products.length} lines held under rigorous cold-chain protocols to preserve flavour depth, vibrant colour and nutritional integrity — built for high-end confectionery and designer cakes.`}
         crumbs={[{ label: "Home", href: "/" }, { label: "Products" }]}
       />

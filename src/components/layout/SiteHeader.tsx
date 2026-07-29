@@ -93,7 +93,8 @@ export function SiteHeader() {
             <a
               href={site.phoneHref}
               aria-label={`Call ${site.name} on ${site.phone}`}
-              className="grid size-10 shrink-0 place-items-center rounded-full border border-line text-navy transition-[color,border-color,box-shadow,transform] duration-300 ease-[var(--ease-out-soft)] hover:-translate-y-px hover:border-green-deep/45 hover:text-green-deep hover:shadow-soft sm:size-11 lg:size-12"
+              /* size-11 = 44px, the minimum comfortable touch target. */
+              className="grid size-11 shrink-0 place-items-center rounded-full border border-line text-navy transition-[color,border-color,box-shadow,transform] duration-300 ease-[var(--ease-out-soft)] hover:-translate-y-px hover:border-green-deep/45 hover:text-green-deep hover:shadow-soft lg:size-12"
             >
               <PhoneIcon className="size-[1.05rem] lg:size-[1.15rem]" />
             </a>

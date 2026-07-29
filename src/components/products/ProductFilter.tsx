@@ -129,7 +129,7 @@ export function ProductFilter() {
               tabIndex={selected ? 0 : -1}
               onClick={() => select(category.id)}
               className={cn(
-                "relative z-10 shrink-0 whitespace-nowrap rounded-pill px-4 py-2.5 text-[0.8125rem] font-medium transition-colors duration-400 sm:px-5",
+                "relative z-10 shrink-0 whitespace-nowrap rounded-pill px-4 py-3 text-[0.8125rem] font-medium transition-colors duration-400 sm:px-5",
                 selected ? "text-navy" : "text-muted hover:text-navy"
               )}
             >
@@ -153,16 +153,18 @@ export function ProductFilter() {
         aria-labelledby={`tab-${active}`}
         className="mt-[clamp(1.75rem,3.5vw,2.5rem)]"
       >
+        {/* 2-up on phones, matching the featured range on the home page —
+            one card per row made the pack shots oversized. */}
         <div
           key={active}
-          className="panel-enter grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+          className="panel-enter grid grid-cols-2 gap-[clamp(0.75rem,1.6vw,1.25rem)] lg:grid-cols-3 xl:grid-cols-4"
         >
           {visible.map((product, index) => (
             <ProductCard
               key={product.slug}
               product={product}
               priority={index < 4}
-              sizes="(min-width: 1280px) 19rem, (min-width: 1024px) 26vw, (min-width: 640px) 45vw, 90vw"
+              sizes="(min-width: 1280px) 19rem, (min-width: 1024px) 26vw, 46vw"
             />
           ))}
         </div>
