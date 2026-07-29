@@ -78,15 +78,17 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex items-center gap-2 sm:gap-2.5">
-            {/* Shown only once the viewport can hold it without crowding */}
-            <ButtonLink
-              href="/request-a-quote"
-              variant="accent"
-              size="md"
-              className="hidden lg:inline-flex"
-            >
-              Request a Quote
-            </ButtonLink>
+            {/*
+              Shown only once the viewport can hold it without crowding.
+              The `hidden` must live on a wrapper, not on the button: Button's
+              base classes include `inline-flex`, which Tailwind emits after
+              `.hidden`, so the two collide and `hidden` loses.
+            */}
+            <div className="hidden lg:block">
+              <ButtonLink href="/request-a-quote" variant="accent" size="md">
+                Request a Quote
+              </ButtonLink>
+            </div>
 
             <a
               href={site.phoneHref}
