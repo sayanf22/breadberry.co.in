@@ -32,31 +32,28 @@ export const navLinks: NavLink[] = [
 
 /**
  * Kitchens, hotel groups, cafés and retail brands supplied by
- * Adhira Enterprises. Split into two rows for the opposing marquees.
+ * Adhira Enterprises. Ordered to alternate long and short names so the
+ * single marquee row reads with an even rhythm.
+ *
  * Rendered as type — replace with vector logos once licensed artwork exists.
  */
-export const clientsRowOne = [
+export const clients = [
   "Taj Hotels",
-  "JW Marriott",
-  "Oberoi",
-  "Hyatt",
-  "Fortune Park Lakecity",
-  "Bastian",
-  "Olive Bar & Cafe",
-  "Mainland China",
-  "Mizu",
-] as const;
-
-export const clientsRowTwo = [
   "Theobroma",
+  "JW Marriott",
   "Blue Tokai",
+  "Oberoi",
   "PAUL",
+  "Hyatt",
   "Pizza Express",
+  "Fortune Park Lakecity",
   "Merwans",
+  "Bastian",
   "Parsi Dairy Farm",
+  "Olive Bar & Cafe",
   "Milky Mist",
+  "Mainland China",
   "Mapro",
+  "Mizu",
   "EVE",
 ] as const;
-
-export const clients = [...clientsRowOne, ...clientsRowTwo];

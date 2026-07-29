@@ -448,11 +448,6 @@
   animation: bb-marquee var(--marquee-duration, 42s) linear infinite;
 }
 
-/* Second row travels the other way, which reads as motion rather than drift. */
-.marquee-track.is-reversed {
-  animation-direction: reverse;
-}
-
 .marquee-track:hover,
 .marquee-track:focus-within {
   animation-play-state: paused;

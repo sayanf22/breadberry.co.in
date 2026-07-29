@@ -1,38 +1,5 @@
 import type { CSSProperties } from "react";
-import { cn } from "@/lib/cn";
-import { clientsRowOne, clientsRowTwo, site } from "@/lib/site";
-
-function Row({
-  names,
-  duration,
-  reversed = false,
-}: {
-  names: readonly string[];
-  duration: string;
-  reversed?: boolean;
-}) {
-  /** Doubled so a -50% translate loops without a seam. */
-  const track = [...names, ...names];
-
-  return (
-    <ul
-      className={cn("marquee-track items-center", reversed && "is-reversed")}
-      style={{ "--marquee-duration": duration } as CSSProperties}
-    >
-      {track.map((name, index) => (
-        <li
-          key={`${name}-${index}`}
-          aria-hidden={index >= names.length}
-          className="shrink-0 px-[clamp(1.25rem,3.5vw,3rem)]"
-        >
-          <span className="whitespace-nowrap font-display text-[clamp(1.375rem,1.05rem+1.5vw,2.375rem)] leading-none text-cream/80 transition-colors duration-400 hover:text-cream">
-            {name}
-          </span>
-        </li>
-      ))}
-    </ul>
-  );
-}
+import { clients, site } from "@/lib/site";
 
 /**
  * Full-bleed client band.
@@ -40,12 +7,18 @@ function Row({
  * Sits outside the page container so it reaches both viewport edges, with a
  * large radius on all four corners so it reads as a slab tucked between the
  * sections above and below.
+ *
+ * One marquee row: the list is doubled and the track translates exactly -50%,
+ * so the loop has no seam. Eighteen names at this size make a long track, hence
+ * the slow duration — speed is what makes a marquee feel cluttered, not length.
  */
 export function ClientStrip() {
+  const track = [...clients, ...clients];
+
   return (
     <section
       aria-labelledby="clients-heading"
-      className="relative isolate overflow-hidden rounded-[clamp(1.5rem,4vw,2.75rem)] bg-forest py-[clamp(2.5rem,6vw,4.5rem)]"
+      className="relative isolate overflow-hidden rounded-[clamp(1.5rem,4vw,2.75rem)] bg-forest py-[clamp(2.75rem,6.5vw,5rem)]"
     >
       {/* Interior light so the flat green does not read as a slab of ink */}
       <div
@@ -72,9 +45,23 @@ export function ClientStrip() {
         </h2>
       </div>
 
-      <div className="edge-fade mt-[clamp(1.75rem,4vw,3rem)] space-y-[clamp(0.75rem,2vw,1.5rem)] overflow-hidden">
-        <Row names={clientsRowOne} duration="52s" />
-        <Row names={clientsRowTwo} duration="58s" reversed />
+      <div className="edge-fade mt-[clamp(2rem,4.5vw,3.5rem)] overflow-hidden">
+        <ul
+          className="marquee-track items-center"
+          style={{ "--marquee-duration": "80s" } as CSSProperties}
+        >
+          {track.map((name, index) => (
+            <li
+              key={`${name}-${index}`}
+              aria-hidden={index >= clients.length}
+              className="shrink-0 px-[clamp(1.25rem,3.5vw,3rem)]"
+            >
+              <span className="whitespace-nowrap font-display text-[clamp(1.375rem,1.05rem+1.5vw,2.375rem)] leading-none text-cream/80 transition-colors duration-400 hover:text-cream">
+                {name}
+              </span>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
