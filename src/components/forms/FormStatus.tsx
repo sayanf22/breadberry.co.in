@@ -4,10 +4,10 @@ import type { FormState } from "@/app/actions";
 export function SuccessPanel({ message }: { message?: string }) {
   return (
     <div
-      className="panel-enter rounded-panel border border-green/25 bg-lime-mist p-[clamp(1.5rem,3vw,2.25rem)]"
+      className="panel-enter rounded-panel border border-lime-soft bg-lime-mist p-[clamp(1.5rem,3vw,2.25rem)]"
       role="status"
     >
-      <span className="grid size-12 place-items-center rounded-full bg-green/12 text-green">
+      <span className="grid size-12 place-items-center rounded-full bg-lime-soft text-navy">
         <CheckIcon className="size-6" />
       </span>
       <h2 className="mt-5 font-sans text-[1.125rem] font-semibold leading-snug text-navy">

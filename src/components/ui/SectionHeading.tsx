@@ -7,15 +7,16 @@ export function Eyebrow({
   className,
 }: {
   children: ReactNode;
-  /** Green is the house accent; blue is reserved for cold-chain context. */
+  /** Green uses a lime marker with readable navy ink on light surfaces. */
   tone?: "green" | "blue" | "mint" | "light";
   className?: string;
 }) {
   const tones = {
-    green: "text-green-deep",
+    green:
+      "inline-flex items-center gap-2 text-navy before:size-2 before:shrink-0 before:rounded-full before:bg-lime-soft",
     blue: "text-blue",
-    /** For dark backgrounds — 9.2:1 on the night slab. */
-    mint: "text-mint",
+    /** Exact accent remains highly visible against the near-black slab. */
+    mint: "text-lime-soft",
     light: "text-white/65",
   } as const;
 

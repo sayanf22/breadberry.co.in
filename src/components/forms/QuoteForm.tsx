@@ -146,7 +146,7 @@ export function QuoteForm() {
              */
             <label
               key={product.slug}
-              className="flex cursor-pointer items-center gap-3 rounded-2xl border border-line bg-white px-4 py-3 transition-[border-color,background-color] duration-300 hover:border-green-deep/45 has-[:checked]:border-green-deep/60 has-[:checked]:bg-lime-panel"
+              className="flex cursor-pointer items-center gap-3 rounded-2xl border border-line bg-white px-4 py-3 transition-[border-color,background-color] duration-300 hover:border-lime-soft has-[:checked]:border-lime-soft has-[:checked]:bg-lime-mist"
             >
               <span className="relative grid size-5 shrink-0 place-items-center">
                 <input
@@ -154,9 +154,9 @@ export function QuoteForm() {
                   name="products"
                   value={product.name}
                   defaultChecked={selected.includes(product.name)}
-                  className="peer absolute inset-0 cursor-pointer appearance-none rounded-md border border-line bg-white transition-colors duration-300 checked:border-green-deep checked:bg-green-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-deep"
+                  className="peer absolute inset-0 cursor-pointer appearance-none rounded-md border border-line bg-white transition-colors duration-300 checked:border-lime-soft checked:bg-lime-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-soft"
                 />
-                <CheckIcon className="pointer-events-none relative size-3 text-white opacity-0 transition-opacity duration-200 peer-checked:opacity-100" />
+                <CheckIcon className="pointer-events-none relative size-3 text-navy opacity-0 transition-opacity duration-200 peer-checked:opacity-100" />
               </span>
               <span className="text-[0.875rem] text-ink">{product.name}</span>
             </label>

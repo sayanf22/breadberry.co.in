@@ -55,14 +55,14 @@ export function MissionVision() {
     >
       <Container>
         <Reveal className="flex flex-col items-center text-center">
-          <span aria-hidden className="h-px w-14 bg-green-deep/45" />
+          <span aria-hidden className="h-px w-14 bg-lime-soft" />
           <h2
             id="mission-heading"
             className="my-5 text-[clamp(1.375rem,1.1rem+1.1vw,2rem)] uppercase tracking-[0.06em] text-navy"
           >
             Our mission &amp; vision
           </h2>
-          <span aria-hidden className="h-px w-14 bg-green-deep/45" />
+          <span aria-hidden className="h-px w-14 bg-lime-soft" />
         </Reveal>
 
         <ul className="mt-[clamp(2.25rem,5vw,3.5rem)] grid gap-x-[clamp(1.5rem,4vw,3.5rem)] gap-y-[clamp(2rem,4vw,3rem)] sm:grid-cols-2 lg:grid-cols-3">
@@ -73,7 +73,10 @@ export function MissionVision() {
               delay={index * 70}
               className="flex flex-col items-center text-center"
             >
-              <Icon className="size-7 text-green-deep" strokeWidth={1.4} />
+              <Icon
+                className="size-10 rounded-full bg-lime-soft p-2 text-navy"
+                strokeWidth={1.4}
+              />
               <h3 className="mt-4 text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-navy">
                 {label}
               </h3>

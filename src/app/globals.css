@@ -12,35 +12,27 @@
   --color-blue-mid: #4c9edd;
   --color-blue-soft: #eaf2fc;
   --color-blue-mist: #f4f9fd;
-  /* Folded onto the emerald: a third green hue (this was #4e9e5a at 129°)
-     read as a mismatch next to both the band and the deep greens. */
-  --color-green: var(--color-green-deep);
   --color-berry: #c0384f;
 
-  /* ── Greens ─────────────────────────────────────────────────────────────
-     Deep emerald carries every interactive and structural use — buttons,
-     links, the "Delivered." accent, the dark card surfaces. Measured:
-       green-deep on white ............ 4.9:1 as text and as button fill
-       forest-mid card on night ....... 2.3:1 separation, cream 7.2:1
-       mint on night .................. 9.7:1                              */
-  --color-green-deep: #14785a;
-  --color-green-deeper: #0f5f47;
-  --color-forest: #0e4638;
-  --color-forest-deep: #0a3a2e;
-  --color-forest-mid: #145c47;
-  --color-mint: #7fc9a6;
-
   /* ── Light green family ─────────────────────────────────────────────────
-     Band is the supplied #adff2f (GreenYellow). The tint/panel/mist steps are
-     derived at the same hue (84°) for pale surfaces elsewhere.
-     The deep emeralds above carry all interactive and structural uses.
-       band, forest-deep type ......... 10.3:1
-       band, navy names ............... 11.5:1
-       tint / panel / mist, body ...... 5.7–6.0:1                          */
-  --color-lime-soft: #adff2f;
-  --color-lime-tint: #edf8dd;
-  --color-lime-panel: #f4f9eb;
-  --color-lime-mist: #f8fbf4;
+     #c3ffab is the single green accent across the site. It is intentionally
+     used as a fill, rule or highlight with navy ink; it is too light for body
+     text on white. The pale steps support larger low-contrast surfaces. */
+  --color-lime-soft: #c3ffab;
+  --color-lime-tint: #e6f8dc;
+  --color-lime-panel: #eef8e8;
+  --color-lime-mist: #f2fbee;
+
+  /* Legacy semantic aliases keep existing utilities consistent while ensuring
+     no dark emerald survives in authored UI. Foregrounds on light surfaces
+     should use navy rather than these accent aliases. */
+  --color-green: var(--color-lime-soft);
+  --color-green-deep: var(--color-lime-soft);
+  --color-green-deeper: var(--color-lime-soft);
+  --color-forest: var(--color-lime-soft);
+  --color-forest-deep: var(--color-lime-soft);
+  --color-forest-mid: var(--color-lime-soft);
+  --color-mint: var(--color-lime-soft);
 
   /* Near-black slab (neutral, not navy). Cream clears 17:1 here. */
   --color-night: #111113;

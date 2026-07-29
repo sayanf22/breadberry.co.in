@@ -62,7 +62,7 @@ export default function WhyUsPage() {
             <dl className="grid grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-4">
               {stats.map((stat, index) => (
                 <Reveal key={stat.label} delay={index * 70}>
-                  <dt className="font-display text-[clamp(1.625rem,1.2rem+1.8vw,2.375rem)] leading-none text-green-deep">
+                  <dt className="w-fit rounded-xl bg-lime-soft px-2.5 py-1.5 font-display text-[clamp(1.625rem,1.2rem+1.8vw,2.375rem)] leading-none text-navy">
                     {stat.value}
                   </dt>
                   <dd className="mt-2.5 max-w-[24ch] text-[0.8125rem] text-muted">
@@ -129,7 +129,7 @@ export default function WhyUsPage() {
                   delay={index * 80}
                   className="card-surface group p-[clamp(1.25rem,2.4vw,1.75rem)]"
                 >
-                  <span className="text-[0.6875rem] font-medium tabular-nums tracking-[0.14em] text-green-deep">
+                  <span className="inline-flex rounded-full bg-lime-soft px-2 py-1 text-[0.6875rem] font-medium tabular-nums tracking-[0.14em] text-navy">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <h3 className="mt-4 text-[1.0625rem] font-semibold leading-snug tracking-[-0.012em] text-navy">

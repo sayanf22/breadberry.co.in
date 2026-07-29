@@ -43,7 +43,7 @@ export default function RequestQuotePage() {
                 <ul className="mt-4 space-y-3">
                   {promises.map((line) => (
                     <li key={line} className="flex gap-3 text-muted">
-                      <CheckIcon className="mt-1 size-4 shrink-0 text-green" />
+                      <CheckIcon className="mt-0.5 size-5 shrink-0 rounded-full bg-lime-soft p-1 text-navy" />
                       {line}
                     </li>
                   ))}

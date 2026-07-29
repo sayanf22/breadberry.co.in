@@ -49,7 +49,7 @@ function LinkList({
           {/* py-3 keeps the row at ~44px for touch. */}
           <Link
             href={item.href}
-            className="block py-3 text-[0.8125rem] text-cream/60 transition-colors duration-300 hover:text-mint"
+            className="block py-3 text-[0.8125rem] text-cream/60 transition-colors duration-300 hover:text-lime-soft"
           >
             {item.label}
           </Link>
@@ -69,7 +69,7 @@ export function SiteFooter() {
           className="absolute inset-0 -z-10"
           style={{
             background:
-              "radial-gradient(42% 55% at 8% 0%, rgb(20 120 90 / .16) 0%, transparent 70%)",
+              "radial-gradient(42% 55% at 8% 0%, rgb(195 255 171 / .16) 0%, transparent 70%)",
           }}
         />
 
@@ -86,7 +86,7 @@ export function SiteFooter() {
                 className="h-[2.75rem] w-auto"
               />
               <p className="mt-5 max-w-[38ch] text-[0.8125rem] leading-relaxed text-cream/60">
-                <span className="font-medium text-mint">{site.name}</span> is a
+                <span className="font-medium text-lime-soft">{site.name}</span> is a
                 signature brand of{" "}
                 <span className="font-medium text-cream/85">{site.company}</span>
                 , supplying premium global ingredients to 5-star hotels,
@@ -127,11 +127,11 @@ export function SiteFooter() {
               <ul className="mt-5 space-y-4">
                 {contactRows.map(({ icon: Icon, label, href }) => (
                   <li key={label} className="flex gap-3">
-                    <Icon className="mt-[0.15rem] size-4 shrink-0 text-mint" />
+                    <Icon className="mt-[0.15rem] size-4 shrink-0 text-lime-soft" />
                     {href ? (
                       <a
                         href={href}
-                        className="text-[0.8125rem] leading-relaxed text-cream/60 transition-colors duration-300 hover:text-mint"
+                        className="text-[0.8125rem] leading-relaxed text-cream/60 transition-colors duration-300 hover:text-lime-soft"
                       >
                         {label}
                       </a>
@@ -163,7 +163,7 @@ export function SiteFooter() {
                       target="_blank"
                       rel="noreferrer noopener"
                       aria-label={`${site.name} on ${label}`}
-                      className="grid size-9 place-items-center rounded-full border border-line text-muted transition-[color,border-color,transform] duration-300 ease-[var(--ease-out-soft)] hover:-translate-y-px hover:border-green-deep/45 hover:text-green-deep"
+                      className="grid size-9 place-items-center rounded-full border border-line text-muted transition-[color,background-color,border-color,transform] duration-300 ease-[var(--ease-out-soft)] hover:-translate-y-px hover:border-lime-soft hover:bg-lime-mist hover:text-navy"
                     >
                       <Icon className="size-[1.05rem]" />
                     </a>

@@ -18,13 +18,13 @@ const highlights = [
     icon: LeafIcon,
     title: "100% Natural",
     note: "No preservatives",
-    ring: "bg-lime-tint text-green",
+    ring: "bg-lime-soft text-navy",
   },
   {
     icon: TruckIcon,
     title: "Bulk Supply",
     note: "For B2B needs",
-    ring: "bg-lime-tint text-green",
+    ring: "bg-lime-soft text-navy",
   },
 ];
 
@@ -92,7 +92,10 @@ export function Hero() {
               <h1 id="hero-heading" className="text-h1 [text-wrap:normal]">
                 Naturally Frozen.
                 <br />
-                Perfectly <span className="text-green-deep">Delivered.</span>
+                Perfectly{" "}
+                <span className="box-decoration-clone rounded-[0.2em] bg-lime-soft px-[0.12em] text-navy">
+                  Delivered.
+                </span>
               </h1>
             </HeroItem>
 

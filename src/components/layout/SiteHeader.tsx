@@ -54,17 +54,17 @@ export function SiteHeader() {
                       className={cn(
                         "group relative inline-flex flex-col items-center px-3.5 py-2 text-[0.875rem] transition-colors duration-300",
                         active
-                          ? "font-medium text-green-deep"
-                          : "text-muted hover:text-green-deep"
+                          ? "font-medium text-navy"
+                          : "text-muted hover:text-navy"
                       )}
                     >
                       {link.label}
-                      {/* Green rule: held open on the active item, wiping out
-                          from the centre on hover. */}
+                      {/* Exact lime rule: held open on the active item, wiping
+                          out from the centre on hover. */}
                       <span
                         aria-hidden
                         className={cn(
-                          "mt-1.5 block h-[2px] w-full origin-center rounded-full bg-gradient-to-r from-green-deep via-green-deep to-green transition-transform duration-500 ease-[var(--ease-out-soft)]",
+                          "mt-1.5 block h-[2px] w-full origin-center rounded-full bg-lime-soft transition-transform duration-500 ease-[var(--ease-out-soft)]",
                           active
                             ? "scale-x-100"
                             : "scale-x-0 group-hover:scale-x-100"
@@ -94,7 +94,7 @@ export function SiteHeader() {
               href={site.phoneHref}
               aria-label={`Call ${site.name} on ${site.phone}`}
               /* size-11 = 44px, the minimum comfortable touch target. */
-              className="grid size-11 shrink-0 place-items-center rounded-full border border-line text-navy transition-[color,border-color,box-shadow,transform] duration-300 ease-[var(--ease-out-soft)] hover:-translate-y-px hover:border-green-deep/45 hover:text-green-deep hover:shadow-soft lg:size-12"
+              className="grid size-11 shrink-0 place-items-center rounded-full border border-line text-navy transition-[color,background-color,border-color,box-shadow,transform] duration-300 ease-[var(--ease-out-soft)] hover:-translate-y-px hover:border-lime-soft hover:bg-lime-mist hover:text-navy hover:shadow-soft lg:size-12"
             >
               <PhoneIcon className="size-[1.05rem] lg:size-[1.15rem]" />
             </a>

@@ -126,7 +126,7 @@ export default function AboutPage() {
                   delay={index * 80}
                   className="card-surface group p-[clamp(1.25rem,2.4vw,1.75rem)]"
                 >
-                  <span className="text-eyebrow font-medium uppercase text-green-deep">
+                  <span className="inline-flex rounded-full bg-lime-soft px-2.5 py-1 text-eyebrow font-medium uppercase text-navy">
                     {entry.year}
                   </span>
                   <h3 className="mt-3 text-[1.0625rem] font-semibold leading-snug tracking-[-0.012em] text-navy">

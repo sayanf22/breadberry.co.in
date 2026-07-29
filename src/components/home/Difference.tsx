@@ -20,7 +20,7 @@ const cardLift = ["mt-0", "mt-5 sm:mt-7", "mt-9 sm:mt-12"] as const;
 
 const iconTones = {
   blue: "bg-blue-soft text-blue",
-  green: "bg-lime-tint text-green-deep",
+  green: "bg-lime-soft text-navy",
   berry: "bg-[#fbe6eb] text-berry",
   amber: "bg-[#fbf1d9] text-[#a4761c]",
   teal: "bg-[#e4f1f3] text-[#1c7d88]",
@@ -80,7 +80,7 @@ export function Difference() {
           className="absolute inset-0 -z-10"
           style={{
             background:
-              "radial-gradient(46% 60% at 50% -8%, rgb(127 201 166 / .1) 0%, transparent 70%), radial-gradient(38% 52% at 92% 106%, rgb(20 120 90 / .16) 0%, transparent 72%)",
+              "radial-gradient(46% 60% at 50% -8%, rgb(195 255 171 / .1) 0%, transparent 70%), radial-gradient(38% 52% at 92% 106%, rgb(195 255 171 / .16) 0%, transparent 72%)",
           }}
         />
 
@@ -144,40 +144,36 @@ export function Difference() {
                 >
                   <Link
                     href={item.href}
-                    className="group relative flex h-full flex-col justify-between gap-8 overflow-hidden rounded-card border border-cream/12 bg-forest-mid p-[clamp(1.375rem,2.6vw,2.125rem)] transition-[transform,box-shadow,border-color] duration-500 ease-[var(--ease-out-soft)] hover:-translate-y-1 hover:border-cream/25 hover:shadow-lift"
+                    className="group relative flex h-full flex-col justify-between gap-8 overflow-hidden rounded-card border border-navy/10 bg-lime-soft p-[clamp(1.375rem,2.6vw,2.125rem)] transition-[transform,box-shadow,border-color] duration-500 ease-[var(--ease-out-soft)] hover:-translate-y-1 hover:border-navy/25 hover:shadow-lift"
                   >
-                    {/* Flat fill. The radial white overlay that used to sit
-                        here read as a blotch, not a highlight. */}
                     <span aria-hidden className="sheen" />
 
                     <div className="relative z-2 flex items-start justify-between gap-5">
-                    <div>
-                      <h3
-                        className={cn(
-                          "max-w-[22ch] font-display leading-[1.15] text-cream",
-                          wide
-                            ? "text-[clamp(1.5rem,1.15rem+1.4vw,2.125rem)]"
-                            : "text-[clamp(1.3125rem,1.1rem+0.9vw,1.75rem)]"
-                        )}
+                      <div>
+                        <h3
+                          className={cn(
+                            "max-w-[22ch] font-display leading-[1.15] text-navy",
+                            wide
+                              ? "text-[clamp(1.5rem,1.15rem+1.4vw,2.125rem)]"
+                              : "text-[clamp(1.3125rem,1.1rem+0.9vw,1.75rem)]"
+                          )}
+                        >
+                          {item.title}
+                        </h3>
+                        <p className="mt-3 max-w-[40ch] text-[0.9375rem] leading-relaxed text-navy/75">
+                          {item.note}
+                        </p>
+                      </div>
+
+                      <span
+                        aria-hidden
+                        className="grid size-9 shrink-0 place-items-center rounded-full border border-navy/20 text-navy transition-[border-color,transform] duration-500 ease-[var(--ease-out-soft)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:border-navy/50"
                       >
-                        {item.title}
-                      </h3>
-                      {/* /78 not /70: on the lifted green, 70% lands at
-                          4.42:1, just under AA for body text. */}
-                      <p className="mt-3 max-w-[40ch] text-[0.9375rem] leading-relaxed text-cream/78">
-                        {item.note}
-                      </p>
+                        <ArrowRightIcon className="size-4 -rotate-45" />
+                      </span>
                     </div>
 
-                    <span
-                      aria-hidden
-                      className="grid size-9 shrink-0 place-items-center rounded-full border border-cream/25 text-cream transition-[border-color,transform] duration-500 ease-[var(--ease-out-soft)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:border-cream/60"
-                    >
-                      <ArrowRightIcon className="size-4 -rotate-45" />
-                    </span>
-                  </div>
-
-                    <span className="relative z-2 inline-flex items-center gap-1.5 text-[0.75rem] font-medium uppercase tracking-[0.14em] text-cream/75 transition-colors duration-400 group-hover:text-cream">
+                    <span className="relative z-2 inline-flex items-center gap-1.5 text-[0.75rem] font-medium uppercase tracking-[0.14em] text-navy/70 transition-colors duration-400 group-hover:text-navy">
                       {item.cta}
                     </span>
                   </Link>

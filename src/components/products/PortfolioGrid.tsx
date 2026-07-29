@@ -22,10 +22,10 @@ const palettes = {
   },
   green: {
     surface: "bg-lime-panel",
-    border: "border-[#dcecd0]",
-    accent: "text-green-deep",
-    rule: "bg-green-deep/25",
-    link: "text-green-deep hover:text-green-deeper",
+    border: "border-lime-soft",
+    accent: "text-navy",
+    rule: "bg-lime-soft",
+    link: "text-navy decoration-lime-soft decoration-2 underline-offset-4 hover:underline",
   },
   amber: {
     surface: "bg-[#fdf7e9]",

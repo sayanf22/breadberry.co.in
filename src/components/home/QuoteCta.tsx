@@ -34,7 +34,7 @@ export function QuoteCta() {
             className="absolute inset-0 -z-10"
             style={{
               background:
-                "radial-gradient(58% 68% at 50% 0%, rgb(20 120 90 / .1) 0%, transparent 66%), radial-gradient(46% 60% at 90% 104%, rgb(252 226 234 / .5) 0%, transparent 70%)",
+                "radial-gradient(58% 68% at 50% 0%, rgb(195 255 171 / .34) 0%, transparent 66%), radial-gradient(46% 60% at 90% 104%, rgb(252 226 234 / .5) 0%, transparent 70%)",
             }}
           />
 
@@ -42,8 +42,10 @@ export function QuoteCta() {
             <ul className="flex flex-wrap justify-center gap-2">
               {chips.map(({ icon: Icon, label }) => (
                 <li key={label}>
-                  <span className="inline-flex items-center gap-2 rounded-pill border border-navy/10 bg-white/75 px-3.5 py-2 text-[0.75rem] font-medium text-navy backdrop-blur-sm sm:text-[0.8125rem]">
-                    <Icon className="size-[0.95rem] shrink-0 text-green-deep" />
+                  <span className="inline-flex items-center gap-2 rounded-pill border border-lime-soft bg-white/75 px-3.5 py-2 text-[0.75rem] font-medium text-navy backdrop-blur-sm sm:text-[0.8125rem]">
+                    <span className="grid size-6 shrink-0 place-items-center rounded-full bg-lime-soft text-navy">
+                      <Icon className="size-[0.85rem]" />
+                    </span>
                     {label}
                   </span>
                 </li>
@@ -79,9 +81,9 @@ export function QuoteCta() {
 
               <a
                 href={site.phoneHref}
-                className="inline-flex h-[3.25rem] items-center justify-center gap-2.5 rounded-pill border border-navy/12 bg-white/60 px-6 text-[0.9375rem] font-medium text-navy transition-[background-color,border-color] duration-300 hover:border-navy/25 hover:bg-white"
+                className="inline-flex h-[3.25rem] items-center justify-center gap-2.5 rounded-pill border border-lime-soft bg-white/60 px-6 text-[0.9375rem] font-medium text-navy transition-[background-color,border-color] duration-300 hover:border-lime-soft hover:bg-white"
               >
-                <PhoneIcon className="size-[1.05rem] text-green-deep" />
+                <PhoneIcon className="size-[1.05rem] text-navy" />
                 {site.phone}
               </a>
             </div>
