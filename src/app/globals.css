@@ -12,38 +12,36 @@
   --color-blue-mid: #4c9edd;
   --color-blue-soft: #eaf2fc;
   --color-blue-mist: #f4f9fd;
-  /* Alias onto the leaf scale so there is exactly one green hue site-wide. */
-  --color-green: var(--color-leaf-600);
+  /* Folded onto the emerald: a third green hue (this was #4e9e5a at 129°)
+     read as a mismatch next to both the band and the deep greens. */
+  --color-green: var(--color-green-deep);
   --color-berry: #c0384f;
 
-  /* ── Leaf green scale ───────────────────────────────────────────────────
-     One hue (103°) across the whole site, anchored on the supplied swatch
-     --color-leaf-200. Every green previously sat at 152–165° (teal), which
-     is a different colour family and never related to that swatch.
-     Contrast, measured:
-       leaf-600 on white .............. 6.6:1   (text and button fill)
-       leaf-200 band, leaf-900 type ... 10.9:1
-       leaf-800 card on night ......... 2.1:1 separation, cream 8.1:1
-       leaf-400 on night .............. 10.8:1 (eyebrows, links)
-       leaf-50 tint, #4e6373 body ..... 5.7:1                            */
-  --color-leaf-50: #f2fbef;
-  --color-leaf-100: #e4f7dc;
-  --color-leaf-200: #c3ffab;
-  --color-leaf-400: #96d47d;
-  --color-leaf-600: #32691c;
-  --color-leaf-700: #295b15;
-  --color-leaf-800: #2c531d;
-  --color-leaf-900: #1e3a14;
+  /* ── Greens ─────────────────────────────────────────────────────────────
+     Deep emerald carries every interactive and structural use — buttons,
+     links, the "Delivered." accent, the dark card surfaces. Measured:
+       green-deep on white ............ 4.9:1 as text and as button fill
+       forest-mid card on night ....... 2.3:1 separation, cream 7.2:1
+       mint on night .................. 9.7:1                              */
+  --color-green-deep: #14785a;
+  --color-green-deeper: #0f5f47;
+  --color-forest: #0e4638;
+  --color-forest-deep: #0a3a2e;
+  --color-forest-mid: #145c47;
+  --color-mint: #7fc9a6;
 
-  /* Semantic aliases — components reference these, so re-pointing the scale
-     never means touching component files. */
-  --color-green-deep: var(--color-leaf-600);
-  --color-green-deeper: var(--color-leaf-700);
-  --color-lime-soft: var(--color-leaf-200);
-  --color-forest: var(--color-leaf-800);
-  --color-forest-deep: var(--color-leaf-900);
-  --color-forest-mid: var(--color-leaf-800);
-  --color-mint: var(--color-leaf-400);
+  /* ── Light green family ─────────────────────────────────────────────────
+     Taken from the client band and used for every pale green surface, so the
+     band's colouring is the site's, not a one-off. Hue ~100°, paired with the
+     deep emeralds above exactly as the band pairs them. Measured:
+       band, forest-deep type ......... 11:1
+       band, forest/85 names .......... 6.2:1
+       tint / panel / mist, body ...... 5.6–5.9:1
+       tint / panel / mist, icons ..... 4.9–5.1:1                          */
+  --color-lime-soft: #c3ffab;
+  --color-lime-tint: #e6f8dc;
+  --color-lime-panel: #eef8e8;
+  --color-lime-mist: #f2fbee;
 
   /* Near-black slab (neutral, not navy). Cream clears 17:1 here. */
   --color-night: #111113;

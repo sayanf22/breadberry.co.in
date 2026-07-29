@@ -20,7 +20,7 @@ const cardLift = ["mt-0", "mt-5 sm:mt-7", "mt-9 sm:mt-12"] as const;
 
 const iconTones = {
   blue: "bg-blue-soft text-blue",
-  green: "bg-[#e8f5e0] text-green-deep",
+  green: "bg-lime-tint text-green-deep",
   berry: "bg-[#fbe6eb] text-berry",
   amber: "bg-[#fbf1d9] text-[#a4761c]",
   teal: "bg-[#e4f1f3] text-[#1c7d88]",
@@ -80,7 +80,7 @@ export function Difference() {
           className="absolute inset-0 -z-10"
           style={{
             background:
-              "radial-gradient(46% 60% at 50% -8%, rgb(150 212 125 / .1) 0%, transparent 70%), radial-gradient(38% 52% at 92% 106%, rgb(50 105 28 / .16) 0%, transparent 72%)",
+              "radial-gradient(46% 60% at 50% -8%, rgb(127 201 166 / .1) 0%, transparent 70%), radial-gradient(38% 52% at 92% 106%, rgb(20 120 90 / .16) 0%, transparent 72%)",
           }}
         />
 

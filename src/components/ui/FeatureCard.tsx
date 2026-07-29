@@ -10,7 +10,7 @@ export type Feature = {
 
 const tones = {
   blue: "bg-blue-soft text-blue",
-  green: "bg-[#e8f5e0] text-green",
+  green: "bg-lime-tint text-green",
   berry: "bg-[#fdeef1] text-berry",
 } as const;
 

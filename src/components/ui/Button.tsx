@@ -11,7 +11,7 @@ const variants: Record<Variant, string> = {
     "bg-navy text-white shadow-btn hover:bg-navy-deep hover:shadow-[0_14px_30px_-12px_rgb(11_44_79/0.65)]",
   /** Reserved for the "Request a Quote" conversion path. */
   accent:
-    "bg-green-deep text-white shadow-[0_10px_24px_-12px_rgb(50_105_28/0.7)] hover:bg-green-deeper hover:shadow-[0_14px_30px_-12px_rgb(50_105_28/0.75)]",
+    "bg-green-deep text-white shadow-[0_10px_24px_-12px_rgb(20_120_90/0.7)] hover:bg-green-deeper hover:shadow-[0_14px_30px_-12px_rgb(20_120_90/0.75)]",
   outline:
     "border border-line bg-white text-navy hover:border-green-deep/45 hover:text-green-deep hover:shadow-soft",
   ghost: "text-navy hover:text-green-deep",

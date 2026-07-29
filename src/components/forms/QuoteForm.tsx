@@ -146,7 +146,7 @@ export function QuoteForm() {
              */
             <label
               key={product.slug}
-              className="flex cursor-pointer items-center gap-3 rounded-2xl border border-line bg-white px-4 py-3 transition-[border-color,background-color] duration-300 hover:border-green-deep/45 has-[:checked]:border-green-deep/60 has-[:checked]:bg-[#eef7e9]"
+              className="flex cursor-pointer items-center gap-3 rounded-2xl border border-line bg-white px-4 py-3 transition-[border-color,background-color] duration-300 hover:border-green-deep/45 has-[:checked]:border-green-deep/60 has-[:checked]:bg-lime-panel"
             >
               <span className="relative grid size-5 shrink-0 place-items-center">
                 <input
