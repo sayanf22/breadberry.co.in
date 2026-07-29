@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // OpenNext packages this standalone server into the Cloudflare Worker.
+  output: "standalone",
   images: {
     // Modern formats first; Next falls back automatically per Accept header.
     formats: ["image/avif", "image/webp"],

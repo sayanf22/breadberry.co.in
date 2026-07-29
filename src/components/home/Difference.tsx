@@ -10,13 +10,13 @@ import { site } from "@/lib/site";
 
 /* Mixed widths so the row reads as a wall of notes, not a grid. */
 const cardWidth = {
-  sm: "w-[15.5rem] sm:w-[17rem]",
-  md: "w-[17.5rem] sm:w-[19.5rem]",
-  lg: "w-[19.5rem] sm:w-[22rem]",
+  sm: "w-full sm:w-[17rem]",
+  md: "w-full sm:w-[19.5rem]",
+  lg: "w-full sm:w-[22rem]",
 } as const;
 
-/* Vertical stagger, applied as margin so the flex row grows to contain it. */
-const cardLift = ["mt-0", "mt-5 sm:mt-7", "mt-9 sm:mt-12"] as const;
+/* Stagger only once the marquee is active; phone cards form a clean stack. */
+const cardLift = ["mt-0", "mt-0 sm:mt-7", "mt-0 sm:mt-12"] as const;
 
 const iconTones = {
   blue: "bg-blue-soft text-blue",
@@ -105,7 +105,7 @@ export function Difference() {
         {/* Commitment row */}
         <Reveal
           delay={80}
-          className="edge-fade mt-[clamp(1.75rem,3.5vw,2.5rem)] overflow-hidden"
+          className="difference-commitments mt-[clamp(1.75rem,3.5vw,2.5rem)] overflow-hidden"
         >
           <ul
             className="marquee-track items-start gap-3 px-2 pb-3 sm:gap-4"

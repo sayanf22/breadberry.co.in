@@ -475,11 +475,36 @@
   backface-visibility: hidden;
 }
 
-/* A phone shows a much narrower window of the same track, so the desktop
-   duration crawls. Components can opt into a shorter one. */
+/* Phones render the Difference commitments as a static, full-width stack.
+   This removes the edge mask/shadow bands and prevents wide cards from being
+   clipped. Other marquees, including the client strip, remain unchanged. */
 @media (max-width: 639px) {
   .marquee-track {
     animation-duration: var(--marquee-duration-sm, var(--marquee-duration, 42s));
+  }
+
+  .difference-commitments {
+    overflow: visible;
+    padding-inline: clamp(1rem, 4vw, 1.25rem);
+  }
+
+  .difference-commitments .marquee-track {
+    display: grid;
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem;
+    padding: 0;
+    animation: none;
+    transform: none;
+    will-change: auto;
+  }
+
+  .difference-commitments .marquee-track > [aria-hidden="true"] {
+    display: none;
+  }
+
+  .difference-commitments .marquee-track > li {
+    width: 100%;
   }
 }
 

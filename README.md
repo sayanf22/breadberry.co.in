@@ -150,3 +150,16 @@ Replace before production:
 No customer testimonials are shown. Named quotes were removed rather than
 invented; add them once real, attributable ones are available.
 ```
+
+## Cloudflare Workers deployment
+
+The OpenNext adapter and Wrangler are pinned so CI does not auto-migrate the
+repository during each deployment. In Cloudflare Workers Builds, use:
+
+- **Build command:** `npm run build`
+- **Deploy command:** `npx wrangler deploy`
+- **Root directory:** the repository root
+
+For a local one-command deployment, use `npm run deploy`. The Worker and its
+`WORKER_SELF_REFERENCE` service binding are both named `breadberry`; these names
+must remain identical. Generated `.open-next` and `.wrangler` output is ignored.
