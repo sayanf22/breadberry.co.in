@@ -10,10 +10,9 @@ import { portfolio, type PortfolioCategory } from "@/lib/portfolio";
 /**
  * One light tint per category.
  *
- * `surface` stays pale enough to hold navy headings and muted body copy at AA.
+ * `surface` stays pale enough to hold navy headings and body copy at AA.
  * `ring` and `glow` feed the shared `.card-surface` custom properties so the
  * hover treatment follows the card's own colour instead of the default blue.
- * The icon tile is white on tint, which reads crisper than a deeper tint tile.
  */
 const palettes = {
   berry: {
@@ -60,13 +59,63 @@ const palettes = {
 
 export function CategoryCard({
   category,
+  /** Renders the card as the dark hero of the grid. */
+  featured = false,
   className,
 }: {
   category: PortfolioCategory;
+  featured?: boolean;
   className?: string;
 }) {
-  const { icon: Icon, name, summary, tone, hasCatalogue } = category;
+  const { icon: Icon, name, summary, detail, tone, hasCatalogue } = category;
   const palette = palettes[tone];
+
+  if (featured) {
+    return (
+      <div
+        className={cn(
+          "group relative flex h-full flex-col overflow-hidden rounded-card bg-night p-[clamp(1.5rem,2.8vw,2.25rem)]",
+          "transition-[transform,box-shadow] duration-500 ease-[var(--ease-out-soft)] hover:-translate-y-1 hover:shadow-lift",
+          className
+        )}
+      >
+        <span aria-hidden className="sheen" />
+        <span
+          aria-hidden
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(62% 70% at 100% 0%, rgb(192 56 79 / .18) 0%, transparent 68%)",
+          }}
+        />
+
+        <span className="relative z-2 grid size-[3.25rem] place-items-center rounded-[1.125rem] bg-white/10 text-cream">
+          <Icon className="size-[1.4rem]" />
+        </span>
+
+        <h3 className="relative z-2 mt-6 max-w-[22ch] font-display text-[clamp(1.375rem,1.15rem+0.9vw,1.875rem)] leading-[1.16] text-cream">
+          {name}
+        </h3>
+
+        <p className="relative z-2 mt-3 max-w-[46ch] text-[0.9375rem] leading-relaxed text-cream/78">
+          {summary}
+        </p>
+        <p className="relative z-2 mt-3 max-w-[46ch] text-[0.9375rem] leading-relaxed text-cream/60">
+          {detail}
+        </p>
+
+        {hasCatalogue && (
+          <Link
+            href="/products#range"
+            className="relative z-2 mt-auto inline-flex w-fit items-center gap-1.5 pt-7 text-[0.8125rem] font-medium text-mint transition-colors duration-300 hover:text-cream"
+          >
+            Browse the range
+            <ArrowRightIcon className="size-[0.95rem] transition-transform duration-300 ease-[var(--ease-out-soft)] group-hover:translate-x-0.5" />
+          </Link>
+        )}
+      </div>
+    );
+  }
 
   return (
     <div
@@ -111,6 +160,32 @@ export function CategoryCard({
   );
 }
 
+/**
+ * Bento grid: the signature line takes a dark, wider cell so the portfolio
+ * has an obvious entry point, with the other four categories as light tints.
+ * Twelve columns on desktop — 7/5 on the first row, then three equal cells.
+ */
+export function PortfolioGrid() {
+  return (
+    <div className="grid gap-[clamp(0.75rem,1.6vw,1.25rem)] sm:grid-cols-2 lg:grid-cols-12">
+      {portfolio.map((category, index) => (
+        <Reveal
+          key={category.slug}
+          delay={index * 70}
+          className={cn(
+            "h-full",
+            index === 0 && "sm:col-span-2 lg:col-span-7",
+            index === 1 && "lg:col-span-5",
+            index > 1 && "lg:col-span-4"
+          )}
+        >
+          <CategoryCard category={category} featured={index === 0} />
+        </Reveal>
+      ))}
+    </div>
+  );
+}
+
 export function CuratedSelection() {
   return (
     <section
@@ -132,20 +207,8 @@ export function CuratedSelection() {
           </div>
         </Reveal>
 
-        <div className="mt-[clamp(1.5rem,3.5vw,2.25rem)] grid gap-[clamp(0.75rem,1.6vw,1.25rem)] sm:grid-cols-2 lg:grid-cols-3">
-          {portfolio.map((category, index) => (
-            <Reveal
-              key={category.slug}
-              delay={index * 70}
-              className={cn(
-                "h-full",
-                // The signature line takes the wider slot on large screens.
-                index === 0 && "lg:col-span-2"
-              )}
-            >
-              <CategoryCard category={category} />
-            </Reveal>
-          ))}
+        <div className="mt-[clamp(1.5rem,3.5vw,2.25rem)]">
+          <PortfolioGrid />
         </div>
       </Container>
     </section>

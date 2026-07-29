@@ -20,9 +20,18 @@
   --color-green-deep: #14785a;
   --color-green-deeper: #0f5f47;
 
-  /* Deep green band + warm off-white used on the trust and testimonial blocks */
+  /* Deep green band + warm off-white used on the trust and client blocks */
   --color-forest: #0e4638;
   --color-forest-deep: #0a3a2e;
+  /* Lifted green for cards sitting on the dark slab — 2.26:1 against it, so
+     the cards separate, while cream copy still clears 7:1 on top. */
+  --color-forest-mid: #145c47;
+
+  /* Near-black slab (neutral, not navy) and the mint used for eyebrows on it.
+     Cream clears 17:1 here and the lifted green cards separate at 2.4:1. */
+  --color-night: #111113;
+  --color-night-soft: #17171a;
+  --color-mint: #7fc9a6;
   --color-cream: #f8f4ea;
   --color-cream-soft: #fdfbf5;
 

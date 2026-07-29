@@ -8,12 +8,14 @@ export function Eyebrow({
 }: {
   children: ReactNode;
   /** Green is the house accent; blue is reserved for cold-chain context. */
-  tone?: "green" | "blue" | "light";
+  tone?: "green" | "blue" | "mint" | "light";
   className?: string;
 }) {
   const tones = {
     green: "text-green-deep",
     blue: "text-blue",
+    /** For dark backgrounds — 9.2:1 on the night slab. */
+    mint: "text-mint",
     light: "text-white/65",
   } as const;
 
@@ -40,7 +42,7 @@ export function SectionHeading({
   children,
 }: {
   eyebrow?: string;
-  eyebrowTone?: "green" | "blue" | "light";
+  eyebrowTone?: "green" | "blue" | "mint" | "light";
   title: ReactNode;
   description?: ReactNode;
   align?: "left" | "center";

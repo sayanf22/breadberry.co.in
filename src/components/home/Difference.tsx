@@ -69,55 +69,78 @@ export function Difference() {
       aria-labelledby="difference-heading"
       className="pb-[clamp(3rem,7vw,5.5rem)]"
     >
-      <Container>
-        <Reveal className="flex flex-col items-center text-center">
-          <Eyebrow>The {site.company.split(" ")[0]} difference</Eyebrow>
-          <h2 id="difference-heading" className="mt-3 max-w-[26ch] text-h2">
-            Trust is built on consistency
-          </h2>
-          <p className="text-lead mt-4 max-w-[52ch] text-muted">
-            We treat your ingredients with the same care and exactness you apply
-            to your final presentation.
-          </p>
-        </Reveal>
-      </Container>
+      {/* Full-bleed dark slab. Sits outside the page container so it reaches
+          both viewport edges, rounded on all four corners so it reads as a
+          block tucked between the sections above and below. */}
+      <div className="relative isolate overflow-hidden rounded-[clamp(1.5rem,4vw,2.75rem)] bg-night py-[clamp(2.75rem,6.5vw,4.5rem)]">
+        {/* Faint green wash only — a blue glow is what made the black read
+            as navy in the first place. */}
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10"
+          style={{
+            background:
+              "radial-gradient(46% 60% at 50% -8%, rgb(127 201 166 / .1) 0%, transparent 70%), radial-gradient(38% 52% at 92% 106%, rgb(20 120 90 / .16) 0%, transparent 72%)",
+          }}
+        />
 
-      {/* Full-bleed commitment row */}
-      <Reveal
-        delay={80}
-        className="edge-fade mt-[clamp(1.75rem,3.5vw,2.5rem)] overflow-hidden"
-      >
-        <ul
-          className="marquee-track items-start gap-4 px-2 pb-3"
-          style={{ "--marquee-duration": "92s" } as CSSProperties}
-        >
-          {track.map((item, index) => (
-            <li
-              key={`${item.title}-${index}`}
-              aria-hidden={index >= commitments.length}
-              className="flex"
+        <Container>
+          <Reveal className="flex flex-col items-center text-center">
+            <Eyebrow tone="mint">
+              The {site.company.split(" ")[0]} difference
+            </Eyebrow>
+            <h2
+              id="difference-heading"
+              className="mt-3 max-w-[26ch] text-h2 text-cream"
             >
-              <CommitmentCard item={item} />
-            </li>
-          ))}
-        </ul>
-      </Reveal>
+              Trust is built on consistency
+            </h2>
+            <p className="text-lead mt-4 max-w-[52ch] text-cream/65">
+              We treat your ingredients with the same care and exactness you
+              apply to your final presentation.
+            </p>
+          </Reveal>
+        </Container>
 
-      {/* Proof bento — wide and narrow cards alternate down the grid */}
-      <Container>
-        <div className="mt-[clamp(1.5rem,3vw,2.25rem)] grid gap-4 sm:grid-cols-2 lg:grid-cols-12">
-          {proofPoints.map((item, index) => {
-            const wide = item.size === "lg";
-            return (
-              <Reveal
-                key={item.title}
-                delay={index * 80}
-                className={cn("h-full", wide ? "lg:col-span-7" : "lg:col-span-5")}
+        {/* Commitment row */}
+        <Reveal
+          delay={80}
+          className="edge-fade mt-[clamp(1.75rem,3.5vw,2.5rem)] overflow-hidden"
+        >
+          <ul
+            className="marquee-track items-start gap-4 px-2 pb-3"
+            style={{ "--marquee-duration": "92s" } as CSSProperties}
+          >
+            {track.map((item, index) => (
+              <li
+                key={`${item.title}-${index}`}
+                aria-hidden={index >= commitments.length}
+                className="flex"
               >
-                <Link
-                  href={item.href}
-                  className="group relative flex h-full flex-col justify-between gap-8 overflow-hidden rounded-card bg-forest p-[clamp(1.375rem,2.6vw,2.125rem)] transition-[transform,box-shadow] duration-500 ease-[var(--ease-out-soft)] hover:-translate-y-1 hover:shadow-lift"
+                <CommitmentCard item={item} />
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+
+        {/* Proof bento — wide and narrow cards alternate down the grid */}
+        <Container>
+          <div className="mt-[clamp(1.5rem,3vw,2.25rem)] grid gap-4 sm:grid-cols-2 lg:grid-cols-12">
+            {proofPoints.map((item, index) => {
+              const wide = item.size === "lg";
+              return (
+                <Reveal
+                  key={item.title}
+                  delay={index * 80}
+                  className={cn(
+                    "h-full",
+                    wide ? "lg:col-span-7" : "lg:col-span-5"
+                  )}
                 >
+                  <Link
+                    href={item.href}
+                    className="group relative flex h-full flex-col justify-between gap-8 overflow-hidden rounded-card border border-cream/12 bg-forest-mid p-[clamp(1.375rem,2.6vw,2.125rem)] transition-[transform,box-shadow,border-color] duration-500 ease-[var(--ease-out-soft)] hover:-translate-y-1 hover:border-cream/25 hover:shadow-lift"
+                  >
                   <span aria-hidden className="sheen" />
                   <span
                     aria-hidden
@@ -140,7 +163,9 @@ export function Difference() {
                       >
                         {item.title}
                       </h3>
-                      <p className="mt-3 max-w-[40ch] text-[0.9375rem] leading-relaxed text-cream/70">
+                      {/* /78 not /70: on the lifted green, 70% lands at
+                          4.42:1, just under AA for body text. */}
+                      <p className="mt-3 max-w-[40ch] text-[0.9375rem] leading-relaxed text-cream/78">
                         {item.note}
                       </p>
                     </div>
@@ -153,15 +178,16 @@ export function Difference() {
                     </span>
                   </div>
 
-                  <span className="relative z-2 inline-flex items-center gap-1.5 text-[0.75rem] font-medium uppercase tracking-[0.14em] text-cream/60 transition-colors duration-400 group-hover:text-cream">
-                    {item.cta}
-                  </span>
-                </Link>
-              </Reveal>
-            );
-          })}
-        </div>
-      </Container>
+                    <span className="relative z-2 inline-flex items-center gap-1.5 text-[0.75rem] font-medium uppercase tracking-[0.14em] text-cream/75 transition-colors duration-400 group-hover:text-cream">
+                      {item.cta}
+                    </span>
+                  </Link>
+                </Reveal>
+              );
+            })}
+          </div>
+        </Container>
+      </div>
     </section>
   );
 }

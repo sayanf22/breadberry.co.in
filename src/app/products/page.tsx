@@ -4,10 +4,9 @@ import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { PageHero } from "@/components/layout/PageHero";
 import { Eyebrow } from "@/components/ui/SectionHeading";
-import { CategoryCard } from "@/components/home/CuratedSelection";
+import { PortfolioGrid } from "@/components/home/CuratedSelection";
 import { ProductFilter } from "@/components/products/ProductFilter";
 import { QuoteCta } from "@/components/home/QuoteCta";
-import { portfolio } from "@/lib/portfolio";
 import { products } from "@/lib/products";
 import { site } from "@/lib/site";
 
@@ -33,22 +32,10 @@ export default function ProductsPage() {
         className="pt-[clamp(2.5rem,5vw,4rem)]"
       >
         <Container>
-          <Reveal>
-            <h2 id="portfolio-heading" className="sr-only">
-              Product categories
-            </h2>
-            <div className="grid gap-[clamp(0.75rem,1.6vw,1.25rem)] sm:grid-cols-2 lg:grid-cols-3">
-              {portfolio.map((category, index) => (
-                <Reveal
-                  key={category.slug}
-                  delay={index * 70}
-                  className={index === 0 ? "h-full lg:col-span-2" : "h-full"}
-                >
-                  <CategoryCard category={category} />
-                </Reveal>
-              ))}
-            </div>
-          </Reveal>
+          <h2 id="portfolio-heading" className="sr-only">
+            Product categories
+          </h2>
+          <PortfolioGrid />
         </Container>
       </section>
 
