@@ -20,15 +20,15 @@ export function ProductRange() {
         <Reveal>
           <div className="flex flex-col gap-5 border-b border-line pb-[clamp(1.25rem,2.5vw,1.75rem)] sm:flex-row sm:items-end sm:justify-between sm:gap-8">
             <div>
-              <Eyebrow tone="green">Our Product Range</Eyebrow>
+              <Eyebrow>The Breadberry Co. signature line</Eyebrow>
               <h2 id="range-heading" className="mt-3 text-h2">
                 Crafted for Every Creation
               </h2>
             </div>
 
-            <p className="text-muted sm:max-w-[26ch] sm:text-right">
-              {products.length} lines in stock, available from 1&nbsp;kg to full
-              pallet.
+            <p className="text-muted sm:max-w-[28ch] sm:text-right">
+              {products.length} berry and puree lines, from 1&nbsp;kg tubs to
+              full pallet quantities.
             </p>
           </div>
         </Reveal>

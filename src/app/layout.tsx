@@ -26,17 +26,20 @@ const newsreader = Newsreader({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — ${site.tagline}`,
+    default: `${site.name} — ${site.tagline} | ${site.company}`,
     template: `%s · ${site.name}`,
   },
   description: site.description,
   applicationName: site.name,
   keywords: [
-    "frozen berries",
-    "IQF berries",
-    "fruit puree supplier",
-    "bulk frozen fruit",
-    "B2B frozen fruit India",
+    "frozen berries Mumbai",
+    "fruit puree supplier Mumbai",
+    "imported vegetables supplier",
+    "artisanal cheese supplier India",
+    "Asian dry groceries wholesale",
+    "frozen seafood supplier Mumbai",
+    "Adhira Enterprises",
+    "Breadberry Co.",
   ],
   openGraph: {
     type: "website",

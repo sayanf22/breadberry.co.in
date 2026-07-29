@@ -1,8 +1,10 @@
 # Breadberry Co.
 
-Marketing site for a B2B frozen berry and fruit puree supplier. Built from the
-supplied desktop and mobile hero mockups with custom components — no theme or
-template.
+Marketing site for **Breadberry Co.**, the signature brand of **Adhira Enterprises** —
+a Mumbai-based procurement partner supplying premium global ingredients to 5-star
+hotels, fine-dining restaurants, premium confectioneries and artisanal bakers.
+Built from the supplied desktop and mobile hero mockups with custom components —
+no theme or template.
 
 ## Stack
 
@@ -45,12 +47,12 @@ scripts/           Asset pipeline (see below)
 src/app/           Routes, root layout, route transition, Server Actions
 src/components/
   layout/          Header, portalled mobile sheet, footer, page hero, logo
-  home/            Hero, TrustBar, ProductRange, Testimonials, QuoteCta
+  home/            Hero, ClientStrip, CuratedSelection, ProductRange, Difference, QuoteCta
   products/        ProductCard, ProductFilter
   forms/           ContactForm, QuoteForm, status panels
-  ui/              Button, Container, Reveal, Field, Monogram, VideoDialog
+  ui/              Button, Container, Reveal, Field, VideoDialog
   icons/           Hand-built SVG set — no icon dependency
-src/lib/           Site config, products, testimonials, features, helpers
+src/lib/           Site + client config, portfolio categories, products, features
 ```
 
 ## Image assets
@@ -95,18 +97,31 @@ Handled in CSS, no animation library:
 - Marquees duplicate their list and translate exactly `-50%` for a seamless loop
 - Everything collapses under `prefers-reduced-motion`
 
+## Content sources
+
+Company details, the curated selection and the client list are taken from
+material supplied by Adhira Enterprises and live in:
+
+- `src/lib/site.ts` — company, founder, city, client list
+- `src/lib/portfolio.ts` — the five ingredient categories
+- `src/lib/features.ts` — the Adhira difference
+- `src/lib/products.ts` — the Breadberry Co. berry and puree catalogue
+
 ## Placeholder content
 
 Replace before production:
 
-- **Testimonials** (`src/lib/testimonials.ts`) — names, roles and quotes are
-  invented. Avatars are initials rather than stock photography, since
-  attributing a stock face to a named customer would be fabricated social proof
-- **Trust strip** (`trustedBy` in `src/lib/site.ts`) — wordmarks are set as
-  type, not real logos. These are third-party trademarks; get permission before
-  using them
+- **Contact details** (`src/lib/site.ts`) — phone and email are placeholders,
+  marked with a `TODO`
+- **Client wordmarks** (`clientsRowOne` / `clientsRowTwo`) — set as type, not
+  real logos. These are third-party trademarks; confirm permission to display
+  them before launch
+- **Product catalogue** (`src/lib/products.ts`) — the eight berry and puree SKUs
+  carry indicative pack sizes and Brix ranges. Confirm against real spec sheets
 - **Form delivery** — `deliver()` in `src/app/actions.ts` only logs. Point it at
   an email provider or CRM. Validation already runs server-side
 - **Video** — `VideoDialog` uses a stand-in URL
-- **Contact details** — `src/lib/site.ts`
+
+No customer testimonials are shown. Named quotes were removed rather than
+invented; add them once real, attributable ones are available.
 ```

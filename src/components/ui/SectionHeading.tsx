@@ -3,16 +3,17 @@ import { cn } from "@/lib/cn";
 
 export function Eyebrow({
   children,
-  tone = "blue",
+  tone = "green",
   className,
 }: {
   children: ReactNode;
-  tone?: "blue" | "green" | "light";
+  /** Green is the house accent; blue is reserved for cold-chain context. */
+  tone?: "green" | "blue" | "light";
   className?: string;
 }) {
   const tones = {
+    green: "text-green-deep",
     blue: "text-blue",
-    green: "text-green",
     light: "text-white/65",
   } as const;
 
@@ -31,7 +32,7 @@ export function Eyebrow({
 
 export function SectionHeading({
   eyebrow,
-  eyebrowTone = "blue",
+  eyebrowTone = "green",
   title,
   description,
   align = "left",
@@ -39,7 +40,7 @@ export function SectionHeading({
   children,
 }: {
   eyebrow?: string;
-  eyebrowTone?: "blue" | "green" | "light";
+  eyebrowTone?: "green" | "blue" | "light";
   title: ReactNode;
   description?: ReactNode;
   align?: "left" | "center";

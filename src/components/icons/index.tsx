@@ -162,3 +162,53 @@ export function CheckIcon(props: IconProps) {
     </svg>
   );
 }
+
+export function CheeseIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M3 11.4 13.2 4.6a1 1 0 0 1 1.1 0L21 9v8.4a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-7Z" />
+      <path d="M3 11.4h18" />
+      <circle cx="8" cy="15" r="1.1" />
+      <circle cx="14.6" cy="14.4" r="1.1" />
+      <circle cx="18" cy="16.4" r="0.9" />
+    </svg>
+  );
+}
+
+export function BowlIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M3.2 10.8h17.6a8.8 8.8 0 0 1-8.8 8.4 8.8 8.8 0 0 1-8.8-8.4Z" />
+      <path d="M8.4 7.6c0-1.5 1.2-2.2 1.2-3.4M12 7.6c0-2 1.5-2.6 1.5-4M15.6 7.6c0-1.3 1-1.9 1-2.9" />
+    </svg>
+  );
+}
+
+export function FishIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M3.4 12c2.6-3.9 5.8-5.8 9.4-5.8 3.4 0 6 1.9 7.8 5.8-1.8 3.9-4.4 5.8-7.8 5.8-3.6 0-6.8-1.9-9.4-5.8Z" />
+      <path d="M3.4 12c-.7-1.1-1-2.2-1-3.4 1.6.3 2.9.9 3.9 1.8M3.4 12c-.7 1.1-1 2.2-1 3.4 1.6-.3 2.9-.9 3.9-1.8" />
+      <circle cx="16.4" cy="10.9" r="0.9" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+export function SparkleIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M12 3.2l1.7 4.6 4.6 1.7-4.6 1.7L12 15.8l-1.7-4.6-4.6-1.7 4.6-1.7L12 3.2Z" />
+      <path d="M18.4 15.2l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8.8-2Z" />
+    </svg>
+  );
+}
+
+export function UsersIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <circle cx="9.4" cy="8.4" r="3.2" />
+      <path d="M3.4 19.4a6 6 0 0 1 12 0" />
+      <path d="M16.2 5.6a3.2 3.2 0 0 1 0 6.2M17.6 14.2a6 6 0 0 1 3 5.2" />
+    </svg>
+  );
+}

@@ -97,7 +97,7 @@ export function QuoteForm() {
             required
             defaultValue={value("city")}
             className={inputClass(error("city"))}
-            placeholder="Pune"
+            placeholder="Mumbai"
             {...aria("city")}
           />
         </Field>

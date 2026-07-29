@@ -10,44 +10,44 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
-  description: `${site.name} supplies IQF berries and single-origin fruit purees to professional kitchens across India, with an unbroken cold chain and batch-level documentation.`,
+  description: `Founded in ${site.founded} by ${site.founder}, ${site.company} bridges world-class culinary ingredients and Mumbai's elite gastronomic landscape. Breadberry Co. is its signature brand.`,
 };
 
 const timeline = [
   {
-    year: "2016",
-    title: "One cold room, four chefs",
-    body: "We started by supplying frozen raspberries to four pastry kitchens who could not get consistent fruit through the monsoon.",
+    year: site.founded,
+    title: "Founded in Mumbai",
+    body: `${site.founder} establishes ${site.company} with a singular vision: to bridge the gap between world-class culinary ingredients and Mumbai's elite gastronomic landscape.`,
   },
   {
-    year: "2019",
-    title: "Our own IQF line",
-    body: "Moving freezing in-house cut the harvest-to-freeze window to under six hours and gave us control of every grade.",
+    year: "Growth",
+    title: "A trusted procurement partner",
+    body: "From a Mumbai base, the business grows into a procurement partner for 5-star hotels, fine-dining restaurants, premium confectioneries and artisanal bakers.",
   },
   {
-    year: "2022",
-    title: "Purees added",
-    body: "Aseptic single-origin purees launched alongside the whole-fruit range, built to the specs bar teams kept asking for.",
+    year: "Expansion",
+    title: "Breadberry Co. introduced",
+    body: "As our footprint in the premium food sector widens, Breadberry Co. launches as a signature brand under the Adhira Enterprises umbrella.",
   },
   {
     year: "Today",
-    title: "Twelve cities, one standard",
-    body: "A standing delivery network across twelve cities, still run on the same batch documentation we started with.",
+    title: `${site.clientsServed} kitchens served`,
+    body: "Five curated ingredient categories, supplied to over a thousand kitchens, cake studios, cafés and retail brands.",
   },
 ];
 
 const values = [
   {
-    title: "Fruit first",
-    body: "We buy by varietal and window. If a lot does not meet grade, it does not ship — there is no second tier.",
+    title: "Ingredients first",
+    body: "Exceptional creations begin with uncompromising ingredients. Everything we carry has to earn its place on that basis alone.",
   },
   {
-    title: "Show the numbers",
-    body: "Brix, pH and drained weight go on the docket. You should never have to take our word for a spec.",
+    title: "Craft, extended",
+    body: "Through Breadberry Co. we take our passion for quality into specialised culinary and baking avenues, continuing a tradition of excellence.",
   },
   {
-    title: "Built around prep",
-    body: "Deliveries are scheduled around your prep days. Cold chain is our problem, not something you inherit.",
+    title: "Your standard, matched",
+    body: "We treat your ingredients with the same care and exactness that you apply to your final presentation. Nothing less is useful to you.",
   },
 ];
 
@@ -55,46 +55,48 @@ export default function AboutPage() {
   return (
     <>
       <PageHero
-        eyebrow="About us"
-        title="A fruit supplier built by people who cook"
-        description="Breadberry Co. exists because professional kitchens deserve frozen fruit that behaves exactly the same in January and in July."
+        eyebrow={`Welcome to ${site.company}`}
+        title="Elevating culinary experiences through exceptional ingredients"
+        description={`Founded in ${site.founded} by ${site.founder}, we bring the world's finest flavours directly to Mumbai's most demanding kitchens.`}
         crumbs={[{ label: "Home", href: "/" }, { label: "About" }]}
       >
         <VideoDialog label="Watch our story" />
       </PageHero>
 
       {/* Story */}
-      <section aria-labelledby="story-heading" className="py-[clamp(3rem,7vw,5rem)]">
+      <section
+        aria-labelledby="story-heading"
+        className="py-[clamp(3rem,7vw,5rem)]"
+      >
         <Container>
           <div className="grid items-center gap-[clamp(2rem,5vw,4rem)] lg:grid-cols-2">
             <Reveal>
               <SectionHeading
                 eyebrow="Our story"
-                eyebrowTone="green"
-                title={
-                  <span id="story-heading">
-                    Started in a cold room in Pune
-                  </span>
-                }
+                title={<span id="story-heading">Built on a single vision</span>}
               />
               <div className="mt-6 space-y-4 text-muted">
                 <p>
-                  In 2016 a pastry chef told us the same thing three suppliers
-                  had told her was impossible: she needed raspberries that held
-                  their shape through a bake, in August. We spent a season
-                  reworking how fruit was picked, chilled and frozen until she
-                  had them.
+                  {site.company} was established in {site.founded} by{" "}
+                  {site.founder} with a singular vision: to bridge the gap
+                  between world-class culinary ingredients and Mumbai&rsquo;s
+                  elite gastronomic landscape. We understand that exceptional
+                  creations begin with uncompromising ingredients.
                 </p>
                 <p>
-                  That is still the whole business. We buy fruit by varietal and
-                  harvest window, freeze it individually within hours, and
-                  document every batch so a kitchen can plan a menu around it
-                  rather than around the weather.
+                  From our base in Mumbai, we have grown into a trusted
+                  procurement partner for 5-star hotels, fine-dining
+                  restaurants, premium confectioneries and artisanal bakers —
+                  dedicated to bringing the world&rsquo;s finest flavours
+                  directly to your kitchen.
                 </p>
                 <p>
-                  Today we supply restaurants, cafés, bakeries and hotel groups
-                  across twelve cities — and we still lose sleep over drained
-                  weight.
+                  As our footprint in the premium food sector expanded, we
+                  proudly introduced Breadberry Co. as a signature brand under
+                  the {site.company} umbrella. Through Breadberry Co. we extend
+                  our passion for quality and craftsmanship into specialised
+                  culinary and baking avenues, continuing our tradition of
+                  excellence.
                 </p>
               </div>
             </Reveal>
@@ -133,12 +135,12 @@ export default function AboutPage() {
             <ol className="mt-[clamp(1.75rem,3.5vw,2.75rem)] grid gap-[clamp(0.75rem,1.6vw,1.25rem)] sm:grid-cols-2 lg:grid-cols-4">
               {timeline.map((entry, index) => (
                 <Reveal
-                  key={entry.year}
+                  key={entry.title}
                   as="li"
                   delay={index * 80}
                   className="card-surface group p-[clamp(1.25rem,2.4vw,1.75rem)]"
                 >
-                  <span className="text-eyebrow font-medium uppercase text-blue">
+                  <span className="text-eyebrow font-medium uppercase text-green-deep">
                     {entry.year}
                   </span>
                   <h3 className="mt-3 text-[1.0625rem] font-semibold leading-snug tracking-[-0.012em] text-navy">
@@ -153,22 +155,24 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section aria-labelledby="values-heading" className="py-[clamp(3rem,7vw,5rem)]">
+      <section
+        aria-labelledby="values-heading"
+        className="pb-[clamp(3rem,7vw,5rem)]"
+      >
         <Container>
           <Reveal>
             <SectionHeading
               eyebrow="What we hold to"
-              eyebrowTone="green"
-              title={<span id="values-heading">Three working rules</span>}
+              title={<span id="values-heading">Three working principles</span>}
             />
           </Reveal>
 
-          <div className="mt-[clamp(2rem,4vw,3rem)] grid gap-5 lg:grid-cols-3">
+          <div className="mt-[clamp(2rem,4vw,3rem)] grid gap-[clamp(0.75rem,1.6vw,1.25rem)] lg:grid-cols-3">
             {values.map((item, index) => (
               <Reveal
                 key={item.title}
                 delay={index * 80}
-                className="rounded-card border-l-2 border-blue/30 bg-surface-2 p-[clamp(1.25rem,2.4vw,1.75rem)]"
+                className="rounded-card border-l-2 border-green-deep/30 bg-surface-2 p-[clamp(1.25rem,2.4vw,1.75rem)]"
               >
                 <h3 className="font-display text-h3 text-navy">{item.title}</h3>
                 <p className="mt-2.5 text-muted">{item.body}</p>

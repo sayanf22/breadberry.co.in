@@ -95,7 +95,7 @@ export function ContactForm() {
           required
           defaultValue={value("message")}
           className={`${inputClass(error("message"))} resize-y`}
-          placeholder="We run three cafés in Pune and go through roughly 40 kg of frozen berries a month…"
+          placeholder="We run three cafés in Mumbai and go through roughly 40 kg of frozen berries a month…"
           {...aria("message")}
         />
       </Field>

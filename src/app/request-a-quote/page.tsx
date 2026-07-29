@@ -15,7 +15,7 @@ const promises = [
   "Pricing back within one working day",
   "Pack sizes from 1 kg to full pallet",
   "Samples available for first orders",
-  "No minimum contract on trial volumes",
+  "Any line across our five categories",
 ];
 
 export default function RequestQuotePage() {
@@ -24,7 +24,7 @@ export default function RequestQuotePage() {
       <PageHero
         eyebrow="Bulk enquiries"
         title="Request a Quote"
-        description="Share a few details about your kitchen and volumes. A member of our supply team will come back with pricing, availability and dispatch dates."
+        description={`Share a few details about your kitchen and volumes. A member of the ${site.company} supply team will come back with pricing, availability and dispatch dates.`}
         crumbs={[{ label: "Home", href: "/" }, { label: "Request a Quote" }]}
       />
 

@@ -1,16 +1,18 @@
 import { Hero } from "@/components/home/Hero";
-import { TrustBar } from "@/components/home/TrustBar";
+import { ClientStrip } from "@/components/home/ClientStrip";
+import { CuratedSelection } from "@/components/home/CuratedSelection";
 import { ProductRange } from "@/components/home/ProductRange";
-import { Testimonials } from "@/components/home/Testimonials";
+import { Difference } from "@/components/home/Difference";
 import { QuoteCta } from "@/components/home/QuoteCta";
 
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <TrustBar />
+      <ClientStrip />
+      <CuratedSelection />
       <ProductRange />
-      <Testimonials />
+      <Difference />
       <QuoteCta />
     </>
   );

@@ -7,7 +7,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: `Talk to the ${site.name} supply team about frozen berries, fruit purees, samples and bulk delivery schedules.`,
+  description: `Talk to the ${site.company} team about frozen berries and purees, imported vegetables, artisanal cheeses, Asian dry groceries and frozen seafood.`,
 };
 
 const channels = [
@@ -31,9 +31,9 @@ export default function ContactPage() {
   return (
     <>
       <PageHero
-        eyebrow="Get in touch"
+        eyebrow="Partner with us"
         title="Let’s talk about your kitchen"
-        description="Whether you need a sample box, a standing weekly delivery or help matching a varietal to a recipe, we’re a message away."
+        description="Your culinary and baking vision deserves the finest canvas. Whether you need a sample box, a standing weekly delivery or help matching an ingredient to a recipe, we’re a message away."
         crumbs={[{ label: "Home", href: "/" }, { label: "Contact" }]}
       />
 

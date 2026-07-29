@@ -1,21 +1,24 @@
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { ButtonLink } from "@/components/ui/Button";
+import { Eyebrow } from "@/components/ui/SectionHeading";
 import {
-  BeakerIcon,
-  ClockIcon,
+  BowlIcon,
+  CheeseIcon,
+  FishIcon,
+  LeafIcon,
   PhoneIcon,
   SnowflakeIcon,
-  TruckIcon,
 } from "@/components/icons";
 import { site } from "@/lib/site";
 
-/** Capability chips — scannable proof before the ask. */
+/** Portfolio chips — scannable proof of range before the ask. */
 const chips = [
-  { icon: SnowflakeIcon, label: "IQF berries" },
-  { icon: BeakerIcon, label: "Fruit purees" },
-  { icon: TruckIcon, label: "1 kg – full pallet" },
-  { icon: ClockIcon, label: "Quote in 1 day" },
+  { icon: SnowflakeIcon, label: "Berries & purees" },
+  { icon: LeafIcon, label: "Imported vegetables" },
+  { icon: CheeseIcon, label: "Artisanal cheeses" },
+  { icon: BowlIcon, label: "Asian groceries" },
+  { icon: FishIcon, label: "Frozen seafood" },
 ];
 
 export function QuoteCta() {
@@ -31,33 +34,37 @@ export function QuoteCta() {
             className="absolute inset-0 -z-10"
             style={{
               background:
-                "radial-gradient(60% 70% at 50% 0%, rgb(30 127 201 / .1) 0%, transparent 68%), radial-gradient(46% 60% at 88% 100%, rgb(252 226 234 / .55) 0%, transparent 70%)",
+                "radial-gradient(58% 68% at 50% 0%, rgb(20 120 90 / .1) 0%, transparent 66%), radial-gradient(46% 60% at 90% 104%, rgb(252 226 234 / .5) 0%, transparent 70%)",
             }}
           />
 
           <div className="mx-auto flex max-w-[46rem] flex-col items-center text-center">
-            {/* Chip row */}
             <ul className="flex flex-wrap justify-center gap-2">
               {chips.map(({ icon: Icon, label }) => (
                 <li key={label}>
                   <span className="inline-flex items-center gap-2 rounded-pill border border-navy/10 bg-white/75 px-3.5 py-2 text-[0.75rem] font-medium text-navy backdrop-blur-sm sm:text-[0.8125rem]">
-                    <Icon className="size-[0.95rem] shrink-0 text-blue" />
+                    <Icon className="size-[0.95rem] shrink-0 text-green-deep" />
                     {label}
                   </span>
                 </li>
               ))}
             </ul>
 
+            <Eyebrow className="mt-[clamp(1.5rem,3vw,2rem)]">
+              Partner with us
+            </Eyebrow>
+
             <h2
               id="cta-heading"
-              className="mt-[clamp(1.5rem,3vw,2rem)] max-w-[22ch] text-h2"
+              className="mt-3 max-w-[24ch] text-h2"
             >
-              Get a bulk quote in one working day
+              Your kitchen deserves the finest canvas
             </h2>
 
-            <p className="text-lead mt-4 max-w-[48ch] text-muted">
-              Tell us your volumes and delivery city. We’ll come back with
-              pricing, pack sizes and the next available dispatch slot.
+            <p className="text-lead mt-4 max-w-[50ch] text-muted">
+              Tell us the lines you need and where you are in {site.city}. We
+              come back with availability, pack sizes and pricing within one
+              working day.
             </p>
 
             <div className="mt-[clamp(1.75rem,3vw,2.25rem)] flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
@@ -74,14 +81,14 @@ export function QuoteCta() {
                 href={site.phoneHref}
                 className="inline-flex h-[3.25rem] items-center justify-center gap-2.5 rounded-pill border border-navy/12 bg-white/60 px-6 text-[0.9375rem] font-medium text-navy transition-[background-color,border-color] duration-300 hover:border-navy/25 hover:bg-white"
               >
-                <PhoneIcon className="size-[1.05rem] text-blue" />
+                <PhoneIcon className="size-[1.05rem] text-green-deep" />
                 {site.phone}
               </a>
             </div>
 
             <p className="mt-5 text-[0.75rem] text-muted-soft">
-              No minimum contract on trial volumes · Samples available for first
-              orders
+              Serving 5-star hotels, fine-dining restaurants, premium
+              confectioneries &amp; artisanal bakers
             </p>
           </div>
         </Reveal>
