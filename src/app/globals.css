@@ -157,6 +157,12 @@
 @layer components {
   /* ── Elevated surface with a gradient hairline that lights up on hover ──── */
   .card-surface {
+    /* Overridable per card so a tinted surface keeps its own accent rather
+       than inheriting the default blue. */
+    --card-ring: rgb(30 127 201 / 0.55);
+    --card-ring-mid: rgb(76 158 221 / 0.22);
+    --card-glow: rgb(30 127 201 / 0.07);
+
     position: relative;
     isolation: isolate;
     border-radius: var(--radius-card);
@@ -204,7 +210,7 @@
     opacity: 0;
     background: radial-gradient(
       120% 80% at 20% 0%,
-      rgb(30 127 201 / 0.07) 0%,
+      var(--card-glow) 0%,
       transparent 62%
     );
     transition: opacity 0.55s var(--ease-out-soft);
@@ -220,8 +226,8 @@
   .card-surface:focus-within::before {
     background: linear-gradient(
       150deg,
-      rgb(30 127 201 / 0.55) 0%,
-      rgb(76 158 221 / 0.22) 42%,
+      var(--card-ring) 0%,
+      var(--card-ring-mid) 42%,
       var(--color-line) 100%
     );
   }

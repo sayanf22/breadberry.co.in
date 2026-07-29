@@ -13,7 +13,8 @@ export type PortfolioCategory = {
   summary: string;
   detail: string;
   icon: ComponentType<SVGProps<SVGSVGElement>>;
-  tone: "blue" | "green" | "berry" | "amber";
+  /** One per category — each drives its own light card tint. */
+  tone: "berry" | "green" | "amber" | "blue" | "teal";
   /** True where the site carries product-level detail for the category. */
   hasCatalogue?: boolean;
 };
@@ -72,6 +73,6 @@ export const portfolio: PortfolioCategory[] = [
     detail:
       "Frozen once, at peak, and never allowed to break temperature on the way to you.",
     icon: FishIcon,
-    tone: "blue",
+    tone: "teal",
   },
 ];
