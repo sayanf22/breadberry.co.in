@@ -126,10 +126,8 @@ export function CuratedSelection() {
                 Five categories, one standard
               </h2>
             </div>
-            <p className="text-muted lg:max-w-[38ch] lg:text-right">
-              We source and supply a meticulously curated portfolio of premium
-              global ingredients for executive chefs, pastry chefs and specialty
-              bakers.
+            <p className="text-muted lg:max-w-[26ch] lg:text-right">
+              Premium global ingredients, curated for professional kitchens.
             </p>
           </div>
         </Reveal>
