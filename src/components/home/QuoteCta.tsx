@@ -34,7 +34,7 @@ export function QuoteCta() {
             className="absolute inset-0 -z-10"
             style={{
               background:
-                "radial-gradient(58% 68% at 50% 0%, rgb(20 120 90 / .1) 0%, transparent 66%), radial-gradient(46% 60% at 90% 104%, rgb(252 226 234 / .5) 0%, transparent 70%)",
+                "radial-gradient(58% 68% at 50% 0%, rgb(50 105 28 / .1) 0%, transparent 66%), radial-gradient(46% 60% at 90% 104%, rgb(252 226 234 / .5) 0%, transparent 70%)",
             }}
           />
 

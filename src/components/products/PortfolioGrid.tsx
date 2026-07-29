@@ -21,8 +21,8 @@ const palettes = {
     link: "text-berry hover:text-[#a12b40]",
   },
   green: {
-    surface: "bg-[#eef6f0]",
-    border: "border-[#d8e9dc]",
+    surface: "bg-[#eef7e9]",
+    border: "border-[#dcebd2]",
     accent: "text-green-deep",
     rule: "bg-green-deep/25",
     link: "text-green-deep hover:text-green-deeper",

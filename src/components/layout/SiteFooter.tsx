@@ -69,7 +69,7 @@ export function SiteFooter() {
           className="absolute inset-0 -z-10"
           style={{
             background:
-              "radial-gradient(42% 55% at 8% 0%, rgb(20 120 90 / .16) 0%, transparent 70%)",
+              "radial-gradient(42% 55% at 8% 0%, rgb(50 105 28 / .16) 0%, transparent 70%)",
           }}
         />
 

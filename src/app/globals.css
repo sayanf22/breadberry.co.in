@@ -12,31 +12,42 @@
   --color-blue-mid: #4c9edd;
   --color-blue-soft: #eaf2fc;
   --color-blue-mist: #f4f9fd;
-  --color-green: #4e9e5a;
+  /* Alias onto the leaf scale so there is exactly one green hue site-wide. */
+  --color-green: var(--color-leaf-600);
   --color-berry: #c0384f;
 
-  /* Interactive green. Reads as a sibling of --color-forest and clears AA
-     against white both as text and as a button fill. */
-  --color-green-deep: #14785a;
-  --color-green-deeper: #0f5f47;
+  /* ── Leaf green scale ───────────────────────────────────────────────────
+     One hue (103°) across the whole site, anchored on the supplied swatch
+     --color-leaf-200. Every green previously sat at 152–165° (teal), which
+     is a different colour family and never related to that swatch.
+     Contrast, measured:
+       leaf-600 on white .............. 6.6:1   (text and button fill)
+       leaf-200 band, leaf-900 type ... 10.9:1
+       leaf-800 card on night ......... 2.1:1 separation, cream 8.1:1
+       leaf-400 on night .............. 10.8:1 (eyebrows, links)
+       leaf-50 tint, #4e6373 body ..... 5.7:1                            */
+  --color-leaf-50: #f2fbef;
+  --color-leaf-100: #e4f7dc;
+  --color-leaf-200: #c3ffab;
+  --color-leaf-400: #96d47d;
+  --color-leaf-600: #32691c;
+  --color-leaf-700: #295b15;
+  --color-leaf-800: #2c531d;
+  --color-leaf-900: #1e3a14;
 
-  /* Pale green client band. Luminance 0.86, so it carries dark type:
-     forest reaches 9.3:1 and forest-deep 11:1. */
-  --color-lime-soft: #c3ffab;
-  --color-lime-edge: #b2f397;
+  /* Semantic aliases — components reference these, so re-pointing the scale
+     never means touching component files. */
+  --color-green-deep: var(--color-leaf-600);
+  --color-green-deeper: var(--color-leaf-700);
+  --color-lime-soft: var(--color-leaf-200);
+  --color-forest: var(--color-leaf-800);
+  --color-forest-deep: var(--color-leaf-900);
+  --color-forest-mid: var(--color-leaf-800);
+  --color-mint: var(--color-leaf-400);
 
-  /* Deep green band + warm off-white used on the trust and client blocks */
-  --color-forest: #0e4638;
-  --color-forest-deep: #0a3a2e;
-  /* Lifted green for cards sitting on the dark slab — 2.26:1 against it, so
-     the cards separate, while cream copy still clears 7:1 on top. */
-  --color-forest-mid: #145c47;
-
-  /* Near-black slab (neutral, not navy) and the mint used for eyebrows on it.
-     Cream clears 17:1 here and the lifted green cards separate at 2.4:1. */
+  /* Near-black slab (neutral, not navy). Cream clears 17:1 here. */
   --color-night: #111113;
   --color-night-soft: #17171a;
-  --color-mint: #7fc9a6;
   --color-cream: #f8f4ea;
   --color-cream-soft: #fdfbf5;
 

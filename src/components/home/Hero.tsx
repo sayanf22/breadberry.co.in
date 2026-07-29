@@ -18,13 +18,13 @@ const highlights = [
     icon: LeafIcon,
     title: "100% Natural",
     note: "No preservatives",
-    ring: "bg-[#eaf5ec] text-green",
+    ring: "bg-[#e8f5e0] text-green",
   },
   {
     icon: TruckIcon,
     title: "Bulk Supply",
     note: "For B2B needs",
-    ring: "bg-[#e9f4ee] text-green",
+    ring: "bg-[#e8f5e0] text-green",
   },
 ];
 

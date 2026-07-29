@@ -20,7 +20,7 @@ const cardLift = ["mt-0", "mt-5 sm:mt-7", "mt-9 sm:mt-12"] as const;
 
 const iconTones = {
   blue: "bg-blue-soft text-blue",
-  green: "bg-[#e6f2ea] text-green-deep",
+  green: "bg-[#e8f5e0] text-green-deep",
   berry: "bg-[#fbe6eb] text-berry",
   amber: "bg-[#fbf1d9] text-[#a4761c]",
   teal: "bg-[#e4f1f3] text-[#1c7d88]",
@@ -80,7 +80,7 @@ export function Difference() {
           className="absolute inset-0 -z-10"
           style={{
             background:
-              "radial-gradient(46% 60% at 50% -8%, rgb(127 201 166 / .1) 0%, transparent 70%), radial-gradient(38% 52% at 92% 106%, rgb(20 120 90 / .16) 0%, transparent 72%)",
+              "radial-gradient(46% 60% at 50% -8%, rgb(150 212 125 / .1) 0%, transparent 70%), radial-gradient(38% 52% at 92% 106%, rgb(50 105 28 / .16) 0%, transparent 72%)",
           }}
         />
 
@@ -146,17 +146,11 @@ export function Difference() {
                     href={item.href}
                     className="group relative flex h-full flex-col justify-between gap-8 overflow-hidden rounded-card border border-cream/12 bg-forest-mid p-[clamp(1.375rem,2.6vw,2.125rem)] transition-[transform,box-shadow,border-color] duration-500 ease-[var(--ease-out-soft)] hover:-translate-y-1 hover:border-cream/25 hover:shadow-lift"
                   >
-                  <span aria-hidden className="sheen" />
-                  <span
-                    aria-hidden
-                    className="absolute inset-0"
-                    style={{
-                      background:
-                        "radial-gradient(70% 80% at 100% 0%, rgb(255 255 255 / .08) 0%, transparent 66%)",
-                    }}
-                  />
+                    {/* Flat fill. The radial white overlay that used to sit
+                        here read as a blotch, not a highlight. */}
+                    <span aria-hidden className="sheen" />
 
-                  <div className="relative z-2 flex items-start justify-between gap-5">
+                    <div className="relative z-2 flex items-start justify-between gap-5">
                     <div>
                       <h3
                         className={cn(
