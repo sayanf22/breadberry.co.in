@@ -31,17 +31,16 @@
   --color-mint: #7fc9a6;
 
   /* ── Light green family ─────────────────────────────────────────────────
-     Taken from the client band and used for every pale green surface, so the
-     band's colouring is the site's, not a one-off. Hue ~100°, paired with the
-     deep emeralds above exactly as the band pairs them. Measured:
-       band, forest-deep type ......... 11:1
-       band, forest/85 names .......... 6.2:1
-       tint / panel / mist, body ...... 5.6–5.9:1
-       tint / panel / mist, icons ..... 4.9–5.1:1                          */
-  --color-lime-soft: #c3ffab;
-  --color-lime-tint: #e6f8dc;
-  --color-lime-panel: #eef8e8;
-  --color-lime-mist: #f2fbee;
+     Band is the supplied #adff2f (GreenYellow). The tint/panel/mist steps are
+     derived at the same hue (84°) for pale surfaces elsewhere.
+     The deep emeralds above carry all interactive and structural uses.
+       band, forest-deep type ......... 10.3:1
+       band, navy names ............... 11.5:1
+       tint / panel / mist, body ...... 5.7–6.0:1                          */
+  --color-lime-soft: #adff2f;
+  --color-lime-tint: #edf8dd;
+  --color-lime-panel: #f4f9eb;
+  --color-lime-mist: #f8fbf4;
 
   /* Near-black slab (neutral, not navy). Cream clears 17:1 here. */
   --color-night: #111113;

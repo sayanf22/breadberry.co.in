@@ -28,12 +28,12 @@ export function ClientStrip() {
       */}
 
       <div className="mx-auto max-w-[82.5rem] px-[clamp(1.125rem,4vw,2.75rem)] text-center">
-        <p className="text-[clamp(0.5625rem,0.53rem+0.16vw,0.75rem)] font-semibold uppercase leading-relaxed tracking-[0.14em] text-forest/75">
+        <p className="text-[clamp(0.5625rem,0.53rem+0.16vw,0.75rem)] font-semibold uppercase leading-relaxed tracking-[0.14em] text-[#1b4210]/70">
           {site.company} · since {site.founded}
         </p>
         <h2
           id="clients-heading"
-          className="mx-auto mt-3 max-w-[30ch] font-display text-[clamp(1.25rem,1.02rem+1.5vw,2.5rem)] leading-[1.18] text-forest-deep sm:mt-4"
+          className="mx-auto mt-3 max-w-[30ch] font-display text-[clamp(1.25rem,1.02rem+1.5vw,2.5rem)] leading-[1.18] text-[#1b4210] sm:mt-4"
         >
           <span className="font-medium">{site.clientsServed} kitchens</span>{" "}
           served across hotels, restaurants, bakeries &amp; cafés
@@ -56,7 +56,7 @@ export function ClientStrip() {
               aria-hidden={index >= clients.length}
               className="shrink-0 px-[clamp(0.875rem,3.5vw,3rem)]"
             >
-              <span className="whitespace-nowrap font-display text-[clamp(1.125rem,0.95rem+1.5vw,2.375rem)] leading-none text-forest/85">
+              <span className="whitespace-nowrap font-display text-[clamp(1.125rem,0.95rem+1.5vw,2.375rem)] leading-none text-[#1b4210]/80">
                 {name}
               </span>
             </li>
