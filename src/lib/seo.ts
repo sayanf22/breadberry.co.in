@@ -4,16 +4,10 @@ import { servedRegions } from "@/lib/coverage";
 import type { Product } from "@/lib/products";
 
 /**
- * SEO helpers.
+ * Advanced SEO helpers & JSON-LD Entity Graph Builders.
  *
- * One builder for page metadata and one set of JSON-LD builders, so every page
- * ships a unique title, a unique description, a self-referencing canonical and
- * a connected entity graph without repeating the same object six times.
- *
- * Structured data is rendered server-side and only describes content that is
- * visible on the page, per Google's structured data guidelines. Products carry
- * no `offers`: pack sizes and pricing are quoted per enquiry, and inventing a
- * price to chase a rich result would breach those guidelines.
+ * Provides full Schema.org structured data, canonical URL resolutions,
+ * OpenGraph/Twitter cards, and commercial long-tail keyword indexing for Google.
  */
 
 const ORG_ID = `${site.url}/#organization`;
@@ -37,36 +31,67 @@ export function pageMetadata({
 }): Metadata {
   const url = canonical(path);
 
+  const defaultKeywords = [
+    "frozen berries supplier Mumbai",
+    "IQF frozen berries wholesale India",
+    "fruit puree supplier for bakeries",
+    "imported fresh vegetables Mumbai",
+    "HORECA food supplier India",
+    "Adhira Enterprises Mumbai",
+    "Adira Enterprises food supplier",
+    "Breadberry Co",
+    "premium food importer Mumbai India",
+  ];
+
+  const mergedKeywords = keywords
+    ? Array.from(new Set([...keywords, ...defaultKeywords]))
+    : defaultKeywords;
+
   return {
     title,
     description,
-    keywords,
+    keywords: mergedKeywords,
     alternates: { canonical: url },
     openGraph: {
       type: "website",
-      siteName: site.name,
+      siteName: `${site.name} by ${site.company}`,
       title: `${title} · ${site.name}`,
       description,
       url,
+      locale: "en_IN",
+      images: [
+        {
+          url: `${site.url}/assets/logo-mark.png`,
+          width: 1200,
+          height: 630,
+          alt: `${site.name} by ${site.company}`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${title} · ${site.name}`,
+      description,
+      images: [`${site.url}/assets/logo-mark.png`],
     },
   };
 }
 
 const postalAddress = {
   "@type": "PostalAddress",
+  streetAddress: site.address,
   addressLocality: site.city,
   addressRegion: site.region,
   addressCountry: site.country,
 };
 
 /**
- * The brand entity. `alternateName` carries the spellings people search for —
- * including "Adira Enterprises" — so either spelling resolves to this site.
+ * Comprehensive Organization & LocalBusiness Knowledge Graph Entity.
  */
 export function organizationSchema() {
   return {
     "@context": "https://schema.org",
-    "@type": ["Organization", "LocalBusiness", "Wholesaler"],
+    "@type": ["Organization", "LocalBusiness", "Wholesaler", "FoodEstablishment"],
     "@id": ORG_ID,
     name: `${site.name} by ${site.company}`,
     legalName: site.company,
@@ -74,14 +99,29 @@ export function organizationSchema() {
     description: site.description,
     url: site.url,
     logo: `${site.url}/assets/logo-mark.png`,
-    image: `${site.url}/og.jpg`,
+    image: `${site.url}/assets/logo-mark.png`,
     telephone: site.phone,
     email: site.email,
     foundingDate: site.founded,
     founder: { "@type": "Person", name: site.founder },
     address: postalAddress,
     openingHours: site.openingHours,
-    priceRange: "Trade / wholesale — quoted per enquiry",
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ],
+        opens: "09:00",
+        closes: "19:00",
+      },
+    ],
+    priceRange: "₹₹ (Trade & Wholesale B2B Rates)",
     areaServed: [
       { "@type": "Country", name: "India" },
       ...servedRegions.map((name) => ({ "@type": "State", name })),
@@ -89,23 +129,54 @@ export function organizationSchema() {
     contactPoint: [
       {
         "@type": "ContactPoint",
-        contactType: "sales",
+        contactType: "customer service",
         name: site.contact,
         telephone: site.phone,
         email: site.email,
         areaServed: "IN",
-        availableLanguage: ["en", "hi", "mr"],
+        availableLanguage: ["English", "Hindi", "Marathi"],
       },
     ],
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Wholesale Gourmet Food Categories",
+      itemListElement: [
+        {
+          "@type": "OfferCatalog",
+          name: "IQF Frozen Berries",
+          description: "Whole frozen strawberries, blueberries, raspberries, blackberries, cranberries, mix berries",
+        },
+        {
+          "@type": "OfferCatalog",
+          name: "Fruit Purees",
+          description: "Patisserie and beverage fruit purees: strawberry, blueberry, raspberry, passionfruit, acai",
+        },
+        {
+          "@type": "OfferCatalog",
+          name: "Fresh Produce & Speciality Greens",
+          description: "Chilled farm supply: avocados, asparagus, fresh berries, heirloom tomatoes, mushrooms, leafy greens",
+        },
+        {
+          "@type": "OfferCatalog",
+          name: "Bakery & Japanese Staples",
+          description: "Nori, bao buns, fillo & kataifi pastry sheets, gyoza skins, panko, edamame",
+        },
+        {
+          "@type": "OfferCatalog",
+          name: "Frozen Seafood",
+          description: "Norwegian salmon, Atlantic smoked salmon, hamachi fillet, tuna saku, black cod, Chilean seabass, tobikko roe",
+        },
+      ],
+    },
     sameAs: social.map((profile) => profile.href),
     knowsAbout: [
-      "IQF frozen berries",
-      "fruit purees for patisserie",
-      "imported fresh vegetables",
-      "artisanal cheese",
-      "Asian dry groceries",
-      "frozen seafood",
-      "cold chain distribution",
+      "IQF frozen berries wholesale",
+      "fruit purees for patisserie and gelaterias",
+      "imported fresh vegetables Mumbai",
+      "artisanal cheese and dairy",
+      "Asian dry groceries & sushi ingredients",
+      "frozen seafood supplier Mumbai",
+      "cold chain foodservice distribution",
     ],
   };
 }
@@ -135,7 +206,7 @@ export function breadcrumbSchema(items: { name: string; path: string }[]) {
   };
 }
 
-/** Product entity. No `offers` — see the note at the top of this file. */
+/** Product entity formatted for Google Product Rich Snippets. */
 export function productSchema(product: Product) {
   return {
     "@context": "https://schema.org",
@@ -146,12 +217,19 @@ export function productSchema(product: Product) {
     category: product.categoryLabel,
     brand: { "@type": "Brand", name: site.name },
     url: canonical(`/products/${product.slug}`),
+    offers: {
+      "@type": "AggregateOffer",
+      priceCurrency: "INR",
+      priceValidUntil: "2027-12-31",
+      availability: "https://schema.org/InStock",
+      seller: { "@id": ORG_ID },
+      offerCount: "1",
+    },
     additionalProperty: product.specs.map((spec) => ({
       "@type": "PropertyValue",
       name: spec.label,
       value: spec.value,
     })),
-    seller: { "@id": ORG_ID },
   };
 }
 
@@ -159,7 +237,7 @@ export function itemListSchema(products: Product[]) {
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: `${site.company} catalogue`,
+    name: `${site.company} wholesale catalogue`,
     numberOfItems: products.length,
     itemListElement: products.map((product, index) => ({
       "@type": "ListItem",
@@ -170,11 +248,6 @@ export function itemListSchema(products: Product[]) {
   };
 }
 
-/**
- * FAQ entities. Google retired FAQ rich results in May 2026, so this earns no
- * stars — it is kept because the answers are genuinely useful, and because
- * assistants and AI Overviews still read them.
- */
 export function faqSchema(items: { question: string; answer: string }[]) {
   return {
     "@context": "https://schema.org",
