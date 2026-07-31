@@ -66,12 +66,12 @@ export function ProductRange() {
         {/* Scrollable Product Carousel Strip */}
         <div
           ref={scrollRef}
-          className="mt-[clamp(1.5rem,3.5vw,2.25rem)] flex overflow-x-auto no-scrollbar scroll-smooth gap-4 sm:gap-5 pb-4 pt-1"
+          className="mt-[clamp(1.5rem,3.5vw,2.25rem)] flex snap-x snap-mandatory overflow-x-auto no-scrollbar scroll-smooth gap-4 sm:gap-5 pb-4 pt-1"
         >
           {signatureProducts.map((product, index) => (
             <div
               key={product.slug}
-              className="w-[15.5rem] sm:w-[17.5rem] lg:w-[18.5rem] shrink-0 h-full"
+              className="w-[15.5rem] sm:w-[17.5rem] lg:w-[18.5rem] shrink-0 snap-start h-full"
             >
               <ProductCard product={product} priority={index < 2} />
             </div>

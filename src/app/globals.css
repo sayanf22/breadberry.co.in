@@ -326,6 +326,7 @@
   .no-scrollbar {
     scrollbar-width: none;
     -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
   }
   .no-scrollbar::-webkit-scrollbar {
     display: none;
@@ -499,7 +500,11 @@
   animation: bb-marquee var(--marquee-duration, 42s) linear infinite;
   /* Promote once rather than per-frame: keeps long tracks smooth on phones. */
   will-change: transform;
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-overflow-scrolling: touch;
 }
 
 @media (max-width: 639px) {
