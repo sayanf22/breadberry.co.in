@@ -42,7 +42,7 @@ export default function RequestQuotePage() {
         crumbs={[{ label: "Home", href: "/" }, { label: "Request a Quote" }]}
       />
 
-      <section id="quote-form" className="scroll-mt-24 py-[clamp(2.5rem,6vw,4.5rem)]">
+      <section id="quote-form" className="scroll-mt-[5.5rem] sm:scroll-mt-[6.5rem] lg:scroll-mt-[7.5rem] py-[clamp(2.5rem,6vw,4.5rem)]">
         <Container>
           <div className="grid gap-[clamp(2rem,4vw,3.5rem)] lg:grid-cols-[1.55fr_1fr]">
             <div className="rounded-panel border border-line-soft bg-white p-[clamp(1.25rem,3vw,2.5rem)] shadow-soft">

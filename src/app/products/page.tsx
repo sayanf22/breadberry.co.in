@@ -41,7 +41,7 @@ export default function ProductsPage() {
       <section
         id="range"
         aria-label="Product catalogue"
-        className="py-[clamp(2.5rem,6vw,4.5rem)]"
+        className="scroll-mt-[5.5rem] sm:scroll-mt-[6.5rem] lg:scroll-mt-[7.5rem] py-[clamp(2.5rem,6vw,4.5rem)]"
       >
         <Container>
           {/* No Suspense boundary: the filter no longer reads search params,
