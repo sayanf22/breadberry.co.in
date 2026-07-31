@@ -16,10 +16,15 @@ export function ProductCard({
   sizes?: string;
 }) {
   return (
-    <article className={cn("card-surface group h-full", className)}>
+    <article
+      className={cn(
+        "card-surface group h-full [--card-glow:#c3ffab2e] [--card-ring-mid:#c3ffab80] [--card-ring:#c3ffab]",
+        className
+      )}
+    >
       <Link
         href={`/products/${product.slug}`}
-        className="flex h-full flex-col overflow-hidden rounded-[inherit] outline-none"
+        className="flex h-full flex-col overflow-hidden rounded-[inherit]"
       >
         {/* ── Pack shot ─────────────────────────────────────────────── */}
         <div
@@ -34,23 +39,23 @@ export function ProductCard({
             fill
             priority={priority}
             sizes={sizes}
-            className="object-cover object-center transition-transform duration-[900ms] ease-[var(--ease-out-soft)] group-hover:scale-[1.05]"
+            className="object-cover object-center transition-transform duration-[900ms] ease-[var(--ease-out-soft)] group-hover:scale-[1.05] group-focus-within:scale-[1.05]"
           />
         </div>
 
-        {/* Divider that warms to the brand gradient on hover */}
+        {/* The accent line draws in for pointer and keyboard interaction. */}
         <span
           aria-hidden
           className="relative block h-px w-full bg-line-soft"
         >
-          <span className="absolute inset-0 origin-left scale-x-0 bg-gradient-to-r from-blue via-blue-mid to-transparent transition-transform duration-700 ease-[var(--ease-out-soft)] group-hover:scale-x-100" />
+          <span className="absolute inset-0 origin-left scale-x-0 bg-gradient-to-r from-[#c3ffab] via-[#c3ffab] to-transparent transition-transform duration-700 ease-[var(--ease-out-soft)] group-hover:scale-x-100 group-focus-within:scale-x-100" />
         </span>
 
         {/* ── Meta ──────────────────────────────────────────────────── */}
         <div className="flex flex-1 items-center justify-between gap-2.5 px-[clamp(0.75rem,1.5vw,1.25rem)] py-[clamp(0.8125rem,1.5vw,1.125rem)] sm:gap-3">
           <div className="min-w-0">
             {/* Wraps rather than truncates: at 2-up on a phone the card is
-                ~160px wide and most names would have been clipped. */}
+                ~160px wide and most names would otherwise be clipped. */}
             <h3 className="text-[0.875rem] font-semibold leading-snug tracking-[-0.01em] text-navy sm:text-[0.9375rem]">
               {product.name}
             </h3>
@@ -61,10 +66,10 @@ export function ProductCard({
 
           <span
             aria-hidden
-            className="relative grid size-8 shrink-0 place-items-center overflow-hidden rounded-full border border-line text-navy transition-[border-color,color] duration-500 ease-[var(--ease-out-soft)] group-hover:border-navy group-hover:text-white sm:size-9"
+            className="relative grid size-8 shrink-0 place-items-center overflow-hidden rounded-full border border-navy/15 bg-white/80 text-navy transition-[border-color,box-shadow,transform] duration-500 ease-[var(--ease-out-soft)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:border-[#c3ffab] group-hover:shadow-soft group-focus-within:-translate-y-0.5 group-focus-within:translate-x-0.5 group-focus-within:border-[#c3ffab] group-focus-within:shadow-soft sm:size-9"
           >
-            <span className="absolute inset-0 origin-bottom scale-y-0 rounded-full bg-navy transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover:scale-y-100" />
-            <ArrowRightIcon className="relative z-2 size-4 transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover:translate-x-0.5" />
+            <span className="absolute inset-0 origin-bottom scale-y-0 rounded-full bg-[#c3ffab] transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover:scale-y-100 group-focus-within:scale-y-100" />
+            <ArrowRightIcon className="relative z-2 size-4 transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover:translate-x-0.5 group-focus-within:translate-x-0.5" />
           </span>
         </div>
       </Link>

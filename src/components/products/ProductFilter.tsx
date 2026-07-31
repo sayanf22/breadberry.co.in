@@ -7,7 +7,7 @@ import {
   useRef,
   useState,
 } from "react";
-import type { KeyboardEvent } from "react";
+import type { CSSProperties, KeyboardEvent } from "react";
 import { cn } from "@/lib/cn";
 import { ProductCard } from "@/components/products/ProductCard";
 import { categories, products, type ProductCategory } from "@/lib/products";
@@ -29,8 +29,9 @@ function isTabId(value: string | null): value is TabId {
  */
 export function ProductFilter() {
   const [active, setActive] = useState<TabId>("all");
-
   const [indicator, setIndicator] = useState({ left: 0, width: 0 });
+  const listRef = useRef<HTMLDivElement | null>(null);
+  const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
 
   useEffect(() => {
     const fromUrl = () => {
@@ -42,17 +43,10 @@ export function ProductFilter() {
     return () => window.removeEventListener("popstate", fromUrl);
   }, []);
 
-  const listRef = useRef<HTMLDivElement | null>(null);
-  const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
-
   const measure = useCallback(() => {
-    const el = tabRefs.current[active];
-    const list = listRef.current;
-    if (!el || !list) return;
-    setIndicator({
-      left: el.offsetLeft - list.scrollLeft,
-      width: el.offsetWidth,
-    });
+    const tab = tabRefs.current[active];
+    if (!tab) return;
+    setIndicator({ left: tab.offsetLeft, width: tab.offsetWidth });
   }, [active]);
 
   useLayoutEffect(measure, [measure]);
@@ -63,17 +57,45 @@ export function ProductFilter() {
     const observer = new ResizeObserver(measure);
     observer.observe(list);
     window.addEventListener("resize", measure);
-    list.addEventListener("scroll", measure, { passive: true });
     return () => {
       observer.disconnect();
       window.removeEventListener("resize", measure);
-      list.removeEventListener("scroll", measure);
     };
   }, [measure]);
 
+  /* Keep the selected option visible in the compact, horizontally scrollable
+     mobile control without shifting the page vertically. */
+  useEffect(() => {
+    const list = listRef.current;
+    const tab = tabRefs.current[active];
+    if (!list || !tab) return;
+
+    const frame = requestAnimationFrame(() => {
+      const left = tab.offsetLeft;
+      const right = left + tab.offsetWidth;
+      let target = list.scrollLeft;
+
+      if (left < list.scrollLeft + 4) target = Math.max(0, left - 4);
+      else if (right > list.scrollLeft + list.clientWidth - 4)
+        target = right - list.clientWidth + 4;
+      else return;
+
+      list.scrollTo({
+        left: target,
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "auto"
+          : "smooth",
+      });
+    });
+
+    return () => cancelAnimationFrame(frame);
+  }, [active]);
+
   const select = (id: TabId) => {
+    if (id === active) return;
     setActive(id);
-    const url = id === "all" ? "/products#range" : `/products?category=${id}#range`;
+    const url =
+      id === "all" ? "/products#range" : `/products?category=${id}#range`;
     window.history.pushState({ category: id }, "", url);
   };
 
@@ -108,12 +130,12 @@ export function ProductFilter() {
         role="tablist"
         aria-label="Filter products by range"
         onKeyDown={onKeyDown}
-        className="no-scrollbar relative -mx-1 flex w-full max-w-full gap-1 overflow-x-auto rounded-pill border border-line-soft bg-surface p-1.5 sm:mx-0 sm:w-auto sm:self-start"
+        className="no-scrollbar relative flex w-full max-w-full gap-1 overflow-x-auto rounded-[1rem] border border-line-soft bg-white p-1 shadow-soft sm:w-fit"
       >
-        {/* Sliding indicator */}
+        {/* One restrained brand-green indicator connects every option. */}
         <span
           aria-hidden
-          className="pointer-events-none absolute bottom-1.5 top-1.5 left-0 rounded-pill bg-white shadow-soft transition-[transform,width] duration-500 ease-[var(--ease-out-soft)]"
+          className="pointer-events-none absolute bottom-1 top-1 left-0 rounded-[0.75rem] bg-[#c3ffab] transition-[transform,width,opacity] duration-500 ease-[var(--ease-out-soft)]"
           style={{
             width: `${indicator.width}px`,
             transform: `translateX(${indicator.left}px)`,
@@ -126,7 +148,8 @@ export function ProductFilter() {
           const count =
             category.id === "all"
               ? products.length
-              : products.filter((p) => p.category === category.id).length;
+              : products.filter((product) => product.category === category.id)
+                  .length;
 
           return (
             <button
@@ -142,15 +165,19 @@ export function ProductFilter() {
               tabIndex={selected ? 0 : -1}
               onClick={() => select(category.id)}
               className={cn(
-                "relative z-10 shrink-0 whitespace-nowrap rounded-pill px-4 py-3 text-[0.8125rem] font-medium transition-colors duration-400 sm:px-5",
-                selected ? "text-navy" : "text-muted hover:text-navy"
+                "relative z-10 flex min-h-11 shrink-0 items-center whitespace-nowrap rounded-[0.75rem] px-3.5 py-2.5 text-[0.8125rem] font-medium transition-[color,background-color] duration-400 sm:px-4",
+                selected
+                  ? "text-navy"
+                  : "text-muted hover:bg-lime-soft hover:text-navy"
               )}
             >
-              {category.label}
+              <span>{category.label}</span>
               <span
                 className={cn(
-                  "ml-1.5 text-[0.6875rem] transition-colors duration-400",
-                  selected ? "text-blue" : "text-muted-soft"
+                  "ml-2 rounded-pill px-1.5 py-0.5 text-[0.625rem] tabular-nums transition-colors duration-400",
+                  selected
+                    ? "bg-navy/10 text-navy"
+                    : "bg-surface text-muted-soft"
                 )}
               >
                 {count}
@@ -166,23 +193,36 @@ export function ProductFilter() {
         aria-labelledby={`tab-${active}`}
         className="mt-[clamp(1.75rem,3.5vw,2.5rem)]"
       >
-        {/* 2-up on phones, matching the featured range on the home page —
-            one card per row made the pack shots oversized. */}
+        {/* The keyed grid remounts on selection. Individual items then enter
+            in a short sequence rather than the whole panel flashing at once. */}
         <div
           key={active}
-          className="panel-enter grid grid-cols-2 gap-[clamp(0.75rem,1.6vw,1.25rem)] lg:grid-cols-3 xl:grid-cols-4"
+          className="grid grid-cols-2 gap-[clamp(0.75rem,1.6vw,1.25rem)] lg:grid-cols-3 xl:grid-cols-4"
         >
           {visible.map((product, index) => (
-            <ProductCard
+            <div
               key={product.slug}
-              product={product}
-              priority={index < 4}
-              sizes="(min-width: 1280px) 19rem, (min-width: 1024px) 26vw, 46vw"
-            />
+              className="product-grid-item h-full"
+              style={
+                {
+                  "--product-index": Math.min(index, 12),
+                } as CSSProperties
+              }
+            >
+              <ProductCard
+                product={product}
+                priority={index < 4}
+                sizes="(min-width: 1280px) 19rem, (min-width: 1024px) 26vw, 46vw"
+              />
+            </div>
           ))}
         </div>
 
-        <p className="mt-8 text-[0.8125rem] text-muted-soft" aria-live="polite">
+        <p
+          key={active}
+          className="product-count-enter mt-8 text-[0.8125rem] text-muted-soft"
+          aria-live="polite"
+        >
           Showing {visible.length} of {products.length} products
         </p>
       </div>

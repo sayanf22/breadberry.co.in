@@ -10,13 +10,14 @@ import { site } from "@/lib/site";
 
 /* Mixed widths so the row reads as a wall of notes, not a grid. */
 const cardWidth = {
-  sm: "w-full sm:w-[17rem]",
-  md: "w-full sm:w-[19.5rem]",
-  lg: "w-full sm:w-[22rem]",
+  sm: "w-full lg:w-[17rem]",
+  md: "w-full lg:w-[19.5rem]",
+  lg: "w-full lg:w-[22rem]",
 } as const;
 
-/* Stagger only once the marquee is active; phone cards form a clean stack. */
-const cardLift = ["mt-0", "mt-0 sm:mt-7", "mt-0 sm:mt-12"] as const;
+/* Stagger only once the desktop marquee is active. Smaller viewports use a
+   stable grid, so every card remains fully visible. */
+const cardLift = ["mt-0", "mt-0 lg:mt-7", "mt-0 lg:mt-12"] as const;
 
 const iconTones = {
   blue: "bg-blue-soft text-blue",

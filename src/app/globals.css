@@ -430,6 +430,17 @@
   }
 }
 
+@keyframes bb-product-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @keyframes bb-float {
   0%,
   100% {
@@ -457,6 +468,17 @@
   animation: bb-panel-in 0.4s var(--ease-out-soft) both;
 }
 
+/* Category changes remount the filtered grid. A short, capped stagger lets
+   products resolve in sequence without delaying long catalogue ranges. */
+.product-grid-item {
+  animation: bb-product-in 0.52s var(--ease-out-soft) both;
+  animation-delay: calc(var(--product-index, 0) * 38ms);
+}
+
+.product-count-enter {
+  animation: bb-fade 0.35s var(--ease-out-soft) 120ms both;
+}
+
 .hero-item {
   animation: bb-rise 0.8s var(--ease-out-soft) both;
   animation-delay: var(--d, 0ms);
@@ -480,17 +502,19 @@
   backface-visibility: hidden;
 }
 
-/* Phones render the Difference commitments as a static, full-width stack.
-   This removes the edge mask/shadow bands and prevents wide cards from being
-   clipped. Other marquees, including the client strip, remain unchanged. */
+/* Small screens render Difference commitments as a stable grid. The desktop
+   marquee starts only at 1024px, where its widest card can travel without
+   appearing cropped. Other marquees, including the client strip, are unchanged. */
 @media (max-width: 639px) {
   .marquee-track {
     animation-duration: var(--marquee-duration-sm, var(--marquee-duration, 42s));
   }
+}
 
+@media (max-width: 1023px) {
   .difference-commitments {
     overflow: visible;
-    padding-inline: clamp(1rem, 4vw, 1.25rem);
+    padding-inline: clamp(1rem, 4vw, 2rem);
   }
 
   .difference-commitments .marquee-track {
@@ -508,8 +532,16 @@
     display: none;
   }
 
-  .difference-commitments .marquee-track > li {
+  .difference-commitments .marquee-track > li,
+  .difference-commitments .marquee-track > li > article {
     width: 100%;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .difference-commitments .marquee-track {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
   }
 }
 
