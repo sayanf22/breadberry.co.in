@@ -1,16 +1,17 @@
 "use client";
 
-import {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+import { useEffect, useRef, useState } from "react";
 import type { CSSProperties, KeyboardEvent } from "react";
+import Image from "next/image";
 import { cn } from "@/lib/cn";
+import { SparkleIcon } from "@/components/icons";
 import { ProductCard } from "@/components/products/ProductCard";
-import { categories, products, type ProductCategory } from "@/lib/products";
+import {
+  categories,
+  categoryImage,
+  products,
+  type ProductCategory,
+} from "@/lib/products";
 
 type TabId = "all" | ProductCategory;
 
@@ -29,7 +30,6 @@ function isTabId(value: string | null): value is TabId {
  */
 export function ProductFilter() {
   const [active, setActive] = useState<TabId>("all");
-  const [indicator, setIndicator] = useState({ left: 0, width: 0 });
   const listRef = useRef<HTMLDivElement | null>(null);
   const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
 
@@ -43,28 +43,8 @@ export function ProductFilter() {
     return () => window.removeEventListener("popstate", fromUrl);
   }, []);
 
-  const measure = useCallback(() => {
-    const tab = tabRefs.current[active];
-    if (!tab) return;
-    setIndicator({ left: tab.offsetLeft, width: tab.offsetWidth });
-  }, [active]);
-
-  useLayoutEffect(measure, [measure]);
-
-  useEffect(() => {
-    const list = listRef.current;
-    if (!list) return;
-    const observer = new ResizeObserver(measure);
-    observer.observe(list);
-    window.addEventListener("resize", measure);
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("resize", measure);
-    };
-  }, [measure]);
-
-  /* Keep the selected option visible in the compact, horizontally scrollable
-     mobile control without shifting the page vertically. */
+  /* Keep the selected tile visible in the horizontally scrollable rail without
+     shifting the page vertically. */
   useEffect(() => {
     const list = listRef.current;
     const tab = tabRefs.current[active];
@@ -150,74 +130,80 @@ export function ProductFilter() {
 
   return (
     <>
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+      <div className="flex flex-col gap-2.5 sm:gap-3">
+        {/* Range rail. Bleeds to both screen edges on phones — the negative
+            inset matches the Container gutter — so tiles can be thumbed
+            through instead of squeezed into the text column. */}
         <div
           ref={listRef}
           role="tablist"
           aria-label="Filter products by range"
           onKeyDown={onKeyDown}
-          className="no-scrollbar relative flex w-full max-w-full gap-1 overflow-x-auto rounded-[1rem] border border-line-soft bg-white p-1 shadow-soft sm:w-fit"
+          className="no-scrollbar -mx-[clamp(1.125rem,4vw,2.75rem)] flex snap-x snap-mandatory gap-2 overflow-x-auto px-[clamp(1.125rem,4vw,2.75rem)] pb-1 sm:mx-0 sm:flex-wrap sm:gap-2.5 sm:px-0"
         >
-        {/* One restrained brand-green indicator connects every option. */}
-        <span
-          aria-hidden
-          className="pointer-events-none absolute bottom-1 top-1 left-0 rounded-[0.75rem] bg-[#c3ffab] transition-[transform,width,opacity] duration-500 ease-[var(--ease-out-soft)]"
-          style={{
-            width: `${indicator.width}px`,
-            transform: `translateX(${indicator.left}px)`,
-            opacity: indicator.width ? 1 : 0,
-          }}
-        />
+          {categories.map((category) => {
+            const selected = category.id === active;
+            const image =
+              category.id === "all" ? undefined : categoryImage(category.id);
 
-        {categories.map((category) => {
-          const selected = category.id === active;
-          const count =
-            category.id === "all"
-              ? products.length
-              : products.filter((product) => product.category === category.id)
-                  .length;
-
-          return (
-            <button
-              key={category.id}
-              ref={(node) => {
-                tabRefs.current[category.id] = node;
-              }}
-              type="button"
-              role="tab"
-              id={`tab-${category.id}`}
-              aria-selected={selected}
-              aria-controls="product-panel"
-              tabIndex={selected ? 0 : -1}
-              onClick={() => select(category.id)}
-              className={cn(
-                "relative z-10 flex min-h-11 shrink-0 items-center whitespace-nowrap rounded-[0.75rem] px-3.5 py-2.5 text-[0.8125rem] font-medium transition-[color,background-color] duration-400 sm:px-4",
-                selected
-                  ? "text-navy"
-                  : "text-muted hover:bg-lime-soft hover:text-navy"
-              )}
-            >
-              <span>{category.label}</span>
-              <span
+            return (
+              <button
+                key={category.id}
+                ref={(node) => {
+                  tabRefs.current[category.id] = node;
+                }}
+                type="button"
+                role="tab"
+                id={`tab-${category.id}`}
+                aria-selected={selected}
+                aria-controls="product-panel"
+                tabIndex={selected ? 0 : -1}
+                onClick={() => select(category.id)}
                 className={cn(
-                  "ml-2 rounded-pill px-1.5 py-0.5 text-[0.625rem] tabular-nums transition-colors duration-400",
+                  "group/tile flex w-[5.25rem] shrink-0 snap-start flex-col items-center gap-2 rounded-[1.125rem] border bg-white px-2 py-2.5 transition-[border-color,box-shadow,transform] duration-500 ease-[var(--ease-out-soft)] sm:w-[7rem] sm:gap-2.5 sm:p-3",
                   selected
-                    ? "bg-navy/10 text-navy"
-                    : "bg-surface text-muted-soft"
+                    ? "border-[#c3ffab] shadow-soft"
+                    : "border-line-soft hover:-translate-y-0.5 hover:border-[#c3ffab] hover:shadow-soft"
                 )}
               >
-                {count}
-              </span>
-            </button>
-          );
-        })}
+                <span
+                  className={cn(
+                    "relative grid size-14 shrink-0 place-items-center overflow-hidden rounded-full border-2 transition-colors duration-500 sm:size-16",
+                    selected ? "border-[#c3ffab]" : "border-transparent",
+                    image ? "bg-surface" : "bg-lime-soft"
+                  )}
+                >
+                  {image ? (
+                    <Image
+                      src={image}
+                      alt=""
+                      fill
+                      sizes="64px"
+                      className="object-cover object-center transition-transform duration-700 ease-[var(--ease-out-soft)] group-hover/tile:scale-105"
+                    />
+                  ) : (
+                    <SparkleIcon className="size-6 text-navy" />
+                  )}
+                </span>
+
+                <span
+                  className={cn(
+                    "flex min-h-[2.25rem] items-start text-center text-[0.6875rem] font-medium leading-tight transition-colors duration-400 sm:text-[0.75rem]",
+                    selected ? "text-navy" : "text-muted"
+                  )}
+                >
+                  {category.label}
+                </span>
+              </button>
+            );
+          })}
         </div>
 
         {/* The only running total on the page — the per-range counts sit in
             their own headings, so nothing repeats it under the grid. */}
         <p
           key={`count-${active}`}
-          className="product-count-enter text-[0.8125rem] tabular-nums text-muted-soft sm:shrink-0 sm:text-right"
+          className="product-count-enter text-[0.8125rem] tabular-nums text-muted-soft sm:text-right"
           aria-live="polite"
         >
           {visible.length} products

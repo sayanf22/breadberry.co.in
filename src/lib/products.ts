@@ -33,13 +33,22 @@ export type Product = {
   handling: string[];
 };
 
-export const categories: { id: "all" | ProductCategory; label: string }[] = [
+export const categories: {
+  id: "all" | ProductCategory;
+  label: string;
+  /** Pack shot that represents the range in the catalogue rail. */
+  thumb?: string;
+}[] = [
   { id: "all", label: "All Products" },
-  { id: "iqf", label: "IQF Berries" },
-  { id: "puree", label: "Fruit Purees" },
-  { id: "fresh", label: "Fresh Produce" },
-  { id: "japanese", label: "Bakery & Japanese" },
-  { id: "seafood", label: "Frozen Seafood" },
+  { id: "iqf", label: "IQF Berries", thumb: "strawberry-iqf-frozen" },
+  { id: "puree", label: "Fruit Purees", thumb: "passionfruit-puree-frozen" },
+  { id: "fresh", label: "Fresh Produce", thumb: "heirloom-tomato" },
+  { id: "japanese", label: "Bakery & Japanese", thumb: "chuka-wakame" },
+  {
+    id: "seafood",
+    label: "Frozen Seafood",
+    thumb: "norwegian-smoked-salmon-presliced",
+  },
 ];
 
 const CATEGORY_LABEL: Record<ProductCategory, string> = {
@@ -791,6 +800,20 @@ seeds.push(
 );
 
 export const products: Product[] = seeds.map(define);
+
+/**
+ * Pack shot for a range in the catalogue rail. Falls back to the first line in
+ * the range, so a renamed slug degrades to a valid photo rather than an empty
+ * tile — the images themselves stay the single source.
+ */
+export function categoryImage(id: ProductCategory): string | undefined {
+  const thumb = categories.find((category) => category.id === id)?.thumb;
+  const chosen = thumb
+    ? products.find((product) => product.slug === thumb)
+    : undefined;
+
+  return (chosen ?? products.find((product) => product.category === id))?.image;
+}
 
 /** The Breadberry Co. signature line — berries and purees. */
 export const signatureProducts = products.filter(
