@@ -30,7 +30,7 @@ export function ProductCard({
         >
           <Image
             src={product.image}
-            alt={`${product.name} — ${product.categoryLabel} pack`}
+            alt={product.imageAlt}
             fill
             priority={priority}
             sizes={sizes}

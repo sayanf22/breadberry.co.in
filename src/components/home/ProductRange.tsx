@@ -3,7 +3,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { ButtonLink } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/SectionHeading";
 import { ProductCard } from "@/components/products/ProductCard";
-import { featuredProducts, products } from "@/lib/products";
+import { featuredProducts, signatureProducts } from "@/lib/products";
 
 /**
  * Featured range. A fixed grid rather than a scroller: at every breakpoint the
@@ -27,8 +27,8 @@ export function ProductRange() {
             </div>
 
             <p className="text-muted sm:max-w-[28ch] sm:text-right">
-              {products.length} berry and puree lines, from 1&nbsp;kg tubs to
-              full pallet quantities.
+              {signatureProducts.length} berry and puree lines, held under
+              unbroken cold chain and quoted to your volumes.
             </p>
           </div>
         </Reveal>

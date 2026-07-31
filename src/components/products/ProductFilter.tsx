@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
 import {
   useCallback,
   useEffect,
@@ -19,15 +18,29 @@ function isTabId(value: string | null): value is TabId {
   return !!value && categories.some((category) => category.id === value);
 }
 
+/**
+ * Tab state is local, not `useSearchParams`.
+ *
+ * Reading search params here would opt the whole catalogue out of static
+ * rendering, so all 77 cards would arrive only after hydration — invisible to
+ * crawlers and slower to first paint. Instead the full grid is server
+ * rendered, and `?category=` is synced from the URL on mount and kept in
+ * history so deep links and back/forward still work.
+ */
 export function ProductFilter() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-
-  // The URL is the single source of truth, so back/forward just works.
-  const fromUrl = searchParams.get("category");
-  const active: TabId = isTabId(fromUrl) ? fromUrl : "all";
+  const [active, setActive] = useState<TabId>("all");
 
   const [indicator, setIndicator] = useState({ left: 0, width: 0 });
+
+  useEffect(() => {
+    const fromUrl = () => {
+      const value = new URLSearchParams(window.location.search).get("category");
+      setActive(isTabId(value) ? value : "all");
+    };
+    fromUrl();
+    window.addEventListener("popstate", fromUrl);
+    return () => window.removeEventListener("popstate", fromUrl);
+  }, []);
 
   const listRef = useRef<HTMLDivElement | null>(null);
   const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
@@ -59,9 +72,9 @@ export function ProductFilter() {
   }, [measure]);
 
   const select = (id: TabId) => {
-    router.replace(id === "all" ? "/products" : `/products?category=${id}`, {
-      scroll: false,
-    });
+    setActive(id);
+    const url = id === "all" ? "/products#range" : `/products?category=${id}#range`;
+    window.history.pushState({ category: id }, "", url);
   };
 
   // Roving arrow-key navigation between tabs.

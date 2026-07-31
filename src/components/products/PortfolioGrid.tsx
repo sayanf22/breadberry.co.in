@@ -2,7 +2,11 @@ import Link from "next/link";
 import { cn } from "@/lib/cn";
 import { Reveal } from "@/components/ui/Reveal";
 import { ArrowRightIcon } from "@/components/icons";
-import { portfolio, type PortfolioCategory } from "@/lib/portfolio";
+import {
+  catalogueHref,
+  portfolio,
+  type PortfolioCategory,
+} from "@/lib/portfolio";
 
 /**
  * One light tint per category.
@@ -120,7 +124,7 @@ function SignatureCard({
           </p>
 
           <Link
-            href="#range"
+            href={catalogueHref(category)}
             className={cn(
               "mt-6 inline-flex items-center gap-1.5 text-[0.8125rem] font-medium transition-colors duration-300",
               p.link
@@ -176,6 +180,19 @@ function CategoryCard({
       <p className="mt-3 flex-1 text-[0.9375rem] leading-relaxed text-[#4e6373]">
         {summary}
       </p>
+
+      {category.catalogueCategory && (
+        <Link
+          href={catalogueHref(category)}
+          className={cn(
+            "mt-5 inline-flex items-center gap-1.5 text-[0.8125rem] font-medium transition-colors duration-300",
+            p.link
+          )}
+        >
+          Browse the range
+          <ArrowRightIcon className="size-[0.95rem] transition-transform duration-300 ease-[var(--ease-out-soft)] group-hover:translate-x-0.5" />
+        </Link>
+      )}
     </article>
   );
 }

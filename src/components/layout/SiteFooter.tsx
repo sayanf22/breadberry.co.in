@@ -10,7 +10,7 @@ import {
   PinIcon,
 } from "@/components/icons";
 import { navLinks, site, social } from "@/lib/site";
-import { portfolio } from "@/lib/portfolio";
+import { catalogueHref, portfolio } from "@/lib/portfolio";
 
 const socialIcons = {
   Instagram: InstagramIcon,
@@ -116,7 +116,7 @@ export function SiteFooter() {
               <LinkList
                 items={portfolio.map((category) => ({
                   label: category.name,
-                  href: category.hasCatalogue ? "/products#range" : "/products",
+                  href: catalogueHref(category),
                 }))}
               />
             </nav>

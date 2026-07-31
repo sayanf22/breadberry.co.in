@@ -53,6 +53,11 @@
   --color-tint-raspberry: #fdebf1;
   --color-tint-strawberry: #fdeeeb;
   --color-tint-passion: #fdf4d8;
+  /* Category tints for the wider catalogue — same lightness as the berries so
+     cards sit level next to each other in a mixed grid. */
+  --color-tint-leaf: #eef6ea;
+  --color-tint-sand: #f8f3e8;
+  --color-tint-ocean: #eaf2f8;
 
   /* Typography — editorial serif for display, grotesque for UI */
   --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;

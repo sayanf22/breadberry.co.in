@@ -1,0 +1,618 @@
+[
+  {
+    "slug": "acai-berry-puree-frozen",
+    "file": "Acai Berry Puree Frozen.jpg",
+    "folder": "Breadberry Frozen Products",
+    "category": "frozen",
+    "image": "/assets/products/acai-berry-puree-frozen.webp",
+    "kb": 20.7
+  },
+  {
+    "slug": "artichoke-heart-globe",
+    "file": "Artichoke Heart Globe.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/artichoke-heart-globe.webp",
+    "kb": 28.2
+  },
+  {
+    "slug": "asparagus-thai",
+    "file": "Asparagus Thai.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/asparagus-thai.webp",
+    "kb": 39.9
+  },
+  {
+    "slug": "avocado-hass",
+    "file": "Avocado Hass.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/avocado-hass.webp",
+    "kb": 43.6
+  },
+  {
+    "slug": "black-cod-whole",
+    "file": "Black Cod Whole.jpg",
+    "folder": "Frozen Seafood",
+    "category": "seafood",
+    "image": "/assets/products/black-cod-whole.webp",
+    "kb": 13.7
+  },
+  {
+    "slug": "black-tobikko-japanese",
+    "file": "Black Tobikko Japanese.jpg",
+    "folder": "Frozen Seafood",
+    "category": "seafood",
+    "image": "/assets/products/black-tobikko-japanese.webp",
+    "kb": 140.5
+  },
+  {
+    "slug": "blackberry-fresh",
+    "file": "Blackberry Fresh.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/blackberry-fresh.webp",
+    "kb": 36.9
+  },
+  {
+    "slug": "blackberry-iqf-frozen",
+    "file": "Blackberry IQF Frozen_.jpg",
+    "folder": "Breadberry Frozen Products",
+    "category": "frozen",
+    "image": "/assets/products/blackberry-iqf-frozen.webp",
+    "kb": 40.9
+  },
+  {
+    "slug": "blueberry-fresh",
+    "file": "Blueberry Fresh.webp",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/blueberry-fresh.webp",
+    "kb": 17.4
+  },
+  {
+    "slug": "blueberry-iqf-frozen",
+    "file": "Blueberry IQF Frozen.jpg",
+    "folder": "Breadberry Frozen Products",
+    "category": "frozen",
+    "image": "/assets/products/blueberry-iqf-frozen.webp",
+    "kb": 43.4
+  },
+  {
+    "slug": "blueberry-puree-frozen",
+    "file": "Blueberry Puree Frozen.jpg",
+    "folder": "Breadberry Frozen Products",
+    "category": "frozen",
+    "image": "/assets/products/blueberry-puree-frozen.webp",
+    "kb": 22.7
+  },
+  {
+    "slug": "broccolini-gailon-broccoli",
+    "file": "Broccolini Gailon Broccoli.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/broccolini-gailon-broccoli.webp",
+    "kb": 44.7
+  },
+  {
+    "slug": "celeriac-celery-root",
+    "file": "Celeriac Celery Root.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/celeriac-celery-root.webp",
+    "kb": 35.5
+  },
+  {
+    "slug": "chilean-seabass-whole",
+    "file": "Chilean Seabass Whole.jpg",
+    "folder": "Frozen Seafood",
+    "category": "seafood",
+    "image": "/assets/products/chilean-seabass-whole.webp",
+    "kb": 37.3
+  },
+  {
+    "slug": "chuka-wakame",
+    "file": "Chuka Wakame.png",
+    "folder": "Frozen Bakery & Japanese Products",
+    "category": "pantry",
+    "image": "/assets/products/chuka-wakame.webp",
+    "kb": 22.5
+  },
+  {
+    "slug": "crab-meat",
+    "file": "Crab Meat.png",
+    "folder": "Frozen Seafood",
+    "category": "seafood",
+    "image": "/assets/products/crab-meat.webp",
+    "kb": 32.2
+  },
+  {
+    "slug": "crabstick",
+    "file": "Crabstick.jpg",
+    "folder": "Frozen Seafood",
+    "category": "seafood",
+    "image": "/assets/products/crabstick.webp",
+    "kb": 21.3
+  },
+  {
+    "slug": "cranberry-iqf-frozen",
+    "file": "Cranberry IQF Frozen_.jpg",
+    "folder": "Breadberry Frozen Products",
+    "category": "frozen",
+    "image": "/assets/products/cranberry-iqf-frozen.webp",
+    "kb": 39.1
+  },
+  {
+    "slug": "edamame-peeled-soyabean",
+    "file": "Edamame Peeled (Soyabean).jpg",
+    "folder": "Breadberry Frozen Products",
+    "category": "frozen",
+    "image": "/assets/products/edamame-peeled-soyabean.webp",
+    "kb": 64.9
+  },
+  {
+    "slug": "edamame-whole-soyabean",
+    "file": "Edamame Whole (Soyabean).jpg",
+    "folder": "Breadberry Frozen Products",
+    "category": "frozen",
+    "image": "/assets/products/edamame-whole-soyabean.webp",
+    "kb": 68.1
+  },
+  {
+    "slug": "enoki-mushroom",
+    "file": "Enoki Mushroom.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/enoki-mushroom.webp",
+    "kb": 12.5
+  },
+  {
+    "slug": "fillo-pastry-sheets-antoniou",
+    "file": "Fillo Pastry Sheets Antoniou.jpg",
+    "folder": "Frozen Bakery & Japanese Products",
+    "category": "pantry",
+    "image": "/assets/products/fillo-pastry-sheets-antoniou.webp",
+    "kb": 19.9
+  },
+  {
+    "slug": "frozen-avocado-halves",
+    "file": "Frozen Avocado Halves.jpg",
+    "folder": "Frozen Bakery & Japanese Products",
+    "category": "pantry",
+    "image": "/assets/products/frozen-avocado-halves.webp",
+    "kb": 37.4
+  },
+  {
+    "slug": "frozen-avocado-pulp",
+    "file": "Frozen Avocado Pulp.jpg",
+    "folder": "Frozen Bakery & Japanese Products",
+    "category": "pantry",
+    "image": "/assets/products/frozen-avocado-pulp.webp",
+    "kb": 17.5
+  },
+  {
+    "slug": "gem-lettuce",
+    "file": "Gem Lettuce.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/gem-lettuce.webp",
+    "kb": 34.4
+  },
+  {
+    "slug": "green-jumbo-peruvian-asparagus",
+    "file": "Green Jumbo Peruvian Asparagus.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/green-jumbo-peruvian-asparagus.webp",
+    "kb": 23.1
+  },
+  {
+    "slug": "green-tobikko-japanese",
+    "file": "Green Tobikko Japanese.jpg",
+    "folder": "Frozen Seafood",
+    "category": "seafood",
+    "image": "/assets/products/green-tobikko-japanese.webp",
+    "kb": 122.8
+  },
+  {
+    "slug": "gyoza-skin-sheet-happy-belly",
+    "file": "Gyoza Skin Sheet Happy Belly.jpg",
+    "folder": "Frozen Bakery & Japanese Products",
+    "category": "pantry",
+    "image": "/assets/products/gyoza-skin-sheet-happy-belly.webp",
+    "kb": 42.2
+  },
+  {
+    "slug": "hamachi-fillet",
+    "file": "Hamachi Fillet.png",
+    "folder": "Frozen Seafood",
+    "category": "seafood",
+    "image": "/assets/products/hamachi-fillet.webp",
+    "kb": 27.2
+  },
+  {
+    "slug": "heirloom-tomato",
+    "file": "Heirloom Tomato.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/heirloom-tomato.webp",
+    "kb": 30.3
+  },
+  {
+    "slug": "kataifi-pastry-antoniou",
+    "file": "Kataifi Pastry Antoniou.jpg",
+    "folder": "Frozen Bakery & Japanese Products",
+    "category": "pantry",
+    "image": "/assets/products/kataifi-pastry-antoniou.webp",
+    "kb": 56.4
+  },
+  {
+    "slug": "king-ceps-oyster-mushroom",
+    "file": "King Ceps Oyster Mushroom.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/king-ceps-oyster-mushroom.webp",
+    "kb": 15.3
+  },
+  {
+    "slug": "lemon-italian",
+    "file": "Lemon Italian.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/lemon-italian.webp",
+    "kb": 52.5
+  },
+  {
+    "slug": "lotus-leaf-bun-bao-bun-happy-belly",
+    "file": "Lotus Leaf Bun Bao Bun Happy Belly.webp",
+    "folder": "Frozen Bakery & Japanese Products",
+    "category": "pantry",
+    "image": "/assets/products/lotus-leaf-bun-bao-bun-happy-belly.webp",
+    "kb": 47.6
+  },
+  {
+    "slug": "lotusroot-sliced-frozen",
+    "file": "Lotusroot Sliced Frozen.jpg",
+    "folder": "Breadberry Frozen Products",
+    "category": "frozen",
+    "image": "/assets/products/lotusroot-sliced-frozen.webp",
+    "kb": 62.5
+  },
+  {
+    "slug": "lotusroot-thai",
+    "file": "Lotusroot Thai.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/lotusroot-thai.webp",
+    "kb": 24.4
+  },
+  {
+    "slug": "mangosteen",
+    "file": "Mangosteen.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/mangosteen.webp",
+    "kb": 45.3
+  },
+  {
+    "slug": "mix-berry-iqf-frozen",
+    "file": "Mix Berry IQF Frozen_.jpg",
+    "folder": "Breadberry Frozen Products",
+    "category": "frozen",
+    "image": "/assets/products/mix-berry-iqf-frozen.webp",
+    "kb": 51.3
+  },
+  {
+    "slug": "norwegian-salmon-fillet-atlantic",
+    "file": "Norwegian Salmon Fillet Atlantic.jpg",
+    "folder": "Frozen Seafood",
+    "category": "seafood",
+    "image": "/assets/products/norwegian-salmon-fillet-atlantic.webp",
+    "kb": 52.4
+  },
+  {
+    "slug": "norwegian-smoked-salmon-presliced",
+    "file": "Norwegian Smoked Salmon Presliced.jpg",
+    "folder": "Frozen Seafood",
+    "category": "seafood",
+    "image": "/assets/products/norwegian-smoked-salmon-presliced.webp",
+    "kb": 22.1
+  },
+  {
+    "slug": "orange-sweet-potato",
+    "file": "Orange Sweet Potato.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/orange-sweet-potato.webp",
+    "kb": 26.6
+  },
+  {
+    "slug": "orange-tobikko-japanese",
+    "file": "Orange Tobikko Japanese.jpg",
+    "folder": "Frozen Seafood",
+    "category": "seafood",
+    "image": "/assets/products/orange-tobikko-japanese.webp",
+    "kb": 73.5
+  },
+  {
+    "slug": "passionfruit-puree-frozen",
+    "file": "Passionfruit Puree Frozen.jpg",
+    "folder": "Breadberry Frozen Products",
+    "category": "frozen",
+    "image": "/assets/products/passionfruit-puree-frozen.webp",
+    "kb": 27.9
+  },
+  {
+    "slug": "peking-duck-sheet-happy-belly",
+    "file": "Peking Duck Sheet Happy Belly.jpg",
+    "folder": "Frozen Bakery & Japanese Products",
+    "category": "pantry",
+    "image": "/assets/products/peking-duck-sheet-happy-belly.webp",
+    "kb": 44.4
+  },
+  {
+    "slug": "pomello-thai",
+    "file": "Pomello Thai.jpeg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/pomello-thai.webp",
+    "kb": 30.2
+  },
+  {
+    "slug": "porchini-mushroom",
+    "file": "Porchini Mushroom.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/porchini-mushroom.webp",
+    "kb": 24.2
+  },
+  {
+    "slug": "portobello-mushroom",
+    "file": "Portobello Mushroom.webp",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/portobello-mushroom.webp",
+    "kb": 18.5
+  },
+  {
+    "slug": "purple-cauliflower",
+    "file": "Purple Cauliflower.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/purple-cauliflower.webp",
+    "kb": 80.2
+  },
+  {
+    "slug": "purple-potato",
+    "file": "Purple Potato.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/purple-potato.webp",
+    "kb": 23.9
+  },
+  {
+    "slug": "purple-sweet-potato",
+    "file": "Purple Sweet Potato.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/purple-sweet-potato.webp",
+    "kb": 89
+  },
+  {
+    "slug": "rambutan",
+    "file": "Rambutan.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/rambutan.webp",
+    "kb": 45.5
+  },
+  {
+    "slug": "raspberry-fresh",
+    "file": "Raspberry Fresh.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/raspberry-fresh.webp",
+    "kb": 38.5
+  },
+  {
+    "slug": "raspberry-iqf-frozen",
+    "file": "Raspberry IQF Frozen.jpg",
+    "folder": "Breadberry Frozen Products",
+    "category": "frozen",
+    "image": "/assets/products/raspberry-iqf-frozen.webp",
+    "kb": 53.9
+  },
+  {
+    "slug": "raspberry-puree-frozen",
+    "file": "Raspberry Puree Frozen.jpg",
+    "folder": "Breadberry Frozen Products",
+    "category": "frozen",
+    "image": "/assets/products/raspberry-puree-frozen.webp",
+    "kb": 26.3
+  },
+  {
+    "slug": "red-long-chilli-thai",
+    "file": "Red Long Chilli Thai.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/red-long-chilli-thai.webp",
+    "kb": 35.5
+  },
+  {
+    "slug": "romanesco-cabbage",
+    "file": "Romanesco Cabbage.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/romanesco-cabbage.webp",
+    "kb": 42.7
+  },
+  {
+    "slug": "shimeji-brown-mushroom",
+    "file": "Shimeji Brown Mushroom.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/shimeji-brown-mushroom.webp",
+    "kb": 15.5
+  },
+  {
+    "slug": "shimeji-white-mushroom",
+    "file": "Shimeji White Mushroom.webp",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/shimeji-white-mushroom.webp",
+    "kb": 14.8
+  },
+  {
+    "slug": "shishito-pepper",
+    "file": "Shishito Pepper.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/shishito-pepper.webp",
+    "kb": 39.1
+  },
+  {
+    "slug": "shisho-leaves",
+    "file": "Shisho Leaves.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/shisho-leaves.webp",
+    "kb": 29.1
+  },
+  {
+    "slug": "shitake-mushroom",
+    "file": "Shitake Mushroom.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/shitake-mushroom.webp",
+    "kb": 22.6
+  },
+  {
+    "slug": "snowpeas",
+    "file": "Snowpeas.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/snowpeas.webp",
+    "kb": 19.2
+  },
+  {
+    "slug": "soft-shell-crab",
+    "file": "Soft Shell Crab.jpg",
+    "folder": "Frozen Seafood",
+    "category": "seafood",
+    "image": "/assets/products/soft-shell-crab.webp",
+    "kb": 70.1
+  },
+  {
+    "slug": "strawberry-fresh",
+    "file": "Strawberry Fresh.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/strawberry-fresh.webp",
+    "kb": 38.1
+  },
+  {
+    "slug": "strawberry-iqf-frozen",
+    "file": "Strawberry IQF Frozen_.jpg",
+    "folder": "Breadberry Frozen Products",
+    "category": "frozen",
+    "image": "/assets/products/strawberry-iqf-frozen.webp",
+    "kb": 49.8
+  },
+  {
+    "slug": "strawberry-puree-frozen",
+    "file": "Strawberry Puree Frozen.jpg",
+    "folder": "Breadberry Frozen Products",
+    "category": "frozen",
+    "image": "/assets/products/strawberry-puree-frozen.webp",
+    "kb": 22.3
+  },
+  {
+    "slug": "sugar-snappeas",
+    "file": "Sugar Snappeas.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/sugar-snappeas.webp",
+    "kb": 12
+  },
+  {
+    "slug": "taro-root",
+    "file": "Taro Root.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/taro-root.webp",
+    "kb": 24.2
+  },
+  {
+    "slug": "tuna-saku",
+    "file": "Tuna Saku.jpg",
+    "folder": "Frozen Seafood",
+    "category": "seafood",
+    "image": "/assets/products/tuna-saku.webp",
+    "kb": 11.1
+  },
+  {
+    "slug": "vine-cherry-tomato",
+    "file": "Vine Cherry Tomato.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/vine-cherry-tomato.webp",
+    "kb": 32.3
+  },
+  {
+    "slug": "wasabi-paste-505",
+    "file": "Wasabi Paste 505.jpg",
+    "folder": "Frozen Bakery & Japanese Products",
+    "category": "pantry",
+    "image": "/assets/products/wasabi-paste-505.webp",
+    "kb": 37.7
+  },
+  {
+    "slug": "white-jumbo-peruvian-asparagus",
+    "file": "White Jumbo Peruvian Asparagus.webp",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/white-jumbo-peruvian-asparagus.webp",
+    "kb": 16.3
+  },
+  {
+    "slug": "wild-roquette-arugula-leaves",
+    "file": "Wild Roquette Arugula Leaves.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/wild-roquette-arugula-leaves.webp",
+    "kb": 30.2
+  },
+  {
+    "slug": "wonton-skin-sheet-happy-belly",
+    "file": "Wonton Skin Sheet Happy Belly.jpg",
+    "folder": "Frozen Bakery & Japanese Products",
+    "category": "pantry",
+    "image": "/assets/products/wonton-skin-sheet-happy-belly.webp",
+    "kb": 28.2
+  },
+  {
+    "slug": "yam-bean",
+    "file": "Yam Bean.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/yam-bean.webp",
+    "kb": 18.7
+  },
+  {
+    "slug": "yellow-cauliflower",
+    "file": "Yellow Cauliflower.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/yellow-cauliflower.webp",
+    "kb": 47.2
+  },
+  {
+    "slug": "yellow-chilli-long-thai",
+    "file": "Yellow Chilli Long Thai.jpg",
+    "folder": "Fresh Imported Vegetable & Fruits",
+    "category": "fresh",
+    "image": "/assets/products/yellow-chilli-long-thai.webp",
+    "kb": 12.5
+  }
+]

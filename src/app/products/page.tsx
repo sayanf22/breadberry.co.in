@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { PageHero } from "@/components/layout/PageHero";
@@ -7,7 +6,7 @@ import { Eyebrow } from "@/components/ui/SectionHeading";
 import { PortfolioGrid } from "@/components/products/PortfolioGrid";
 import { ProductFilter } from "@/components/products/ProductFilter";
 import { QuoteCta } from "@/components/home/QuoteCta";
-import { products } from "@/lib/products";
+import { products, signatureProducts } from "@/lib/products";
 import { portfolio } from "@/lib/portfolio";
 import { site } from "@/lib/site";
 
@@ -21,26 +20,22 @@ export default function ProductsPage() {
   return (
     <>
       <PageHero
-        eyebrow="The Breadberry Co. signature line"
-        title="Frozen berries & fruit purees"
-        description={`${products.length} lines held under rigorous cold-chain protocols to preserve flavour depth, vibrant colour and nutritional integrity — built for high-end confectionery and designer cakes.`}
+        eyebrow="The Adhira catalogue"
+        title="Every line we supply"
+        description={`${products.length} lines across berries, purees, fresh imported produce, bakery and Japanese staples and frozen seafood — including the ${signatureProducts.length} Breadberry Co. signature berry and puree lines.`}
         crumbs={[{ label: "Home", href: "/" }, { label: "Products" }]}
       />
 
-      {/* Breadberry Co. catalogue */}
+      {/* Full catalogue, filtered by range */}
       <section
         id="range"
-        aria-label="Frozen berries and fruit purees"
+        aria-label="Product catalogue"
         className="py-[clamp(2.5rem,6vw,4.5rem)]"
       >
         <Container>
-          <Suspense
-            fallback={
-              <div className="h-14 w-full max-w-sm animate-pulse rounded-pill bg-surface" />
-            }
-          >
-            <ProductFilter />
-          </Suspense>
+          {/* No Suspense boundary: the filter no longer reads search params,
+              so the whole grid is server rendered in the static HTML. */}
+          <ProductFilter />
         </Container>
       </section>
 

@@ -6,6 +6,7 @@ import {
   LeafIcon,
   SnowflakeIcon,
 } from "@/components/icons";
+import type { ProductCategory } from "@/lib/products";
 
 export type PortfolioCategory = {
   slug: string;
@@ -17,7 +18,19 @@ export type PortfolioCategory = {
   tone: "berry" | "green" | "amber" | "blue" | "teal";
   /** True where the site carries product-level detail for the category. */
   hasCatalogue?: boolean;
+  /**
+   * Filter tab this category opens in the catalogue. Kept as a real
+   * `ProductCategory` so a renamed tab cannot silently break the link.
+   */
+  catalogueCategory?: ProductCategory;
 };
+
+/** Deep-links a portfolio card to its filtered slice of the catalogue. */
+export function catalogueHref(category: PortfolioCategory) {
+  return category.catalogueCategory
+    ? `/products?category=${category.catalogueCategory}#range`
+    : "/products";
+}
 
 /**
  * The curated selection sourced and supplied by Adhira Enterprises.
@@ -34,6 +47,7 @@ export const portfolio: PortfolioCategory[] = [
     icon: SnowflakeIcon,
     tone: "berry",
     hasCatalogue: true,
+    catalogueCategory: "iqf",
   },
   {
     slug: "fresh-imported-vegetables",
@@ -44,6 +58,8 @@ export const portfolio: PortfolioCategory[] = [
       "Sourced to order and moved quickly, because a garnish is only as good as the day it arrived.",
     icon: LeafIcon,
     tone: "green",
+    hasCatalogue: true,
+    catalogueCategory: "fresh",
   },
   {
     slug: "artisanal-cheeses",
@@ -64,6 +80,8 @@ export const portfolio: PortfolioCategory[] = [
       "The pantry lines that decide whether a dish reads as authentic or approximate.",
     icon: BowlIcon,
     tone: "blue",
+    hasCatalogue: true,
+    catalogueCategory: "japanese",
   },
   {
     slug: "frozen-seafood",
@@ -74,5 +92,7 @@ export const portfolio: PortfolioCategory[] = [
       "Frozen once, at peak, and never allowed to break temperature on the way to you.",
     icon: FishIcon,
     tone: "teal",
+    hasCatalogue: true,
+    catalogueCategory: "seafood",
   },
 ];

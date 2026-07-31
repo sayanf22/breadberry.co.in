@@ -163,3 +163,26 @@ repository during each deployment. In Cloudflare Workers Builds, use:
 For a local one-command deployment, use `npm run deploy`. The Worker and its
 `WORKER_SELF_REFERENCE` service binding are both named `breadberry`; these names
 must remain identical. Generated `.open-next` and `.wrangler` output is ignored.
+
+## Product photography pipeline
+
+The catalogue in `src/lib/products.ts` is driven by the photography supplied in
+`../images` (one archive per range). To re-import after new archives arrive:
+
+1. Extract the archives into `../images/extracted/<Range Name>/`.
+2. Run `node scripts/import-product-assets.mjs`.
+
+The script normalises every photo to a single portrait WebP
+(`public/assets/products/<slug>.webp`, 780×1040, ~37 KB average) that serves
+both the card crop and the taller detail crop, and writes
+`scripts/product-assets.manifest.json` for reference. Each product `slug` in
+`products.ts` matches its generated file name, so a missing image is obvious.
+
+Two things to know:
+
+- **Artisanal Cheese** was supplied as an empty archive — it contains a folder
+  and no images, so it has no products yet. The category still appears in the
+  portfolio without a catalogue link.
+- **Pack sizes read "On request"** rather than published weights, and storage
+  temperatures follow the category. Confirm both against real spec sheets
+  before launch.

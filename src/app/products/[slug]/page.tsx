@@ -7,7 +7,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Eyebrow, SectionHeading } from "@/components/ui/SectionHeading";
 import { ProductCard } from "@/components/products/ProductCard";
 import { CheckIcon, ChevronRightIcon } from "@/components/icons";
-import { products } from "@/lib/products";
+import { products, relatedProducts } from "@/lib/products";
 import Link from "next/link";
 
 type Params = { params: Promise<{ slug: string }> };
@@ -32,20 +32,15 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   };
 }
 
-const handling = [
-  "Store at −18 °C or below; do not refreeze after thawing.",
-  "Certificate of analysis issued per batch on request.",
-  "Delivered in insulated, temperature-logged transport.",
-];
-
 export default async function ProductPage({ params }: Params) {
   const { slug } = await params;
   const product = products.find((item) => item.slug === slug);
   if (!product) notFound();
 
-  const related = products
-    .filter((item) => item.slug !== product.slug)
-    .slice(0, 4);
+  /* Storage and handling differ per category — fresh produce must never
+     inherit the frozen −18 °C line. */
+  const handling = product.handling;
+  const related = relatedProducts(product);
 
   return (
     <>
@@ -93,7 +88,7 @@ export default async function ProductPage({ params }: Params) {
               >
                 <Image
                   src={product.image}
-                  alt={`${product.name} retail pack`}
+                  alt={product.imageAlt}
                   fill
                   priority
                   sizes="(min-width: 1024px) 42vw, 92vw"
