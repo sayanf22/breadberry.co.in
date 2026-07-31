@@ -88,7 +88,7 @@ export default function AboutPage() {
           <div className="grid items-center gap-[clamp(2rem,5vw,4rem)] lg:grid-cols-2">
             <Reveal>
               <SectionHeading
-                eyebrow="Our story"
+                eyebrow="About us"
                 title={<span id="story-heading">Built on a single vision</span>}
               />
               <div className="mt-6 space-y-4 text-muted">

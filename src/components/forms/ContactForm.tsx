@@ -1,10 +1,12 @@
 "use client";
 
 import { useActionState } from "react";
-import { initialFormState, submitContact } from "@/app/actions";
+import { submitContact, type FormState } from "@/app/actions";
 import { Button } from "@/components/ui/Button";
 import { Field, inputClass } from "@/components/ui/Field";
 import { ErrorSummary, SuccessPanel } from "@/components/forms/FormStatus";
+
+const initialFormState: FormState = { status: "idle" };
 
 export function ContactForm() {
   const [state, action, pending] = useActionState(

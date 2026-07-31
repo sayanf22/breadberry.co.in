@@ -131,16 +131,13 @@ export function ProductFilter() {
   return (
     <>
       <div className="flex flex-col gap-2.5 sm:gap-3">
-        {/* Range rail on the brand green, so the white tiles read as cards
-            lifted off a coloured band rather than outlines on white. */}
+        {/* Range rail on the brand green container */}
         <div className="rounded-[1.5rem] bg-lime-soft p-2 shadow-[inset_0_1px_4px_rgb(11_44_79_/_0.1)] sm:p-3">
           <div
             ref={listRef}
             role="tablist"
             aria-label="Filter products by range"
             onKeyDown={onKeyDown}
-            /* Scrolls on phones, then spreads to fill the band from `sm` so no
-               dead space is left at the end of the row. */
             className="no-scrollbar flex snap-x snap-mandatory gap-2 overflow-x-auto sm:grid sm:grid-cols-3 sm:gap-2.5 sm:overflow-visible lg:grid-cols-6"
           >
             {categories.map((category) => {
@@ -161,27 +158,27 @@ export function ProductFilter() {
                   tabIndex={selected ? 0 : -1}
                   onClick={() => select(category.id)}
                   className={cn(
-                    "group/tile flex w-[5.5rem] shrink-0 snap-start flex-col items-center gap-2 rounded-[1rem] border bg-white p-1.5 pb-2 transition-[border-color,box-shadow,transform] duration-500 ease-[var(--ease-out-soft)] sm:w-full sm:p-2 sm:pb-2.5",
+                    "group/tile flex w-[6.25rem] shrink-0 snap-start flex-col items-center gap-2 rounded-[1.125rem] border bg-white p-2 pb-2.5 transition-[border-color,box-shadow,transform] duration-500 ease-[var(--ease-out-soft)] sm:w-full sm:p-2.5 sm:pb-3",
                     selected
                       ? "-translate-y-0.5 border-navy shadow-card"
-                      : "border-white/70 shadow-soft hover:-translate-y-0.5 hover:border-navy/25 hover:shadow-card"
+                      : "border-white/80 shadow-soft hover:-translate-y-0.5 hover:border-navy/30 hover:shadow-card"
                   )}
                 >
-                  {/* Square illustration panel, matching the reference
-                      proportions — the artwork fills the tile. */}
+                  {/* Square illustration panel */}
                   <span
                     className={cn(
-                      "grid aspect-square w-full place-items-center overflow-hidden rounded-[0.75rem]",
+                      "grid aspect-square w-full place-items-center overflow-hidden rounded-[0.875rem] transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover/tile:scale-[1.02]",
                       tone
                     )}
                   >
-                    <Art className="size-[78%] transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover/tile:scale-105" />
+                    <Art className="size-[80%] transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover/tile:scale-105" />
                   </span>
 
+                  {/* Category Title Label */}
                   <span
                     className={cn(
-                      "flex min-h-[2.25rem] items-start px-0.5 text-center text-[0.6875rem] font-semibold leading-tight transition-colors duration-400 sm:text-[0.75rem]",
-                      selected ? "text-navy" : "text-navy/70"
+                      "flex min-h-[2.25rem] items-center px-0.5 text-center text-[0.75rem] font-bold leading-tight transition-colors duration-300 sm:text-[0.8125rem]",
+                      selected ? "text-navy" : "text-navy/70 group-hover/tile:text-navy"
                     )}
                   >
                     {category.label}
@@ -192,8 +189,7 @@ export function ProductFilter() {
           </div>
         </div>
 
-        {/* The only running total on the page — the per-range counts sit in
-            their own headings, so nothing repeats it under the grid. */}
+        {/* Total product count running total */}
         <p
           key={`count-${active}`}
           className="product-count-enter text-[0.8125rem] tabular-nums text-muted-soft sm:text-right"

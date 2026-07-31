@@ -1,15 +1,24 @@
+"use client";
+
+import { useRef } from "react";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { ButtonLink } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/SectionHeading";
 import { ProductCard } from "@/components/products/ProductCard";
-import { featuredProducts, signatureProducts } from "@/lib/products";
+import { ArrowRightIcon } from "@/components/icons";
+import { signatureProducts } from "@/lib/products";
 
-/**
- * Featured range. A fixed grid rather than a scroller: at every breakpoint the
- * row divides evenly, so no card is ever cut in half at the container edge.
- */
 export function ProductRange() {
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+
+  const handleScroll = (direction: "left" | "right") => {
+    if (scrollRef.current) {
+      const scrollAmount = direction === "left" ? -340 : 340;
+      scrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    }
+  };
+
   return (
     <section
       id="range"
@@ -26,18 +35,46 @@ export function ProductRange() {
               </h2>
             </div>
 
-            <p className="text-muted sm:max-w-[28ch] sm:text-right">
-              {signatureProducts.length} berry and puree lines, held under
-              unbroken cold chain and quoted to your volumes.
-            </p>
+            <div className="flex items-center justify-between gap-4 sm:justify-end">
+              <p className="text-muted text-[0.875rem] sm:max-w-[24ch] sm:text-right">
+                {signatureProducts.length} berry &amp; puree lines quoted to your volume.
+              </p>
+
+              {/* Slider Arrow Navigation Controls */}
+              <div className="flex items-center gap-2 shrink-0">
+                <button
+                  type="button"
+                  onClick={() => handleScroll("left")}
+                  aria-label="Previous products"
+                  className="grid size-10 place-items-center rounded-full border border-line bg-white text-navy shadow-soft transition-all duration-300 hover:-translate-y-px hover:border-lime-soft hover:bg-lime-mist hover:text-navy hover:shadow-card active:translate-y-px"
+                >
+                  <ArrowRightIcon className="size-4 rotate-180" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleScroll("right")}
+                  aria-label="Next products"
+                  className="grid size-10 place-items-center rounded-full border border-line bg-white text-navy shadow-soft transition-all duration-300 hover:-translate-y-px hover:border-lime-soft hover:bg-lime-mist hover:text-navy hover:shadow-card active:translate-y-px"
+                >
+                  <ArrowRightIcon className="size-4" />
+                </button>
+              </div>
+            </div>
           </div>
         </Reveal>
 
-        <div className="mt-[clamp(1.5rem,3.5vw,2.25rem)] grid grid-cols-2 gap-[clamp(0.75rem,1.6vw,1.25rem)] lg:grid-cols-4">
-          {featuredProducts.map((product, index) => (
-            <Reveal key={product.slug} delay={index * 70} className="h-full">
+        {/* Scrollable Product Carousel Strip */}
+        <div
+          ref={scrollRef}
+          className="mt-[clamp(1.5rem,3.5vw,2.25rem)] flex overflow-x-auto no-scrollbar scroll-smooth gap-4 sm:gap-5 pb-4 pt-1"
+        >
+          {signatureProducts.map((product, index) => (
+            <div
+              key={product.slug}
+              className="w-[15.5rem] sm:w-[17.5rem] lg:w-[18.5rem] shrink-0 h-full"
+            >
               <ProductCard product={product} priority={index < 2} />
-            </Reveal>
+            </div>
           ))}
         </div>
 

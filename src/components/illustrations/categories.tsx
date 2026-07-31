@@ -2,11 +2,10 @@ import type { ReactElement, SVGProps } from "react";
 import type { ProductCategory } from "@/lib/products";
 
 /**
- * Category illustrations — one flat scene per range.
+ * Category illustrations — High-detail, vibrant vector artwork.
  *
- * Drawn on a 64×64 canvas with a consistent 2px navy outline so all six tiles
- * look like one set. Colours come from the site palette. Fills are opaque and
- * shapes are large enough to read clearly at 56px tile-size on a phone.
+ * Drawn on a 64×64 canvas with consistent navy outlines (#0b2c4f) and rich palette.
+ * Crisp, recognizable food geometry designed for clean presentation.
  */
 type Props = SVGProps<SVGSVGElement>;
 
@@ -23,7 +22,7 @@ const frame = {
 
 const L: React.SVGAttributes<SVGElement> = {
   stroke: ink,
-  strokeWidth: 2,
+  strokeWidth: 1.8,
   strokeLinecap: "round" as const,
   strokeLinejoin: "round" as const,
 };
@@ -32,46 +31,68 @@ const L: React.SVGAttributes<SVGElement> = {
 export function BerriesIllustration(props: Props) {
   return (
     <svg {...frame} {...props}>
-      {/* snow crystal top-right */}
-      <g stroke={ink} strokeWidth={1.6} strokeLinecap="round">
-        <line x1="50" y1="7" x2="50" y2="17" />
-        <line x1="45" y1="9.3" x2="55" y2="14.7" />
-        <line x1="55" y1="9.3" x2="45" y2="14.7" />
-      </g>
-
-      {/* large strawberry */}
-      <path
-        d="M28 54c-5-7-9-17-6-25 2-6 8-10 13-10 5 0 9 3.5 10.5 8.5 2.5 8.5-2 21-7.5 26.5"
-        fill="#d94a5a"
-        {...L}
-      />
-      <path
-        d="M28 54c-5.5-7-9-17-6-25"
-        fill="none"
-        stroke="#f28090"
-        strokeWidth={2}
-        strokeLinecap="round"
-      />
-      {/* seeds */}
-      <ellipse cx="33" cy="36" rx="1.2" ry="1.6" fill={cream} transform="rotate(-10 33 36)" />
-      <ellipse cx="39" cy="38" rx="1.2" ry="1.6" fill={cream} transform="rotate(10 39 38)" />
-      <ellipse cx="35" cy="46" rx="1.2" ry="1.6" fill={cream} />
-      {/* hull */}
-      <path d="M35 19c-1.5-5.5 1-9.5 6-11-.8 5-3 8.5-6 11Z" fill={lime} {...L} strokeWidth={1.8} />
-
-      {/* blueberry cluster */}
-      <circle cx="17" cy="38" r="7" fill="#5b7ec8" {...L} />
-      <circle cx="17" cy="38" r="7" fill="url(#bblue)" />
       <defs>
-        <radialGradient id="bblue" cx="35%" cy="35%">
-          <stop offset="0%" stopColor="#7fa0e0" />
-          <stop offset="100%" stopColor="#5b7ec8" />
+        <radialGradient id="strawHighDetail" cx="35%" cy="25%">
+          <stop offset="0%" stopColor="#ff5e72" />
+          <stop offset="60%" stopColor="#e02239" />
+          <stop offset="100%" stopColor="#b01024" />
+        </radialGradient>
+        <radialGradient id="blueHighDetail" cx="35%" cy="30%">
+          <stop offset="0%" stopColor="#89b2ff" />
+          <stop offset="50%" stopColor="#527de0" />
+          <stop offset="100%" stopColor="#2e4ba1" />
         </radialGradient>
       </defs>
-      {/* berry sheen */}
-      <path d="M13.5 34.5c1.5-1.5 4-2 5.5-.5" stroke="#9bbce8" strokeWidth={1.5} strokeLinecap="round" />
-      <circle cx="14" cy="32" r="1.6" fill="#4a6db5" {...L} strokeWidth={1.2} />
-      <circle cx="22" cy="33" r="1.6" fill="#4a6db5" {...L} strokeWidth={1.2} />
+
+      {/* IQF Frost Snowflake (top right) */}
+      <g stroke="#3a75c4" strokeWidth={1.8} strokeLinecap="round">
+        <line x1="49" y1="5" x2="49" y2="17" />
+        <line x1="43" y1="11" x2="55" y2="11" />
+        <line x1="44.7" y1="6.7" x2="53.3" y2="15.3" />
+        <line x1="53.3" y1="6.7" x2="44.7" y2="15.3" />
+        <circle cx="49" cy="5" r="0.9" fill="#3a75c4" />
+        <circle cx="49" cy="17" r="0.9" fill="#3a75c4" />
+        <circle cx="43" cy="11" r="0.9" fill="#3a75c4" />
+        <circle cx="55" cy="11" r="0.9" fill="#3a75c4" />
+      </g>
+
+      {/* Large ripe strawberry */}
+      <path
+        d="M23 54c-6-8-9.5-18-6-25.5C20 22 26 19 31.5 19c5.5 0 9.5 3 11 8 2.5 8.5-2 21-7.5 27C31.5 57.5 26 58 23 54Z"
+        fill="url(#strawHighDetail)"
+        {...L}
+      />
+
+      {/* Strawberry sheen highlight arc */}
+      <path
+        d="M20 29.5c2.5-4 7.5-6.5 11.5-6"
+        stroke="#ff9ebb"
+        strokeWidth={1.8}
+        strokeLinecap="round"
+        fill="none"
+        opacity="0.85"
+      />
+
+      {/* Strawberry seeds */}
+      <ellipse cx="27" cy="32" rx="1" ry="1.6" fill="#ffe49e" transform="rotate(-15 27 32)" />
+      <ellipse cx="34" cy="34" rx="1" ry="1.6" fill="#ffe49e" transform="rotate(10 34 34)" />
+      <ellipse cx="29" cy="41" rx="1" ry="1.6" fill="#ffe49e" transform="rotate(-5 29 41)" />
+      <ellipse cx="35" cy="43" rx="1" ry="1.6" fill="#ffe49e" transform="rotate(12 35 43)" />
+      <ellipse cx="26" cy="48" rx="0.9" ry="1.4" fill="#ffe49e" transform="rotate(-10 26 48)" />
+
+      {/* Strawberry green hull leaves */}
+      <path d="M31.5 19c-4-4-9-4-12-1c3.5 3.5 7.5 4 12 1Z" fill={lime} {...L} strokeWidth={1.6} />
+      <path d="M31.5 19c4-4 9-4 12-1c-3.5 3.5-7.5 4-12 1Z" fill={lime} {...L} strokeWidth={1.6} />
+      <path d="M31.5 19c-1-5.5 1-9.5 5.5-11c-.5 5-2.5 8.5-5.5 11Z" fill="#6cbd39" {...L} strokeWidth={1.6} />
+
+      {/* Plump Blueberry (bottom left) */}
+      <circle cx="15.5" cy="41" r="7.5" fill="url(#blueHighDetail)" {...L} />
+      <path d="M12 37.5c1.8-1.8 4.5-2.2 6.5-.8" stroke="#d6e4ff" strokeWidth={1.5} strokeLinecap="round" fill="none" />
+      <circle cx="12.5" cy="35" r="1.5" fill="#253b7d" stroke={ink} strokeWidth={1.1} />
+
+      {/* Secondary Blueberry */}
+      <circle cx="22.5" cy="47" r="5" fill="url(#blueHighDetail)" {...L} />
+      <path d="M19.5 44.5c1.2-1.2 3.2-1.5 4.5-.5" stroke="#d6e4ff" strokeWidth={1.3} strokeLinecap="round" fill="none" />
     </svg>
   );
 }
@@ -80,53 +101,66 @@ export function BerriesIllustration(props: Props) {
 export function PureeIllustration(props: Props) {
   return (
     <svg {...frame} {...props}>
-      {/* bowl lower */}
-      <path
-        d="M10 38c0 10.5 9.5 18 22 18s22-7.5 22-18"
-        fill="#fdefd0"
-        {...L}
-      />
-      <path d="M10 38h44" {...L} />
-      {/* puree surface inside */}
-      <ellipse cx="32" cy="38" rx="18" ry="5" fill="#f5a634" opacity="0.9" />
-      {/* swirl */}
-      <path
-        d="M32 38c-3-2-6-2-7 1"
-        stroke="#c77b10"
-        strokeWidth={2}
-        strokeLinecap="round"
-        fill="none"
-      />
-
-      {/* fruit halves scattered above */}
-      {/* passion-fruit half */}
-      <circle cx="23" cy="24" r="8" fill="#f5a634" {...L} />
-      <circle cx="23" cy="24" r="8" fill="url(#pfill)" />
       <defs>
-        <radialGradient id="pfill" cx="40%" cy="40%">
-          <stop offset="0%" stopColor="#f8c060" />
-          <stop offset="100%" stopColor="#f5a634" />
+        <radialGradient id="pureeSurfaceDetail" cx="40%" cy="40%">
+          <stop offset="0%" stopColor="#ffc03d" />
+          <stop offset="60%" stopColor="#f5910f" />
+          <stop offset="100%" stopColor="#d96c00" />
+        </radialGradient>
+        <radialGradient id="passionPulp" cx="35%" cy="35%">
+          <stop offset="0%" stopColor="#ffe17d" />
+          <stop offset="100%" stopColor="#f79c14" />
         </radialGradient>
       </defs>
-      <circle cx="23" cy="24" r="5" fill="#c77b10" opacity="0.2" />
-      {/* seeds */}
-      {[[-1.5, -2], [1.5, -2.5], [0, 1], [-2.2, 1], [2.2, 1]].map(([dx, dy], i) => (
-        <ellipse key={i} cx={23 + dx} cy={24 + dy} rx="0.9" ry="1.3" fill="#7a4a0a" transform={`rotate(${i * 36} ${23 + dx} ${24 + dy})`} />
-      ))}
 
-      {/* raspberry right */}
-      <circle cx="44" cy="21" r="6.5" fill="#c03050" {...L} />
+      {/* Ceramic Dessert Bowl Base */}
       <path
-        d="M40 20c1-3 3.5-4 7-3.5"
-        stroke="#e06080"
-        strokeWidth={1.5}
+        d="M10 35c0 12 9.5 20.5 22 20.5s22-8.5 22-20.5H10Z"
+        fill={cream}
+        {...L}
+        strokeWidth={2}
+      />
+      <path d="M8 35h48" {...L} strokeWidth={2.2} />
+
+      {/* Silky Puree Liquid Surface */}
+      <ellipse cx="32" cy="35" rx="21.5" ry="6" fill="url(#pureeSurfaceDetail)" />
+      <ellipse cx="32" cy="35" rx="21.5" ry="6" fill="none" stroke={ink} strokeWidth={1.8} />
+
+      {/* Puree Swirl Accent */}
+      <path
+        d="M23 35c3.5 3 9 3.5 13.5 0c4-3 8-2 10.5 1"
+        stroke="#b85200"
+        strokeWidth={2.2}
         strokeLinecap="round"
         fill="none"
       />
-      {/* drupelets */}
-      {[[0, -2], [2.5, -1.5], [-2.5, -1.5], [0, 1.5], [2.5, 1]].map(([dx, dy], i) => (
-        <circle key={i} cx={44 + dx} cy={21 + dy} r="1.5" fill="#e06080" {...L} strokeWidth={1} />
-      ))}
+
+      {/* Cut Passionfruit Half (top left) */}
+      <circle cx="21" cy="21" r="9" fill="#54250c" {...L} />
+      <circle cx="21" cy="21" r="7.2" fill="url(#passionPulp)" />
+      <circle cx="21" cy="21" r="5" fill="#e07b00" opacity="0.25" />
+      {/* Seeds */}
+      <circle cx="19" cy="19" r="1.2" fill="#3b1704" />
+      <circle cx="23.5" cy="18.5" r="1.2" fill="#3b1704" />
+      <circle cx="18.5" cy="23" r="1.2" fill="#3b1704" />
+      <circle cx="23.5" cy="23" r="1.2" fill="#3b1704" />
+      <circle cx="21" cy="24.5" r="1.2" fill="#3b1704" />
+
+      {/* Fresh Raspberry (top right) */}
+      <circle cx="44" cy="19" r="7.5" fill="#d92344" {...L} />
+      <path d="M40 17.5c1.2-3.2 4.2-4.8 7.8-4.2" stroke="#ff859d" strokeWidth={1.5} strokeLinecap="round" fill="none" />
+      {/* Drupelets */}
+      <circle cx="41.5" cy="17" r="1.7" fill="#ff4d6a" stroke={ink} strokeWidth={1} />
+      <circle cx="46.5" cy="17" r="1.7" fill="#ff4d6a" stroke={ink} strokeWidth={1} />
+      <circle cx="44" cy="21.5" r="1.7" fill="#ff4d6a" stroke={ink} strokeWidth={1} />
+
+      {/* Puree Drop Accent */}
+      <path
+        d="M32 21c-1.5 2.5-3 4.5-3 6a3 3 0 0 0 6 0c0-1.5-1.5-3.5-3-6Z"
+        fill="#f5910f"
+        {...L}
+        strokeWidth={1.4}
+      />
     </svg>
   );
 }
@@ -135,38 +169,52 @@ export function PureeIllustration(props: Props) {
 export function FreshIllustration(props: Props) {
   return (
     <svg {...frame} {...props}>
-      {/* thick asparagus spear, left */}
-      <rect x="10" y="16" width="5.5" height="36" rx="2.75" fill="#7fc050" {...L} />
-      <path
-        d="M12.75 16c-3-5 1-10 4-10-1 4-2.5 7-4 10Z"
-        fill={lime}
-        {...L}
-        strokeWidth={1.6}
-      />
-
-      {/* tomato, centre */}
-      <circle cx="34" cy="40" r="14" fill="#e03a4e" {...L} />
-      <circle cx="34" cy="40" r="14" fill="url(#tomfill)" />
       <defs>
-        <radialGradient id="tomfill" cx="35%" cy="30%">
-          <stop offset="0%" stopColor="#ee6070" />
-          <stop offset="100%" stopColor="#d02840" />
+        <radialGradient id="tomDetail" cx="35%" cy="30%">
+          <stop offset="0%" stopColor="#ff5260" />
+          <stop offset="60%" stopColor="#e01b2d" />
+          <stop offset="100%" stopColor="#aa0d1b" />
+        </radialGradient>
+        <linearGradient id="cucDetail" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#8ce647" />
+          <stop offset="100%" stopColor="#519e1b" />
+        </linearGradient>
+        <radialGradient id="avoDetail" cx="35%" cy="30%">
+          <stop offset="0%" stopColor="#b4e643" />
+          <stop offset="100%" stopColor="#55871b" />
         </radialGradient>
       </defs>
-      {/* stem */}
-      <path d="M34 26c0-4.5 3-7 6.5-7-1.5 3.5-4 5.5-6.5 7Z" fill="#5a9a30" {...L} strokeWidth={1.8} />
-      <line x1="34" y1="26" x2="34" y2="24" {...L} />
-      {/* sheen */}
-      <path d="M26 34c2.5-3.5 7-4.5 10-3" stroke="#f07080" strokeWidth={2} strokeLinecap="round" fill="none" opacity="0.8" />
 
-      {/* leafy green, top right */}
+      {/* Fresh Avocado Half (left) */}
+      <ellipse cx="18" cy="38" rx="8" ry="11" fill="url(#avoDetail)" transform="rotate(-15 18 38)" {...L} />
+      <circle cx="17.5" cy="40" r="4.2" fill="#78481c" stroke={ink} strokeWidth={1.4} />
+      <circle cx="16.5" cy="38.5" r="1" fill="#a66a2e" />
+
+      {/* Crisp Cucumber Spear (center left) */}
+      <rect x="25" y="16" width="6.5" height="37" rx="3.25" fill="url(#cucDetail)" {...L} />
+      <path d="M28.25 20v28" stroke="#3b7813" strokeWidth={1.5} strokeLinecap="round" strokeDasharray="2 4" />
+
+      {/* Glossy Heirloom Tomato (center right) */}
+      <circle cx="42" cy="38" r="14" fill="url(#tomDetail)" {...L} />
+      {/* Tomato sheen arc */}
+      <path d="M33 33c2.5-3.5 7-4.5 10.5-3" stroke="#ff9eaa" strokeWidth={2} strokeLinecap="round" fill="none" opacity="0.85" />
+      {/* 5-point Star Calyx */}
       <path
-        d="M48 12c3 5 2 12-3 17-3-5-2-13 3-17Z"
-        fill="#7fc050"
+        d="M42 24l1.5 3.5 3.5-1.5-2 3.2 3.5 1.8-3.7.8.8 3.7-3-2.5-3 2.5.8-3.7-3.7-.8 3.5-1.8-2-3.2 3.5 1.5Z"
+        fill="#529e1b"
+        {...L}
+        strokeWidth={1.4}
+      />
+      <path d="M42 24c0-4 3-6.5 6-6" stroke={ink} strokeWidth={1.8} strokeLinecap="round" fill="none" />
+
+      {/* Fresh Mint Leaf (top right) */}
+      <path
+        d="M51 10c3.5 5.5 2.5 13-3 18.5-3.5-5.5-2.5-14 3-18.5Z"
+        fill="#6cc22e"
         {...L}
         strokeWidth={1.6}
       />
-      <path d="M45 29c2-5 3-11 3-17" stroke={lime} strokeWidth={1.6} strokeLinecap="round" fill="none" />
+      <path d="M48 28.5c2.2-5.5 3.5-12 3-18.5" stroke={lime} strokeWidth={1.6} strokeLinecap="round" fill="none" />
     </svg>
   );
 }
@@ -175,26 +223,53 @@ export function FreshIllustration(props: Props) {
 export function BakeryIllustration(props: Props) {
   return (
     <svg {...frame} {...props}>
-      {/* maki roll — three concentric rings */}
-      <circle cx="25" cy="38" r="18" fill="#1a3b2a" {...L} />
-      <circle cx="25" cy="38" r="13" fill={cream} {...L} />
-      <circle cx="25" cy="38" r="6.5" fill="#d03050" {...L} />
-      {/* wasabi dot */}
-      <circle cx="20.5" cy="33.5" r="2.5" fill={lime} {...L} />
+      <defs>
+        <radialGradient id="salmonDetail" cx="40%" cy="40%">
+          <stop offset="0%" stopColor="#ff9478" />
+          <stop offset="100%" stopColor="#e64225" />
+        </radialGradient>
+        <linearGradient id="gyozaDetail" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#fff6e3" />
+          <stop offset="100%" stopColor="#f5cd7a" />
+        </linearGradient>
+      </defs>
 
-      {/* gyoza dumpling — right side */}
+      {/* Maki Sushi Roll (left) */}
+      <circle cx="23" cy="38" r="17.5" fill="#0e261a" {...L} strokeWidth={2} />
+      <circle cx="23" cy="38" r="13" fill={cream} {...L} />
+      <circle cx="23" cy="38" r="13" fill="none" stroke="#e3ddcf" strokeWidth={1.5} />
+
+      {/* Rice texture grains */}
+      <circle cx="14.5" cy="35" r="0.9" fill="#ccc4b0" />
+      <circle cx="16" cy="44" r="0.9" fill="#ccc4b0" />
+      <circle cx="30" cy="43" r="0.9" fill="#ccc4b0" />
+      <circle cx="29" cy="32" r="0.9" fill="#ccc4b0" />
+
+      {/* Salmon core */}
+      <path d="M23 38m-6 0a6 6 0 1 0 12 0a6 6 0 1 0 -12 0" fill="url(#salmonDetail)" {...L} strokeWidth={1.6} />
+      <path d="M19.5 36.5c2 1 5 1 7 0M19 39.5c2 1 5 1 7 0" stroke="#ffc7ba" strokeWidth={1.3} strokeLinecap="round" />
+
+      {/* Avocado & Egg inserts */}
+      <path d="M18 34c1.5-2 4-2.5 5-1Z" fill="#7cc22d" stroke={ink} strokeWidth={1} />
+      <path d="M23 42c2 1.5 4.5 1 5-.5Z" fill="#ffd33b" stroke={ink} strokeWidth={1} />
+
+      {/* Wasabi dollop */}
+      <circle cx="17.5" cy="23.5" r="3.2" fill="#8bc34a" {...L} strokeWidth={1.5} />
+
+      {/* Golden Gyoza Dumpling (right) */}
       <path
-        d="M42 26c7 0 14 3.5 14 9.5S49 45 42 45c-7 0-13-4-13-9.5S35 26 42 26Z"
-        fill="#f8e8c0"
+        d="M42 24c7.5 0 15 3.5 15 10s-7.5 11-15 11c-7.5 0-14-4.5-14-11S34.5 24 42 24Z"
+        fill="url(#gyozaDetail)"
         {...L}
+        strokeWidth={1.8}
       />
-      {/* pleats */}
-      <path d="M36 31l3 8M42 30l1 9M47 31l-2 8" stroke={ink} strokeWidth={1.7} strokeLinecap="round" />
-      {/* golden fry line */}
+      {/* Pleat lines */}
+      <path d="M35 30l3.5 7M42 29l1 8.5M48.5 30l-2.5 7.5M53 32l-4 6" stroke={ink} strokeWidth={1.8} strokeLinecap="round" />
+      {/* Golden Fried edge */}
       <path
-        d="M32.5 42c2.5 2.5 6 3.5 9.5 3.5"
-        stroke="#c8880a"
-        strokeWidth={2.5}
+        d="M31.5 42.5c3 3 7.5 4 12 3.5c3.5-.5 7-2 9.5-4"
+        stroke="#c97b0a"
+        strokeWidth={2.8}
         strokeLinecap="round"
         fill="none"
       />
@@ -206,44 +281,66 @@ export function BakeryIllustration(props: Props) {
 export function SeafoodIllustration(props: Props) {
   return (
     <svg {...frame} {...props}>
-      {/* fish body */}
+      <defs>
+        <radialGradient id="fishBodyDetail" cx="40%" cy="30%">
+          <stop offset="0%" stopColor="#ffa08c" />
+          <stop offset="60%" stopColor="#e85b40" />
+          <stop offset="100%" stopColor="#b83820" />
+        </radialGradient>
+        <linearGradient id="finDetail" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#ffbba8" />
+          <stop offset="100%" stopColor="#cc442b" />
+        </linearGradient>
+      </defs>
+
+      {/* Fish Tail Fin */}
       <path
-        d="M10 34c6-12 20-17 30-12 5 2.5 8.5 7 9.5 12-1 5-4.5 9.5-9.5 12-10 5-24 2-30-12Z"
-        fill="#f5917a"
+        d="M12 34c-4-5-7.5-6.5-10.5-6c1.2 4.5 1.8 7.5 0 12c3-.5 6.5-2 10.5-6Z"
+        fill="url(#finDetail)"
         {...L}
       />
+      <path d="M3 30.5c2.5 1 5 2.5 7.5 3.5M3 37.5c2.5-1 5-2.5 7.5-3.5" stroke={ink} strokeWidth={1.3} />
+
+      {/* Dorsal Fin */}
       <path
-        d="M10 34c6-12 20-17 30-12"
-        fill="none"
-        stroke="#f8b0a0"
+        d="M26 21c4.5-5 10-6 13.5-3.5c-1 3.5-3.5 6.5-7.5 8"
+        fill="url(#finDetail)"
+        {...L}
+        strokeWidth={1.7}
+      />
+
+      {/* Sleek Fish Body */}
+      <path
+        d="M12 34c6.5-13 21.5-17.5 32-12c5.5 2.8 9 7.5 10 12c-1 4.5-4.5 9.5-10 12.5-10.5 5.5-25.5 1-32-12.5Z"
+        fill="url(#fishBodyDetail)"
+        {...L}
+        strokeWidth={2}
+      />
+
+      {/* Belly highlight curve */}
+      <path
+        d="M14 36c6 8 18.5 11.5 27 7.5"
+        stroke="#ffccc2"
         strokeWidth={2}
         strokeLinecap="round"
-      />
-      {/* tail */}
-      <path
-        d="M10 34c-3.5-4-6.5-5.5-9-5 1 3.5 1.5 6.5 0 10 2.5-.5 5.5-2 9-5Z"
-        fill="#e87060"
-        {...L}
-      />
-      {/* dorsal fin */}
-      <path
-        d="M28 22c4 3.5 6 8 6 12"
         fill="none"
-        stroke="#e87060"
-        strokeWidth={2.5}
-        strokeLinecap="round"
       />
-      {/* eye */}
-      <circle cx="44" cy="30" r="2.5" fill={cream} {...L} />
-      <circle cx="44" cy="30" r="1.2" fill={ink} />
-      {/* scales suggestion */}
-      <path d="M25 30c2 2 4 2.5 6 1.5M30 36c2 2 4 2.5 6 1.5" stroke={cream} strokeWidth={1.5} strokeLinecap="round" fill="none" opacity="0.75" />
 
-      {/* cold-wave */}
+      {/* Gill Curve */}
+      <path d="M40 26.5c-2.5 3.5-2.5 9.5 0 13" stroke={ink} strokeWidth={1.8} strokeLinecap="round" fill="none" />
+
+      {/* Eye */}
+      <circle cx="46" cy="30" r="2.8" fill={cream} stroke={ink} strokeWidth={1.6} />
+      <circle cx="46.8" cy="29.5" r="1.3" fill={ink} />
+
+      {/* Scale patterns */}
+      <path d="M24 30c2.5 2 5 2 7.5 0M29 35c2.5 2 5 2 7.5 0M20 35c2.5 2 5 2 7.5 0" stroke={cream} strokeWidth={1.6} strokeLinecap="round" fill="none" opacity="0.85" />
+
+      {/* Sub-zero Frozen Ocean Wave Line */}
       <path
-        d="M6 55c5-3 8-3 12 0s7 3 12 0 7-3 12 0 7-3 12-3"
-        stroke={lime}
-        strokeWidth={2.5}
+        d="M5 55c5.5-3 9-3 13.5 0s9 3 13.5 0s9-3 13.5 0s8-3 13.5 0"
+        stroke="#7ee8fa"
+        strokeWidth={2.6}
         strokeLinecap="round"
         fill="none"
       />
@@ -251,33 +348,58 @@ export function SeafoodIllustration(props: Props) {
   );
 }
 
-/* ── All Products (crate) ────────────────────────────────────────────────── */
+/* ── All Products (Woven Produce Basket) ─────────────────────────────────── */
 export function AllRangesIllustration(props: Props) {
   return (
     <svg {...frame} {...props}>
-      {/* crate body */}
-      <path
-        d="M9 34h46l-3.5 20a4 4 0 0 1-4 3.5H16.5a4 4 0 0 1-4-3.5L9 34Z"
-        fill={cream}
-        {...L}
-      />
-      {/* slat lines */}
-      <line x1="23" y1="36" x2="21" y2="54.5" {...L} strokeWidth={1.8} />
-      <line x1="32" y1="36" x2="32" y2="55" {...L} strokeWidth={1.8} />
-      <line x1="41" y1="36" x2="43" y2="54.5" {...L} strokeWidth={1.8} />
-      {/* lime rim */}
-      <rect x="7" y="28" width="50" height="7.5" rx="3.75" fill={lime} {...L} />
+      <defs>
+        <linearGradient id="basketWoodDetail" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#fffdf7" />
+          <stop offset="100%" stopColor="#f0e2ca" />
+        </linearGradient>
+        <radialGradient id="allStrawDetail" cx="35%" cy="30%">
+          <stop offset="0%" stopColor="#ff5e72" />
+          <stop offset="100%" stopColor="#d91834" />
+        </radialGradient>
+        <radialGradient id="allLemonDetail" cx="35%" cy="35%">
+          <stop offset="0%" stopColor="#fff275" />
+          <stop offset="100%" stopColor="#eab308" />
+        </radialGradient>
+      </defs>
 
-      {/* produce peeking over rim */}
-      {/* strawberry */}
-      <circle cx="20" cy="25" r="7" fill="#d94a5a" {...L} />
-      <path d="M20 18c-1.5-4.5 1-8 5-9-.5 4-2 7-5 9Z" fill="#7fc050" {...L} strokeWidth={1.8} />
-      {/* blueberry */}
-      <circle cx="32" cy="22" r="6" fill="#5b7ec8" {...L} />
-      <circle cx="29" cy="19.5" r="2.2" fill="#4a6db5" {...L} strokeWidth={1.2} />
-      {/* lemon */}
-      <ellipse cx="44" cy="23" rx="7" ry="5.5" fill="#f8d050" {...L} />
-      <path d="M37 23c1.5-2 4-3.5 7-3.5" stroke="#f0b020" strokeWidth={1.6} strokeLinecap="round" fill="none" />
+      {/* Strawberry (left) */}
+      <circle cx="20" cy="24" r="7.5" fill="url(#allStrawDetail)" {...L} />
+      <path d="M20 16.5c-1.5-4 1.5-7.5 5.5-8.5-.5 3.5-2.5 6.5-5.5 8.5Z" fill="#6cbd39" {...L} strokeWidth={1.5} />
+      <circle cx="18" cy="23" r="0.7" fill="#ffe49e" />
+      <circle cx="22" cy="24" r="0.7" fill="#ffe49e" />
+
+      {/* Blueberry (center) */}
+      <circle cx="32" cy="21" r="6.5" fill="#527de0" {...L} />
+      <circle cx="29" cy="18.5" r="1.6" fill="#253b7d" stroke={ink} strokeWidth={1.1} />
+      <path d="M30 19.5c1-1 2.5-1.2 3.5-.5" stroke="#d6e4ff" strokeWidth={1.3} strokeLinecap="round" fill="none" />
+
+      {/* Lemon (right) */}
+      <ellipse cx="44" cy="23" rx="7.5" ry="6" fill="url(#allLemonDetail)" transform="rotate(-10 44 23)" {...L} />
+      <path d="M38 22.5c1.8-2 4.5-3 7.5-2.5" stroke="#fffcc2" strokeWidth={1.5} strokeLinecap="round" fill="none" />
+
+      {/* Leaf (back right) */}
+      <path d="M49 14c3 3 4 8 1 12c-3-3-4-8-1-12Z" fill={lime} {...L} strokeWidth={1.5} />
+
+      {/* Wooden Produce Basket body */}
+      <path
+        d="M10 33h44l-3.5 20a4.5 4.5 0 0 1 -4.5 4H18a4.5 4.5 0 0 1 -4.5 -4L10 33Z"
+        fill="url(#basketWoodDetail)"
+        {...L}
+        strokeWidth={2}
+      />
+
+      {/* Basket weave vertical lines */}
+      <line x1="23" y1="35" x2="21" y2="55" {...L} strokeWidth={1.8} />
+      <line x1="32" y1="35" x2="32" y2="56" {...L} strokeWidth={1.8} />
+      <line x1="41" y1="35" x2="43" y2="55" {...L} strokeWidth={1.8} />
+
+      {/* Soft Rim */}
+      <rect x="7" y="27" width="50" height="8" rx="4" fill={lime} {...L} strokeWidth={2} />
     </svg>
   );
 }

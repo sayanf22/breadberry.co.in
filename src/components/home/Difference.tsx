@@ -8,11 +8,11 @@ import { ArrowRightIcon } from "@/components/icons";
 import { commitments, proofPoints, type Commitment } from "@/lib/features";
 import { site } from "@/lib/site";
 
-/* Mixed widths so the row reads as a wall of notes, not a grid. */
+/* Mixed widths so the row reads as a wall of notes, fully animated sideways on all screens. */
 const cardWidth = {
-  sm: "w-full lg:w-[17rem]",
-  md: "w-full lg:w-[19.5rem]",
-  lg: "w-full lg:w-[22rem]",
+  sm: "w-[15rem] sm:w-[17rem]",
+  md: "w-[17rem] sm:w-[19.5rem]",
+  lg: "w-[18.5rem] sm:w-[22rem]",
 } as const;
 
 /* Stagger only once the desktop marquee is active. Smaller viewports use a
@@ -131,7 +131,7 @@ export function Difference() {
 
         {/* Proof bento — wide and narrow cards alternate down the grid */}
         <Container>
-          <div className="mt-[clamp(1.5rem,3vw,2.25rem)] grid gap-4 sm:grid-cols-2 lg:grid-cols-12">
+          <div className="mt-[clamp(3.5rem,6vw,5.5rem)] grid gap-5 sm:gap-6 lg:gap-7 sm:grid-cols-2 lg:grid-cols-12">
             {proofPoints.map((item, index) => {
               const wide = item.size === "lg";
               return (
@@ -145,7 +145,7 @@ export function Difference() {
                 >
                   <Link
                     href={item.href}
-                    className="group relative flex h-full flex-col justify-between gap-8 overflow-hidden rounded-card border border-navy/10 bg-lime-soft p-[clamp(1.375rem,2.6vw,2.125rem)] transition-[transform,box-shadow,border-color] duration-500 ease-[var(--ease-out-soft)] hover:-translate-y-1 hover:border-navy/25 hover:shadow-lift"
+                    className="group relative flex h-full flex-col justify-between gap-8 overflow-hidden rounded-card border border-navy/10 bg-lime-soft p-[clamp(1.75rem,3.5vw,2.75rem)] transition-[transform,box-shadow,border-color] duration-500 ease-[var(--ease-out-soft)] hover:-translate-y-1 hover:border-navy/25 hover:shadow-lift"
                   >
                     <span aria-hidden className="sheen" />
 

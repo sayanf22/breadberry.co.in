@@ -27,82 +27,80 @@ export function SiteHeader() {
   }, []);
 
   return (
-    <header
-      className={cn(
-        // z-100 keeps the header (and its menu trigger) above the mobile
-        // sheet, which is portalled to <body> at z-90.
-        "sticky top-0 z-100 transition-[background-color,box-shadow,backdrop-filter] duration-500 ease-[var(--ease-out-soft)]",
-        scrolled
-          ? "bg-white/85 shadow-[0_1px_0_rgb(11_44_79/0.06),0_14px_30px_-26px_rgb(11_44_79/0.4)] backdrop-blur-xl"
-          : "bg-white"
-      )}
-    >
-      <Container>
-        <div className="flex h-[4.25rem] items-center justify-between gap-4 sm:h-[4.75rem] lg:h-[5.5rem]">
-          <Logo />
+    <header className="sticky top-0 z-100 w-full">
+      {/* Full-width white bar attached 100% to left and right edges, with rounded bottom-left and bottom-right corners */}
+      <div
+        className={cn(
+          "w-full rounded-b-[2rem] border-b border-navy/10 transition-[background-color,box-shadow,border-color,backdrop-filter] duration-500 ease-[var(--ease-out-soft)] sm:rounded-b-[2.5rem] lg:rounded-b-[3rem]",
+          scrolled
+            ? "bg-white/92 shadow-[0_8px_30px_-6px_rgb(11_44_79/0.12)] backdrop-blur-xl"
+            : "bg-white shadow-[0_4px_20px_-4px_rgb(11_44_79/0.06)]"
+        )}
+      >
+        <Container>
+          <div className="flex h-[4.5rem] items-center justify-between gap-4 sm:h-[5rem] lg:h-[5.5rem]">
+            <Logo />
 
-          {/* Desktop navigation */}
-          <nav aria-label="Primary" className="hidden lg:block">
-            <ul className="flex items-center gap-0.5">
-              {navLinks.map((link) => {
-                const active = isActive(pathname, link.href);
-                return (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      aria-current={active ? "page" : undefined}
-                      className={cn(
-                        "group relative inline-flex flex-col items-center px-3.5 py-2 text-[0.875rem] transition-colors duration-300",
-                        active
-                          ? "font-medium text-navy"
-                          : "text-muted hover:text-navy"
-                      )}
-                    >
-                      {link.label}
-                      {/* Exact lime rule: held open on the active item, wiping
-                          out from the centre on hover. */}
-                      <span
-                        aria-hidden
+            {/* Desktop navigation */}
+            <nav aria-label="Primary" className="hidden lg:block">
+              <ul className="flex items-center gap-0.5">
+                {navLinks.map((link) => {
+                  const active = isActive(pathname, link.href);
+                  return (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        aria-current={active ? "page" : undefined}
                         className={cn(
-                          "mt-1.5 block h-[2px] w-full origin-center rounded-full bg-lime-soft transition-transform duration-500 ease-[var(--ease-out-soft)]",
+                          "group relative inline-flex flex-col items-center px-3.5 py-2 text-[0.875rem] transition-colors duration-300",
                           active
-                            ? "scale-x-100"
-                            : "scale-x-0 group-hover:scale-x-100"
+                            ? "font-medium text-navy"
+                            : "text-muted hover:text-navy"
                         )}
-                      />
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
+                      >
+                        {link.label}
+                        {/* Lime underline indicator */}
+                        <span
+                          aria-hidden
+                          className={cn(
+                            "mt-1.5 block h-[2px] w-full origin-center rounded-full bg-lime-soft transition-transform duration-500 ease-[var(--ease-out-soft)]",
+                            active
+                              ? "scale-x-100"
+                              : "scale-x-0 group-hover:scale-x-100"
+                          )}
+                        />
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </nav>
 
-          <div className="flex items-center gap-2 sm:gap-2.5">
-            {/*
-              Shown only once the viewport can hold it without crowding.
-              The `hidden` must live on a wrapper, not on the button: Button's
-              base classes include `inline-flex`, which Tailwind emits after
-              `.hidden`, so the two collide and `hidden` loses.
-            */}
-            <div className="hidden lg:block">
-              <ButtonLink href="/request-a-quote" variant="accent" size="md">
-                Request a Quote
-              </ButtonLink>
+            <div className="flex items-center gap-2 sm:gap-2.5">
+              <div className="hidden lg:block">
+                <ButtonLink
+                  href="/request-a-quote"
+                  variant="accent"
+                  size="md"
+                  className="shadow-[0_4px_16px_rgba(11,44,79,0.12),0_2px_6px_rgba(195,255,171,0.5)] hover:-translate-y-0.5 hover:shadow-[0_6px_22px_rgba(11,44,79,0.18),0_4px_10px_rgba(195,255,171,0.7)]"
+                >
+                  Request a Quote
+                </ButtonLink>
+              </div>
+
+              <a
+                href={site.phoneHref}
+                aria-label={`Call ${site.name} on ${site.phone}`}
+                className="grid size-11 shrink-0 place-items-center rounded-full border border-line/80 bg-white text-navy shadow-[0_3px_12px_rgba(11,44,79,0.08)] transition-[color,background-color,border-color,box-shadow,transform] duration-300 ease-[var(--ease-out-soft)] hover:-translate-y-0.5 hover:border-lime-soft hover:bg-lime-mist hover:text-navy hover:shadow-[0_6px_18px_rgba(11,44,79,0.14)] lg:size-12"
+              >
+                <PhoneIcon className="size-[1.05rem] lg:size-[1.15rem]" />
+              </a>
+
+              <MobileNav pathname={pathname} />
             </div>
-
-            <a
-              href={site.phoneHref}
-              aria-label={`Call ${site.name} on ${site.phone}`}
-              /* size-11 = 44px, the minimum comfortable touch target. */
-              className="grid size-11 shrink-0 place-items-center rounded-full border border-line text-navy transition-[color,background-color,border-color,box-shadow,transform] duration-300 ease-[var(--ease-out-soft)] hover:-translate-y-px hover:border-lime-soft hover:bg-lime-mist hover:text-navy hover:shadow-soft lg:size-12"
-            >
-              <PhoneIcon className="size-[1.05rem] lg:size-[1.15rem]" />
-            </a>
-
-            <MobileNav pathname={pathname} />
           </div>
-        </div>
-      </Container>
+        </Container>
+      </div>
     </header>
   );
 }

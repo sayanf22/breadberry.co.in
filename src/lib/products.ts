@@ -33,13 +33,57 @@ export type Product = {
   handling: string[];
 };
 
-export const categories: { id: "all" | ProductCategory; label: string }[] = [
-  { id: "all", label: "All Products" },
-  { id: "iqf", label: "IQF Berries" },
-  { id: "puree", label: "Fruit Purees" },
-  { id: "fresh", label: "Fresh Produce" },
-  { id: "japanese", label: "Bakery & Japanese" },
-  { id: "seafood", label: "Frozen Seafood" },
+export type CategoryInfo = {
+  id: "all" | ProductCategory;
+  label: string;
+  subtitle: string;
+  itemsPreview: string;
+  chainTag: string;
+};
+
+export const categories: CategoryInfo[] = [
+  {
+    id: "all",
+    label: "All Products",
+    subtitle: "Wholesale Catalogue",
+    itemsPreview: "77 Foodservice Lines • Berries, Purees, Produce, Catering & Seafood",
+    chainTag: "Cold-Chain Certified",
+  },
+  {
+    id: "iqf",
+    label: "IQF Berries",
+    subtitle: "Individually Quick Frozen",
+    itemsPreview: "Strawberries, Blueberries, Raspberries, Blackberries, Cranberries & Mix",
+    chainTag: "−18 °C Frozen",
+  },
+  {
+    id: "puree",
+    label: "Fruit Purees",
+    subtitle: "Patisserie & Beverage Bases",
+    itemsPreview: "Strawberry, Raspberry, Blueberry, Passionfruit & Acai Purees",
+    chainTag: "−18 °C Frozen",
+  },
+  {
+    id: "fresh",
+    label: "Fresh Produce",
+    subtitle: "Chilled Farm Supply",
+    itemsPreview: "Avocados, Asparagus, Fresh Berries & Specialty Culinary Greens",
+    chainTag: "2 – 6 °C Chilled",
+  },
+  {
+    id: "japanese",
+    label: "Bakery & Japanese",
+    subtitle: "Commercial Catering Lines",
+    itemsPreview: "Edamame, Gyoza, Spring Rolls, Panko, Nori & Bakery Essentials",
+    chainTag: "−18 °C Frozen",
+  },
+  {
+    id: "seafood",
+    label: "Frozen Seafood",
+    subtitle: "Grade-A Marine Stock",
+    itemsPreview: "Salmon, White Shrimp, Squid, Crabcakes & Ocean Fish Fillets",
+    chainTag: "−18 °C Frozen",
+  },
 ];
 
 const CATEGORY_LABEL: Record<ProductCategory, string> = {

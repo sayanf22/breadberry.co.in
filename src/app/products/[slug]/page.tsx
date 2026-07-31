@@ -152,7 +152,7 @@ export default async function ProductPage({ params }: Params) {
 
                 <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
                   <ButtonLink
-                    href="/request-a-quote"
+                    href={`/request-a-quote?products=${encodeURIComponent(product.name)}#quote-form`}
                     variant="accent"
                     size="lg"
                     withArrow

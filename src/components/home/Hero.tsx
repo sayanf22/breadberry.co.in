@@ -116,7 +116,9 @@ export function Hero() {
                 >
                   Request a Quote
                 </ButtonLink>
-                <VideoDialog />
+                <ButtonLink href="/about" variant="outline" size="lg">
+                  About Us
+                </ButtonLink>
               </div>
             </HeroItem>
           </div>

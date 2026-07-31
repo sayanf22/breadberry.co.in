@@ -23,7 +23,7 @@ export type FormState = {
   whatsapp?: string;
 };
 
-export const initialFormState: FormState = { status: "idle" };
+const initialFormState: FormState = { status: "idle" };
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
 
