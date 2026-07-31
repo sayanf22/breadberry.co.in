@@ -5,43 +5,43 @@ export type ClientLogoProps = SVGProps<SVGSVGElement> & {
 };
 
 /* Taj Hotels Logo */
-export function TajLogo({ className = "h-7 w-auto", ...props }: ClientLogoProps) {
+export function TajLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg
-      viewBox="0 0 140 40"
+      viewBox="0 0 220 50"
       fill="currentColor"
       aria-label="Taj Hotels"
       className={className}
       {...props}
     >
       {/* Crown emblem */}
-      <path d="M 20,8 L 24,18 L 30,10 L 36,18 L 40,8 L 36,24 L 24,24 Z" />
-      <path d="M 22,27 H 38 V 29 H 22 Z" />
+      <path d="M 22,10 L 27,22 L 35,12 L 43,22 L 48,10 L 43,30 L 27,30 Z" />
+      <path d="M 24,34 H 46 V 37 H 24 Z" />
       {/* Text TAJ HOTELS */}
-      <text x="48" y="24" fontFamily="Georgia, serif" fontSize="18" fontWeight="bold" letterSpacing="3">
+      <text x="60" y="28" fontFamily="Georgia, serif" fontSize="22" fontWeight="bold" letterSpacing="3">
         TAJ
       </text>
-      <text x="48" y="33" fontFamily="system-ui, sans-serif" fontSize="7" fontWeight="600" letterSpacing="2.5">
+      <text x="60" y="41" fontFamily="system-ui, sans-serif" fontSize="8.5" fontWeight="600" letterSpacing="2.5">
         HOTELS PALACES RESORTS
       </text>
     </svg>
   );
 }
 
-/* Theobroma Logo */
-export function TheobromaLogo({ className = "h-7 w-auto", ...props }: ClientLogoProps) {
+/* Theobroma Logo — Fixed viewBox to prevent text clipping */
+export function TheobromaLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg
-      viewBox="0 0 160 40"
+      viewBox="0 0 270 50"
       fill="currentColor"
       aria-label="Theobroma"
       className={className}
       {...props}
     >
-      <text x="5" y="27" fontFamily="Georgia, serif" fontSize="22" fontStyle="italic" fontWeight="600" letterSpacing="0.5">
+      <text x="10" y="32" fontFamily="Georgia, serif" fontSize="26" fontStyle="italic" fontWeight="600" letterSpacing="0.5">
         theobroma
       </text>
-      <text x="118" y="14" fontFamily="system-ui, sans-serif" fontSize="7" fontWeight="bold">
+      <text x="160" y="18" fontFamily="system-ui, sans-serif" fontSize="8" fontWeight="bold" letterSpacing="1">
         PATISSERIE
       </text>
     </svg>
@@ -49,21 +49,21 @@ export function TheobromaLogo({ className = "h-7 w-auto", ...props }: ClientLogo
 }
 
 /* JW Marriott Logo */
-export function JwMarriottLogo({ className = "h-7 w-auto", ...props }: ClientLogoProps) {
+export function JwMarriottLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg
-      viewBox="0 0 180 40"
+      viewBox="0 0 260 50"
       fill="currentColor"
       aria-label="JW Marriott"
       className={className}
       {...props}
     >
       {/* Griffin emblem */}
-      <path d="M 12,24 C 8,16 12,8 20,8 C 24,12 20,20 16,24 Z M 16,24 C 20,24 24,28 20,34 H 12 C 10,28 14,24 16,24 Z" />
-      <text x="32" y="22" fontFamily="Georgia, serif" fontSize="16" fontWeight="bold" letterSpacing="2">
+      <path d="M 16,30 C 10,20 16,10 26,10 C 31,15 26,25 21,30 Z M 21,30 C 26,30 31,35 26,42 H 16 C 13,35 18,30 21,30 Z" />
+      <text x="40" y="27" fontFamily="Georgia, serif" fontSize="20" fontWeight="bold" letterSpacing="2">
         JW MARRIOTT
       </text>
-      <text x="32" y="32" fontFamily="system-ui, sans-serif" fontSize="7" fontWeight="500" letterSpacing="3">
+      <text x="40" y="40" fontFamily="system-ui, sans-serif" fontSize="8.5" fontWeight="500" letterSpacing="3">
         HOTELS & RESORTS
       </text>
     </svg>
@@ -71,21 +71,21 @@ export function JwMarriottLogo({ className = "h-7 w-auto", ...props }: ClientLog
 }
 
 /* Blue Tokai Logo */
-export function BlueTokaiLogo({ className = "h-7 w-auto", ...props }: ClientLogoProps) {
+export function BlueTokaiLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg
-      viewBox="0 0 170 40"
+      viewBox="0 0 250 50"
       fill="currentColor"
       aria-label="Blue Tokai"
       className={className}
       {...props}
     >
       {/* Coffee bean / bird emblem */}
-      <path d="M 15,10 C 25,10 28,20 20,30 C 12,30 10,18 15,10 Z M 17,14 C 18,20 22,24 22,24" stroke="currentColor" strokeWidth="1.5" fill="none" />
-      <text x="34" y="22" fontFamily="system-ui, sans-serif" fontSize="15" fontWeight="800" letterSpacing="1.5">
+      <path d="M 18,12 C 30,12 34,25 24,38 C 14,38 12,22 18,12 Z M 20,18 C 22,25 27,30 27,30" stroke="currentColor" strokeWidth="2" fill="none" />
+      <text x="42" y="27" fontFamily="system-ui, sans-serif" fontSize="19" fontWeight="800" letterSpacing="1.5">
         BLUE TOKAI
       </text>
-      <text x="34" y="32" fontFamily="system-ui, sans-serif" fontSize="7" fontWeight="600" letterSpacing="2">
+      <text x="42" y="40" fontFamily="system-ui, sans-serif" fontSize="8.5" fontWeight="600" letterSpacing="2">
         COFFEE ROASTERS
       </text>
     </svg>
@@ -93,22 +93,22 @@ export function BlueTokaiLogo({ className = "h-7 w-auto", ...props }: ClientLogo
 }
 
 /* Oberoi Logo */
-export function OberoiLogo({ className = "h-7 w-auto", ...props }: ClientLogoProps) {
+export function OberoiLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg
-      viewBox="0 0 140 40"
+      viewBox="0 0 230 50"
       fill="currentColor"
       aria-label="Oberoi"
       className={className}
       {...props}
     >
       {/* Sun/crest symbol */}
-      <circle cx="20" cy="20" r="9" fill="none" stroke="currentColor" strokeWidth="2" />
-      <circle cx="20" cy="20" r="4" />
-      <text x="36" y="24" fontFamily="Georgia, serif" fontSize="18" fontWeight="bold" letterSpacing="2.5">
+      <circle cx="24" cy="25" r="11" fill="none" stroke="currentColor" strokeWidth="2.5" />
+      <circle cx="24" cy="25" r="5" />
+      <text x="44" y="30" fontFamily="Georgia, serif" fontSize="22" fontWeight="bold" letterSpacing="2.5">
         Oberoi
       </text>
-      <text x="36" y="32" fontFamily="system-ui, sans-serif" fontSize="6.5" fontWeight="600" letterSpacing="2">
+      <text x="44" y="41" fontFamily="system-ui, sans-serif" fontSize="8" fontWeight="600" letterSpacing="2">
         HOTELS & RESORTS
       </text>
     </svg>
@@ -116,20 +116,20 @@ export function OberoiLogo({ className = "h-7 w-auto", ...props }: ClientLogoPro
 }
 
 /* PAUL French Bakery Logo */
-export function PaulLogo({ className = "h-7 w-auto", ...props }: ClientLogoProps) {
+export function PaulLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg
-      viewBox="0 0 120 40"
+      viewBox="0 0 240 50"
       fill="currentColor"
       aria-label="PAUL"
       className={className}
       {...props}
     >
-      <rect x="5" y="8" width="110" height="24" fill="none" stroke="currentColor" strokeWidth="1.5" rx="2" />
-      <text x="60" y="26" textAnchor="middle" fontFamily="Georgia, serif" fontSize="16" fontWeight="bold" letterSpacing="4">
+      <rect x="8" y="10" width="224" height="30" fill="none" stroke="currentColor" strokeWidth="2" rx="3" />
+      <text x="120" y="32" textAnchor="middle" fontFamily="Georgia, serif" fontSize="20" fontWeight="bold" letterSpacing="5">
         PAUL
       </text>
-      <text x="60" y="36" textAnchor="middle" fontFamily="Georgia, serif" fontSize="6" fontStyle="italic" letterSpacing="1">
+      <text x="120" y="45" textAnchor="middle" fontFamily="Georgia, serif" fontSize="7.5" fontStyle="italic" letterSpacing="1">
         Maison de Qualité depuis 1889
       </text>
     </svg>
@@ -137,19 +137,19 @@ export function PaulLogo({ className = "h-7 w-auto", ...props }: ClientLogoProps
 }
 
 /* Hyatt Logo */
-export function HyattLogo({ className = "h-7 w-auto", ...props }: ClientLogoProps) {
+export function HyattLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg
-      viewBox="0 0 130 40"
+      viewBox="0 0 210 50"
       fill="currentColor"
       aria-label="Hyatt"
       className={className}
       {...props}
     >
-      <text x="5" y="26" fontFamily="Georgia, serif" fontSize="22" fontWeight="bold" letterSpacing="3">
+      <text x="10" y="32" fontFamily="Georgia, serif" fontSize="26" fontWeight="bold" letterSpacing="3">
         HYATT
       </text>
-      <text x="5" y="35" fontFamily="system-ui, sans-serif" fontSize="7" fontWeight="600" letterSpacing="3">
+      <text x="10" y="44" fontFamily="system-ui, sans-serif" fontSize="8.5" fontWeight="600" letterSpacing="3">
         HOTELS & RESORTS
       </text>
     </svg>
@@ -157,18 +157,18 @@ export function HyattLogo({ className = "h-7 w-auto", ...props }: ClientLogoProp
 }
 
 /* PizzaExpress Logo */
-export function PizzaExpressLogo({ className = "h-7 w-auto", ...props }: ClientLogoProps) {
+export function PizzaExpressLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg
-      viewBox="0 0 160 40"
+      viewBox="0 0 220 50"
       fill="currentColor"
       aria-label="Pizza Express"
       className={className}
       {...props}
     >
-      <path d="M 15,10 A 10 10 0 1 0 15 30 A 10 10 0 1 0 15 10 Z" fill="none" stroke="currentColor" strokeWidth="2" />
-      <path d="M 15,14 L 15,26 M 9,20 L 21,20" stroke="currentColor" strokeWidth="1.5" />
-      <text x="32" y="23" fontFamily="Georgia, serif" fontSize="16" fontWeight="bold" letterSpacing="1">
+      <path d="M 20,12 A 12 12 0 1 0 20 36 A 12 12 0 1 0 20 12 Z" fill="none" stroke="currentColor" strokeWidth="2.5" />
+      <path d="M 20,17 L 20,31 M 13,24 L 27,24" stroke="currentColor" strokeWidth="2" />
+      <text x="40" y="30" fontFamily="Georgia, serif" fontSize="20" fontWeight="bold" letterSpacing="1">
         PizzaExpress
       </text>
     </svg>
@@ -176,21 +176,21 @@ export function PizzaExpressLogo({ className = "h-7 w-auto", ...props }: ClientL
 }
 
 /* Fortune Park Lakecity Logo */
-export function FortuneLogo({ className = "h-7 w-auto", ...props }: ClientLogoProps) {
+export function FortuneLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg
-      viewBox="0 0 180 40"
+      viewBox="0 0 260 50"
       fill="currentColor"
       aria-label="Fortune Park Lakecity"
       className={className}
       {...props}
     >
       {/* ITC Fortune Star */}
-      <polygon points="15,6 18,15 27,15 20,20 22,29 15,23 8,29 10,20 3,15 12,15" />
-      <text x="32" y="20" fontFamily="Georgia, serif" fontSize="15" fontWeight="bold" letterSpacing="1.5">
+      <polygon points="18,8 22,19 33,19 25,25 28,36 18,29 8,36 11,25 3,19 14,19" />
+      <text x="40" y="26" fontFamily="Georgia, serif" fontSize="19" fontWeight="bold" letterSpacing="1.5">
         FORTUNE
       </text>
-      <text x="32" y="30" fontFamily="system-ui, sans-serif" fontSize="7.5" fontWeight="600" letterSpacing="1">
+      <text x="40" y="39" fontFamily="system-ui, sans-serif" fontSize="9" fontWeight="600" letterSpacing="1">
         PARK LAKECITY · ITC HOTEL
       </text>
     </svg>
@@ -198,41 +198,41 @@ export function FortuneLogo({ className = "h-7 w-auto", ...props }: ClientLogoPr
 }
 
 /* Merwans Bakery Logo */
-export function MerwansLogo({ className = "h-7 w-auto", ...props }: ClientLogoProps) {
+export function MerwansLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg
-      viewBox="0 0 140 40"
+      viewBox="0 0 220 50"
       fill="currentColor"
       aria-label="Merwans"
       className={className}
       {...props}
     >
-      <text x="5" y="24" fontFamily="Georgia, serif" fontSize="20" fontWeight="bold" fontStyle="italic" letterSpacing="1">
+      <text x="10" y="30" fontFamily="Georgia, serif" fontSize="25" fontWeight="bold" fontStyle="italic" letterSpacing="1">
         Merwans
       </text>
-      <text x="5" y="33" fontFamily="system-ui, sans-serif" fontSize="7" fontWeight="700" letterSpacing="2">
+      <text x="10" y="42" fontFamily="system-ui, sans-serif" fontSize="8.5" fontWeight="700" letterSpacing="2">
         CAKE STOP · SINCE 1930
       </text>
     </svg>
   );
 }
 
-/* Bastian Logo */
-export function BastianLogo({ className = "h-7 w-auto", ...props }: ClientLogoProps) {
+/* Bastian Logo — Fixed viewBox to prevent text clipping */
+export function BastianLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg
-      viewBox="0 0 130 40"
+      viewBox="0 0 260 50"
       fill="currentColor"
       aria-label="Bastian"
       className={className}
       {...props}
     >
       {/* Crab / Seafood Emblem */}
-      <path d="M 12,15 Q 16,10 20,15 Q 24,20 16,24 Q 8,20 12,15 Z" />
-      <text x="28" y="24" fontFamily="Georgia, serif" fontSize="20" fontWeight="bold" letterSpacing="3">
+      <path d="M 16,18 Q 22,12 28,18 Q 34,24 22,30 Q 10,24 16,18 Z" />
+      <text x="38" y="30" fontFamily="Georgia, serif" fontSize="24" fontWeight="bold" letterSpacing="3">
         BASTIAN
       </text>
-      <text x="28" y="33" fontFamily="system-ui, sans-serif" fontSize="6.5" fontWeight="600" letterSpacing="2">
+      <text x="38" y="42" fontFamily="system-ui, sans-serif" fontSize="8.5" fontWeight="600" letterSpacing="2">
         MUMBAI · SEAFOOD & BAR
       </text>
     </svg>
@@ -240,21 +240,21 @@ export function BastianLogo({ className = "h-7 w-auto", ...props }: ClientLogoPr
 }
 
 /* Parsi Dairy Farm Logo */
-export function ParsiDairyLogo({ className = "h-7 w-auto", ...props }: ClientLogoProps) {
+export function ParsiDairyLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg
-      viewBox="0 0 160 40"
+      viewBox="0 0 240 50"
       fill="currentColor"
       aria-label="Parsi Dairy Farm"
       className={className}
       {...props}
     >
       {/* Milk Urn Emblem */}
-      <path d="M 12,10 H 20 V 13 L 22,25 H 10 L 12,13 Z" fill="none" stroke="currentColor" strokeWidth="1.5" />
-      <text x="28" y="20" fontFamily="Georgia, serif" fontSize="14" fontWeight="bold" letterSpacing="1">
+      <path d="M 15,12 H 25 V 16 L 28,32 H 12 L 15,16 Z" fill="none" stroke="currentColor" strokeWidth="2" />
+      <text x="34" y="26" fontFamily="Georgia, serif" fontSize="18" fontWeight="bold" letterSpacing="1">
         Parsi Dairy Farm
       </text>
-      <text x="28" y="30" fontFamily="system-ui, sans-serif" fontSize="7" fontWeight="600" letterSpacing="1.5">
+      <text x="34" y="39" fontFamily="system-ui, sans-serif" fontSize="8.5" fontWeight="600" letterSpacing="1.5">
         PURE DAIRY SINCE 1916
       </text>
     </svg>
@@ -262,22 +262,22 @@ export function ParsiDairyLogo({ className = "h-7 w-auto", ...props }: ClientLog
 }
 
 /* Olive Bar & Cafe Logo */
-export function OliveLogo({ className = "h-7 w-auto", ...props }: ClientLogoProps) {
+export function OliveLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg
-      viewBox="0 0 160 40"
+      viewBox="0 0 230 50"
       fill="currentColor"
       aria-label="Olive Bar & Cafe"
       className={className}
       {...props}
     >
       {/* Olive Leaf Branch */}
-      <circle cx="12" cy="18" r="4" fill="currentColor" />
-      <path d="M 12,22 Q 18,12 22,24" stroke="currentColor" strokeWidth="1.5" fill="none" />
-      <text x="28" y="22" fontFamily="Georgia, serif" fontSize="18" fontWeight="normal" letterSpacing="2">
+      <circle cx="16" cy="22" r="5" fill="currentColor" />
+      <path d="M 16,27 Q 24,14 30,30" stroke="currentColor" strokeWidth="2" fill="none" />
+      <text x="36" y="28" fontFamily="Georgia, serif" fontSize="22" fontWeight="normal" letterSpacing="2">
         olive
       </text>
-      <text x="28" y="32" fontFamily="system-ui, sans-serif" fontSize="7" fontWeight="600" letterSpacing="2">
+      <text x="36" y="40" fontFamily="system-ui, sans-serif" fontSize="8.5" fontWeight="600" letterSpacing="2">
         BAR & KITCHEN
       </text>
     </svg>
@@ -285,19 +285,19 @@ export function OliveLogo({ className = "h-7 w-auto", ...props }: ClientLogoProp
 }
 
 /* Milky Mist Logo */
-export function MilkyMistLogo({ className = "h-7 w-auto", ...props }: ClientLogoProps) {
+export function MilkyMistLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg
-      viewBox="0 0 140 40"
+      viewBox="0 0 210 50"
       fill="currentColor"
       aria-label="Milky Mist"
       className={className}
       {...props}
     >
-      <text x="5" y="22" fontFamily="Georgia, serif" fontSize="18" fontWeight="bold" letterSpacing="1">
+      <text x="10" y="28" fontFamily="Georgia, serif" fontSize="23" fontWeight="bold" letterSpacing="1">
         Milky Mist
       </text>
-      <text x="5" y="31" fontFamily="system-ui, sans-serif" fontSize="7" fontWeight="700" letterSpacing="2">
+      <text x="10" y="40" fontFamily="system-ui, sans-serif" fontSize="8.5" fontWeight="700" letterSpacing="2">
         PREMIUM DAIRY
       </text>
     </svg>
@@ -305,21 +305,21 @@ export function MilkyMistLogo({ className = "h-7 w-auto", ...props }: ClientLogo
 }
 
 /* Mainland China Logo */
-export function MainlandChinaLogo({ className = "h-7 w-auto", ...props }: ClientLogoProps) {
+export function MainlandChinaLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg
-      viewBox="0 0 170 40"
+      viewBox="0 0 250 50"
       fill="currentColor"
       aria-label="Mainland China"
       className={className}
       {...props}
     >
       {/* Pagoda Emblem */}
-      <path d="M 12,8 L 22,8 L 19,14 L 24,14 L 21,20 L 26,20 L 10,26 Z" />
-      <text x="30" y="21" fontFamily="Georgia, serif" fontSize="15" fontWeight="bold" letterSpacing="1.5">
+      <path d="M 15,10 L 27,10 L 23,17 L 29,17 L 25,25 L 31,25 L 11,33 Z" />
+      <text x="36" y="26" fontFamily="Georgia, serif" fontSize="18" fontWeight="bold" letterSpacing="1.5">
         MAINLAND CHINA
       </text>
-      <text x="30" y="31" fontFamily="system-ui, sans-serif" fontSize="7" fontWeight="600" letterSpacing="2">
+      <text x="36" y="39" fontFamily="system-ui, sans-serif" fontSize="8.5" fontWeight="600" letterSpacing="2">
         FINE CHINESE DINING
       </text>
     </svg>
@@ -327,16 +327,16 @@ export function MainlandChinaLogo({ className = "h-7 w-auto", ...props }: Client
 }
 
 /* Mapro Logo */
-export function MaproLogo({ className = "h-7 w-auto", ...props }: ClientLogoProps) {
+export function MaproLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg
-      viewBox="0 0 120 40"
+      viewBox="0 0 160 50"
       fill="currentColor"
       aria-label="Mapro"
       className={className}
       {...props}
     >
-      <text x="5" y="25" fontFamily="system-ui, sans-serif" fontSize="22" fontWeight="900" letterSpacing="1">
+      <text x="10" y="33" fontFamily="system-ui, sans-serif" fontSize="28" fontWeight="900" letterSpacing="1">
         mapro
       </text>
     </svg>
@@ -344,18 +344,18 @@ export function MaproLogo({ className = "h-7 w-auto", ...props }: ClientLogoProp
 }
 
 /* Mizu Japanese Dining Logo */
-export function MizuLogo({ className = "h-7 w-auto", ...props }: ClientLogoProps) {
+export function MizuLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg
-      viewBox="0 0 120 40"
+      viewBox="0 0 170 50"
       fill="currentColor"
       aria-label="Mizu"
       className={className}
       {...props}
     >
       {/* Water Wave Symbol */}
-      <path d="M 10,20 Q 15,14 20,20 Q 25,26 30,20" stroke="currentColor" strokeWidth="2.5" fill="none" />
-      <text x="36" y="24" fontFamily="Georgia, serif" fontSize="20" fontWeight="bold" letterSpacing="3">
+      <path d="M 12,25 Q 18,17 25,25 Q 32,33 38,25" stroke="currentColor" strokeWidth="3" fill="none" />
+      <text x="44" y="31" fontFamily="Georgia, serif" fontSize="24" fontWeight="bold" letterSpacing="3">
         MIZU
       </text>
     </svg>
@@ -363,16 +363,16 @@ export function MizuLogo({ className = "h-7 w-auto", ...props }: ClientLogoProps
 }
 
 /* EVE Logo */
-export function EveLogo({ className = "h-7 w-auto", ...props }: ClientLogoProps) {
+export function EveLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg
-      viewBox="0 0 100 40"
+      viewBox="0 0 140 50"
       fill="currentColor"
       aria-label="EVE"
       className={className}
       {...props}
     >
-      <text x="5" y="26" fontFamily="Georgia, serif" fontSize="24" fontWeight="300" letterSpacing="5">
+      <text x="10" y="34" fontFamily="Georgia, serif" fontSize="30" fontWeight="300" letterSpacing="6">
         E V E
       </text>
     </svg>

@@ -49,12 +49,12 @@ export function ClientStrip() {
               <li
                 key={`${name}-${index}`}
                 aria-hidden={index >= clients.length}
-                className="flex shrink-0 items-center px-[clamp(1.25rem,4vw,3.75rem)] text-navy/80 transition-opacity duration-300 hover:opacity-100"
+                className="flex shrink-0 items-center px-[clamp(1.5rem,4.5vw,4.5rem)] text-navy/85 transition-opacity duration-300 hover:opacity-100"
               >
                 {LogoComponent ? (
-                  <LogoComponent className="h-[1.75rem] sm:h-[2.25rem] lg:h-[2.625rem] w-auto max-w-[12rem] text-navy/85" />
+                  <LogoComponent className="h-[2.25rem] sm:h-[3.25rem] lg:h-[3.875rem] w-auto text-navy/90" />
                 ) : (
-                  <span className="whitespace-nowrap font-display text-[1.0625rem] leading-none text-navy/80 sm:text-[1.625rem] lg:text-[2.25rem]">
+                  <span className="whitespace-nowrap font-display text-[1.25rem] leading-none text-navy/85 sm:text-[2rem] lg:text-[2.625rem]">
                     {name}
                   </span>
                 )}
