@@ -4,14 +4,8 @@ import { clients, site } from "@/lib/site";
 /**
  * Full-bleed client band.
  *
- * Sits outside the page container so it reaches both viewport edges, with a
- * large radius on all four corners so it reads as a slab tucked between the
- * sections above and below.
- *
- * One marquee row: the list is doubled and the track translates exactly -50%,
- * so the loop has no seam. The cycle is slow on purpose — speed is what makes
- * a marquee feel cluttered, not length. Phones get a shorter cycle so the
- * shorter visible window still turns over at a similar rate.
+ * Spaced generously with responsive padding so it feels substantial on desktop
+ * while keeping the heading text scaled down on mobile phones for optimal readability.
  */
 export function ClientStrip() {
   const track = [...clients, ...clients];
@@ -19,28 +13,26 @@ export function ClientStrip() {
   return (
     <section
       aria-labelledby="clients-heading"
-      className="relative isolate overflow-hidden rounded-[clamp(1.25rem,4vw,2.75rem)] bg-lime-soft py-[clamp(2rem,6vw,4.5rem)]"
+      className="relative isolate overflow-hidden rounded-[clamp(1.5rem,4vw,3rem)] bg-lime-soft py-[clamp(3.5rem,8vw,6.5rem)]"
     >
-      {/*
-        No overlay. A white radial wash used to sit here for "depth", but at
-        55% opacity it lightened the whole upper half, so the band never
-        actually showed --color-leaf-200. The swatch renders flat and exact.
-      */}
-
-      <div className="mx-auto max-w-[82.5rem] px-[clamp(1.125rem,4vw,2.75rem)] text-center">
-        <p className="text-[clamp(0.5625rem,0.53rem+0.16vw,0.75rem)] font-semibold uppercase leading-relaxed tracking-[0.14em] text-navy/70">
-          {site.company} · since {site.founded}
+      <div className="mx-auto max-w-[82.5rem] px-[clamp(1.25rem,4vw,3rem)] text-center">
+        {/* Eyebrow */}
+        <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-navy/75 sm:text-[0.8125rem]">
+          {site.company} · SINCE {site.founded}
         </p>
+
+        {/* Heading — scaled smaller on mobile phone screens (< 640px) */}
         <h2
           id="clients-heading"
-          className="mx-auto mt-3 max-w-[30ch] font-display text-[clamp(1.25rem,1.02rem+1.5vw,2.5rem)] leading-[1.18] text-navy sm:mt-4"
+          className="mx-auto mt-2.5 max-w-[34ch] font-display text-[0.9375rem] font-normal leading-[1.3] text-navy sm:mt-4 sm:text-[1.5rem] sm:leading-[1.2] lg:text-[2.25rem]"
         >
-          <span className="font-medium">{site.clientsServed} kitchens</span>{" "}
+          <span className="font-medium text-navy">{site.clientsServed} kitchens</span>{" "}
           served across hotels, restaurants, bakeries &amp; cafés
         </h2>
       </div>
 
-      <div className="edge-fade mt-[clamp(1.5rem,4.5vw,3.5rem)] overflow-hidden">
+      {/* Marquee row with generous top spacing */}
+      <div className="edge-fade mt-[clamp(2rem,5vw,4rem)] overflow-hidden">
         <ul
           className="marquee-track items-center"
           style={
@@ -54,9 +46,9 @@ export function ClientStrip() {
             <li
               key={`${name}-${index}`}
               aria-hidden={index >= clients.length}
-              className="shrink-0 px-[clamp(0.875rem,3.5vw,3rem)]"
+              className="shrink-0 px-[clamp(1rem,4vw,3.5rem)]"
             >
-              <span className="whitespace-nowrap font-display text-[clamp(1.125rem,0.95rem+1.5vw,2.375rem)] leading-none text-navy/80">
+              <span className="whitespace-nowrap font-display text-[1.0625rem] leading-none text-navy/80 sm:text-[1.625rem] lg:text-[2.25rem]">
                 {name}
               </span>
             </li>
