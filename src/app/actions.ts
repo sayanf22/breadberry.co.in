@@ -1,11 +1,17 @@
 "use server";
 
+import { site } from "@/lib/site";
+
 /**
  * Form handling for the contact and quote forms.
  *
  * Validation runs on the server so the forms work with JavaScript disabled.
  * `deliver()` is the single integration point — swap the console call for a
  * transactional email provider or CRM webhook when credentials are available.
+ *
+ * On success the enquiry is also handed to WhatsApp: the action returns a
+ * prefilled `wa.me` link and the success panel continues the conversation
+ * there, so nothing is lost while email delivery is still a placeholder.
  */
 
 export type FormState = {
@@ -13,6 +19,8 @@ export type FormState = {
   message?: string;
   errors?: Record<string, string>;
   values?: Record<string, string>;
+  /** Prefilled WhatsApp thread for the submitted enquiry. */
+  whatsapp?: string;
 };
 
 export const initialFormState: FormState = { status: "idle" };
@@ -31,6 +39,36 @@ function collect(data: FormData, keys: string[]) {
 async function deliver(subject: string, payload: Record<string, string>) {
   // Replace with your provider, e.g. await resend.emails.send({ ... })
   console.info(`[breadberry] ${subject}`, payload);
+}
+
+/** Human labels for the WhatsApp message, in the order they should read. */
+const FIELD_LABELS: Record<string, string> = {
+  name: "Name",
+  company: "Business",
+  role: "Role",
+  email: "Email",
+  phone: "Phone",
+  city: "Delivery city",
+  products: "Products",
+  volume: "Monthly volume",
+  frequency: "Frequency",
+  message: "Message",
+  notes: "Notes",
+};
+
+/**
+ * Builds the prefilled WhatsApp link. Empty optional fields are dropped so the
+ * message stays short enough to read on a phone.
+ */
+function whatsappHandoff(subject: string, values: Record<string, string>) {
+  const lines = [
+    subject,
+    ...Object.entries(values)
+      .filter(([, value]) => value)
+      .map(([key, value]) => `${FIELD_LABELS[key] ?? key}: ${value}`),
+  ];
+
+  return `${site.whatsappHref}?text=${encodeURIComponent(lines.join("\n"))}`;
 }
 
 const contactFields = ["name", "company", "email", "phone", "message"];
@@ -61,7 +99,8 @@ export async function submitContact(
 
   return {
     status: "success",
-    message: `Thanks ${values.name.split(" ")[0]} — your message is with our team. We reply within one working day.`,
+    message: `Thanks ${values.name.split(" ")[0]} — we're opening WhatsApp so you can send this straight to ${site.contact}.`,
+    whatsapp: whatsappHandoff(`New enquiry for ${site.name}`, values),
   };
 }
 
@@ -111,6 +150,7 @@ export async function submitQuote(
 
   return {
     status: "success",
-    message: `Thanks ${values.name.split(" ")[0]} — your quote request is in. Expect pricing and dispatch dates within one working day.`,
+    message: `Thanks ${values.name.split(" ")[0]} — we're opening WhatsApp so ${site.contact} can price this for you.`,
+    whatsapp: whatsappHandoff(`Quote request for ${site.name}`, values),
   };
 }

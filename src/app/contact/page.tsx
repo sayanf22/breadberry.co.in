@@ -2,7 +2,13 @@ import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/layout/PageHero";
 import { ContactForm } from "@/components/forms/ContactForm";
-import { ClockIcon, MailIcon, PhoneIcon, PinIcon } from "@/components/icons";
+import {
+  ClockIcon,
+  MailIcon,
+  PhoneIcon,
+  PinIcon,
+  WhatsAppIcon,
+} from "@/components/icons";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -13,9 +19,15 @@ export const metadata: Metadata = {
 const channels = [
   {
     icon: PhoneIcon,
-    label: "Call the supply desk",
+    label: `Call ${site.contact}`,
     value: site.phone,
     href: site.phoneHref,
+  },
+  {
+    icon: WhatsAppIcon,
+    label: "Message on WhatsApp",
+    value: site.phone,
+    href: site.whatsappHref,
   },
   {
     icon: MailIcon,
@@ -44,9 +56,9 @@ export default function ContactPage() {
               {channels.map(({ icon: Icon, label, value, href }) => (
                 <div
                   key={label}
-                  className="rounded-card border border-line-soft bg-white p-[clamp(1.125rem,2.2vw,1.5rem)] shadow-soft transition-[box-shadow,border-color] duration-500 hover:border-line hover:shadow-card"
+                  className="rounded-card border border-line-soft bg-white p-[clamp(1.125rem,2.2vw,1.5rem)] shadow-soft transition-[box-shadow,border-color,transform] duration-500 ease-[var(--ease-out-soft)] hover:-translate-y-0.5 hover:border-[#c3ffab] hover:shadow-card"
                 >
-                  <span className="grid size-11 place-items-center rounded-full bg-blue-soft text-blue">
+                  <span className="grid size-11 place-items-center rounded-full bg-lime-soft text-navy">
                     <Icon className="size-[1.2rem]" />
                   </span>
                   <p className="mt-4 text-[0.6875rem] uppercase tracking-[0.14em] text-muted-soft">
@@ -55,7 +67,7 @@ export default function ContactPage() {
                   {href ? (
                     <a
                       href={href}
-                      className="mt-1.5 block text-[0.9375rem] font-medium text-navy transition-colors duration-300 hover:text-blue"
+                      className="mt-1.5 block text-[0.9375rem] font-medium text-navy underline-offset-4 transition-colors duration-300 hover:underline hover:decoration-[#c3ffab] hover:decoration-2"
                     >
                       {value}
                     </a>

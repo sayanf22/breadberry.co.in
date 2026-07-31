@@ -21,7 +21,9 @@ export function QuoteForm() {
   const [state, action, pending] = useActionState(submitQuote, initialFormState);
 
   if (state.status === "success") {
-    return <SuccessPanel message={state.message} />;
+    return (
+      <SuccessPanel message={state.message} whatsapp={state.whatsapp} />
+    );
   }
 
   const value = (key: string) => state.values?.[key] ?? "";

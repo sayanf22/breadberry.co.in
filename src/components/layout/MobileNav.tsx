@@ -178,7 +178,7 @@ export function MobileNav({ pathname }: { pathname: string }) {
             <dd>
               <a
                 href={site.phoneHref}
-                className="text-muted transition-colors duration-300 hover:text-blue"
+                className="text-muted transition-colors duration-300 hover:text-navy"
               >
                 {site.phone}
               </a>
@@ -190,7 +190,7 @@ export function MobileNav({ pathname }: { pathname: string }) {
             <dd>
               <a
                 href={`mailto:${site.email}`}
-                className="text-muted transition-colors duration-300 hover:text-blue"
+                className="text-muted transition-colors duration-300 hover:text-navy"
               >
                 {site.email}
               </a>

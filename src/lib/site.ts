@@ -11,9 +11,14 @@ export const site = {
     "Breadberry Co., a signature brand of Adhira Enterprises, supplies premium frozen berries and fruit purees to Mumbai's 5-star hotels, fine-dining restaurants, premium confectioneries and artisanal bakers.",
   clientsServed: "1000+",
 
-  // TODO: replace with the real contact details before launch.
-  phone: "+91 98765 43210",
-  phoneHref: "tel:+919876543210",
+  /** Named contact for every enquiry channel on the site. */
+  contact: "Abhishek Yerunkar",
+  phone: "+91 85540 44055",
+  phoneHref: "tel:+918554044055",
+  /** Enquiries hand off to this WhatsApp thread. Digits only, no spaces. */
+  whatsapp: "918554044055",
+  whatsappHref: "https://wa.me/918554044055",
+  // TODO: confirm the mailbox before launch.
   email: "orders@breadberry.co.in",
   address: "Mumbai, Maharashtra, India",
   hours: "Mon–Sat · 9:00 – 18:30 IST",

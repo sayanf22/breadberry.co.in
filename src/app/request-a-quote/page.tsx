@@ -2,7 +2,13 @@ import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/layout/PageHero";
 import { QuoteForm } from "@/components/forms/QuoteForm";
-import { CheckIcon, ClockIcon, MailIcon, PhoneIcon } from "@/components/icons";
+import {
+  CheckIcon,
+  ClockIcon,
+  MailIcon,
+  PhoneIcon,
+  WhatsAppIcon,
+} from "@/components/icons";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -57,24 +63,33 @@ export default function RequestQuotePage() {
                 <ul className="mt-4 space-y-3.5">
                   <li>
                     <a
-                      href={site.phoneHref}
-                      className="flex items-center gap-3 text-muted transition-colors duration-300 hover:text-blue"
+                      href={site.whatsappHref}
+                      className="flex min-h-11 items-center gap-3 text-muted transition-colors duration-300 hover:text-navy"
                     >
-                      <PhoneIcon className="size-4 shrink-0 text-blue" />
+                      <WhatsAppIcon className="size-4 shrink-0 text-navy" />
+                      WhatsApp {site.contact}
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={site.phoneHref}
+                      className="flex min-h-11 items-center gap-3 text-muted transition-colors duration-300 hover:text-navy"
+                    >
+                      <PhoneIcon className="size-4 shrink-0 text-navy" />
                       {site.phone}
                     </a>
                   </li>
                   <li>
                     <a
                       href={`mailto:${site.email}`}
-                      className="flex items-center gap-3 text-muted transition-colors duration-300 hover:text-blue"
+                      className="flex min-h-11 items-center gap-3 text-muted transition-colors duration-300 hover:text-navy"
                     >
-                      <MailIcon className="size-4 shrink-0 text-blue" />
+                      <MailIcon className="size-4 shrink-0 text-navy" />
                       {site.email}
                     </a>
                   </li>
                   <li className="flex items-center gap-3 text-muted">
-                    <ClockIcon className="size-4 shrink-0 text-blue" />
+                    <ClockIcon className="size-4 shrink-0 text-navy" />
                     {site.hours}
                   </li>
                 </ul>

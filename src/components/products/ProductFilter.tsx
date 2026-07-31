@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import type { CSSProperties, KeyboardEvent } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/cn";
-import { SparkleIcon } from "@/components/icons";
+import { BasketIcon } from "@/components/icons";
 import { ProductCard } from "@/components/products/ProductCard";
 import {
   categories,
@@ -131,72 +131,74 @@ export function ProductFilter() {
   return (
     <>
       <div className="flex flex-col gap-2.5 sm:gap-3">
-        {/* Range rail. Bleeds to both screen edges on phones — the negative
-            inset matches the Container gutter — so tiles can be thumbed
-            through instead of squeezed into the text column. */}
-        <div
-          ref={listRef}
-          role="tablist"
-          aria-label="Filter products by range"
-          onKeyDown={onKeyDown}
-          className="no-scrollbar -mx-[clamp(1.125rem,4vw,2.75rem)] flex snap-x snap-mandatory gap-2 overflow-x-auto px-[clamp(1.125rem,4vw,2.75rem)] pb-1 sm:mx-0 sm:flex-wrap sm:gap-2.5 sm:px-0"
-        >
-          {categories.map((category) => {
-            const selected = category.id === active;
-            const image =
-              category.id === "all" ? undefined : categoryImage(category.id);
+        {/* Range rail. The recessed band gives the row a floor, so the raised
+            tiles read as physical cards rather than flat outlines. */}
+        <div className="rounded-[1.5rem] border border-line-soft bg-surface p-2 shadow-[inset_0_1px_3px_rgb(11_44_79_/_0.06)] sm:p-2.5">
+          <div
+            ref={listRef}
+            role="tablist"
+            aria-label="Filter products by range"
+            onKeyDown={onKeyDown}
+            className="no-scrollbar flex snap-x snap-mandatory gap-2 overflow-x-auto sm:flex-wrap sm:gap-2.5"
+          >
+            {categories.map((category) => {
+              const selected = category.id === active;
+              const image =
+                category.id === "all" ? undefined : categoryImage(category.id);
 
-            return (
-              <button
-                key={category.id}
-                ref={(node) => {
-                  tabRefs.current[category.id] = node;
-                }}
-                type="button"
-                role="tab"
-                id={`tab-${category.id}`}
-                aria-selected={selected}
-                aria-controls="product-panel"
-                tabIndex={selected ? 0 : -1}
-                onClick={() => select(category.id)}
-                className={cn(
-                  "group/tile flex w-[5.25rem] shrink-0 snap-start flex-col items-center gap-2 rounded-[1.125rem] border bg-white px-2 py-2.5 transition-[border-color,box-shadow,transform] duration-500 ease-[var(--ease-out-soft)] sm:w-[7rem] sm:gap-2.5 sm:p-3",
-                  selected
-                    ? "border-[#c3ffab] shadow-soft"
-                    : "border-line-soft hover:-translate-y-0.5 hover:border-[#c3ffab] hover:shadow-soft"
-                )}
-              >
-                <span
+              return (
+                <button
+                  key={category.id}
+                  ref={(node) => {
+                    tabRefs.current[category.id] = node;
+                  }}
+                  type="button"
+                  role="tab"
+                  id={`tab-${category.id}`}
+                  aria-selected={selected}
+                  aria-controls="product-panel"
+                  tabIndex={selected ? 0 : -1}
+                  onClick={() => select(category.id)}
                   className={cn(
-                    "relative grid size-14 shrink-0 place-items-center overflow-hidden rounded-full border-2 transition-colors duration-500 sm:size-16",
-                    selected ? "border-[#c3ffab]" : "border-transparent",
-                    image ? "bg-surface" : "bg-lime-soft"
+                    "group/tile flex w-[5.5rem] shrink-0 snap-start flex-col items-center gap-2 rounded-[1rem] border bg-white p-1.5 pb-2 transition-[border-color,box-shadow,transform] duration-500 ease-[var(--ease-out-soft)] sm:w-[7.25rem] sm:p-2 sm:pb-2.5",
+                    selected
+                      ? "-translate-y-0.5 border-[#c3ffab] shadow-card ring-2 ring-[#c3ffab]/45"
+                      : "border-line-soft shadow-soft hover:-translate-y-0.5 hover:border-[#c3ffab] hover:shadow-card"
                   )}
                 >
-                  {image ? (
-                    <Image
-                      src={image}
-                      alt=""
-                      fill
-                      sizes="64px"
-                      className="object-cover object-center transition-transform duration-700 ease-[var(--ease-out-soft)] group-hover/tile:scale-105"
-                    />
-                  ) : (
-                    <SparkleIcon className="size-6 text-navy" />
-                  )}
-                </span>
+                  {/* Square crop, matching the reference proportions — the pack
+                      fills the tile instead of floating in a small circle. */}
+                  <span
+                    className={cn(
+                      "relative grid aspect-square w-full place-items-center overflow-hidden rounded-[0.75rem]",
+                      image ? "bg-cream-soft" : "bg-lime-soft"
+                    )}
+                  >
+                    {image ? (
+                      <Image
+                        src={image}
+                        alt=""
+                        fill
+                        sizes="(min-width: 640px) 116px, 88px"
+                        className="object-cover object-center transition-transform duration-700 ease-[var(--ease-out-soft)] group-hover/tile:scale-105"
+                      />
+                    ) : (
+                      <BasketIcon className="size-8 text-navy sm:size-9" />
+                    )}
+                  </span>
 
-                <span
-                  className={cn(
-                    "flex min-h-[2.25rem] items-start text-center text-[0.6875rem] font-medium leading-tight transition-colors duration-400 sm:text-[0.75rem]",
-                    selected ? "text-navy" : "text-muted"
-                  )}
-                >
-                  {category.label}
-                </span>
-              </button>
-            );
-          })}
+                  <span
+                    className={cn(
+                      "flex min-h-[2.25rem] items-start px-0.5 text-center text-[0.6875rem] font-semibold leading-tight transition-colors duration-400 sm:text-[0.75rem]",
+                      selected ? "text-navy" : "text-muted"
+                    )}
+                  >
+                    {category.label}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* The only running total on the page — the per-range counts sit in

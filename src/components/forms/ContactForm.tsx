@@ -13,7 +13,9 @@ export function ContactForm() {
   );
 
   if (state.status === "success") {
-    return <SuccessPanel message={state.message} />;
+    return (
+      <SuccessPanel message={state.message} whatsapp={state.whatsapp} />
+    );
   }
 
   const value = (key: string) => state.values?.[key] ?? "";

@@ -8,6 +8,7 @@ import {
   MailIcon,
   PhoneIcon,
   PinIcon,
+  WhatsAppIcon,
 } from "@/components/icons";
 import { navLinks, site, social } from "@/lib/site";
 import { catalogueHref, portfolio } from "@/lib/portfolio";
@@ -21,6 +22,11 @@ const contactRows = [
   { icon: PinIcon, label: site.address },
   { icon: MailIcon, label: site.email, href: `mailto:${site.email}` },
   { icon: PhoneIcon, label: site.phone, href: site.phoneHref },
+  {
+    icon: WhatsAppIcon,
+    label: `WhatsApp ${site.contact}`,
+    href: site.whatsappHref,
+  },
   { icon: ClockIcon, label: site.hours },
 ];
 
