@@ -80,8 +80,8 @@ export const portfolio: PortfolioCategory[] = [
       "The pantry lines that decide whether a dish reads as authentic or approximate.",
     icon: BowlIcon,
     tone: "blue",
-    hasCatalogue: true,
-    catalogueCategory: "japanese",
+    /* Photography for the dry grocery range is still to come, so this card
+       intentionally has no catalogue link yet. */
   },
   {
     slug: "frozen-seafood",

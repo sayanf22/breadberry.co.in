@@ -131,7 +131,7 @@ const seeds: Seed[] = [
   /* ── IQF berries — the Breadberry Co. signature line ─────────────────── */
   {
     slug: "strawberry-iqf-frozen",
-    name: "Strawberry IQF",
+    name: "Strawberry IQF Frozen",
     category: "iqf",
     form: "Whole, individually quick frozen",
     tint: "bg-tint-strawberry",
@@ -140,7 +140,7 @@ const seeds: Seed[] = [
   },
   {
     slug: "blueberry-iqf-frozen",
-    name: "Blueberry IQF",
+    name: "Blueberry IQF Frozen",
     category: "iqf",
     form: "Whole, individually quick frozen",
     tint: "bg-tint-blueberry",
@@ -149,7 +149,7 @@ const seeds: Seed[] = [
   },
   {
     slug: "raspberry-iqf-frozen",
-    name: "Raspberry IQF",
+    name: "Raspberry IQF Frozen",
     category: "iqf",
     form: "Whole, individually quick frozen",
     tint: "bg-tint-raspberry",
@@ -158,7 +158,7 @@ const seeds: Seed[] = [
   },
   {
     slug: "blackberry-iqf-frozen",
-    name: "Blackberry IQF",
+    name: "Blackberry IQF Frozen",
     category: "iqf",
     form: "Whole, individually quick frozen",
     tint: "bg-tint-blueberry",
@@ -167,7 +167,7 @@ const seeds: Seed[] = [
   },
   {
     slug: "cranberry-iqf-frozen",
-    name: "Cranberry IQF",
+    name: "Cranberry IQF Frozen",
     category: "iqf",
     form: "Whole, individually quick frozen",
     tint: "bg-tint-raspberry",
@@ -176,7 +176,7 @@ const seeds: Seed[] = [
   },
   {
     slug: "mix-berry-iqf-frozen",
-    name: "Mix Berry IQF",
+    name: "Mix Berry IQF Frozen",
     category: "iqf",
     form: "Mixed whole berries",
     tint: "bg-tint-raspberry",
@@ -187,7 +187,7 @@ const seeds: Seed[] = [
   /* ── Fruit purees ─────────────────────────────────────────────────────── */
   {
     slug: "strawberry-puree-frozen",
-    name: "Strawberry Puree",
+    name: "Strawberry Puree Frozen",
     category: "puree",
     form: "Smooth fruit puree",
     tint: "bg-tint-strawberry",
@@ -196,7 +196,7 @@ const seeds: Seed[] = [
   },
   {
     slug: "raspberry-puree-frozen",
-    name: "Raspberry Puree",
+    name: "Raspberry Puree Frozen",
     category: "puree",
     form: "Sieved fruit puree",
     tint: "bg-tint-raspberry",
@@ -205,7 +205,7 @@ const seeds: Seed[] = [
   },
   {
     slug: "blueberry-puree-frozen",
-    name: "Blueberry Puree",
+    name: "Blueberry Puree Frozen",
     category: "puree",
     form: "Smooth fruit puree",
     tint: "bg-tint-blueberry",
@@ -214,7 +214,7 @@ const seeds: Seed[] = [
   },
   {
     slug: "passionfruit-puree-frozen",
-    name: "Passionfruit Puree",
+    name: "Passionfruit Puree Frozen",
     category: "puree",
     form: "Smooth fruit puree",
     tint: "bg-tint-passion",
@@ -223,7 +223,7 @@ const seeds: Seed[] = [
   },
   {
     slug: "acai-berry-puree-frozen",
-    name: "Acai Berry Puree",
+    name: "Acai Berry Puree Frozen",
     category: "puree",
     form: "Smooth fruit puree",
     tint: "bg-tint-blueberry",
@@ -300,7 +300,7 @@ seeds.push(
   },
   {
     slug: "celeriac-celery-root",
-    name: "Celeriac (Celery Root)",
+    name: "Celeriac Celery Root",
     category: "fresh",
     form: "Whole roots",
     blurb:
@@ -324,7 +324,7 @@ seeds.push(
   },
   {
     slug: "lotusroot-thai",
-    name: "Lotus Root Thai",
+    name: "Lotusroot Thai",
     category: "fresh",
     form: "Whole roots",
     blurb:
@@ -396,7 +396,7 @@ seeds.push(
   },
   {
     slug: "snowpeas",
-    name: "Snow Peas",
+    name: "Snowpeas",
     category: "fresh",
     form: "Loose pods",
     blurb:
@@ -404,7 +404,7 @@ seeds.push(
   },
   {
     slug: "sugar-snappeas",
-    name: "Sugar Snap Peas",
+    name: "Sugar Snappeas",
     category: "fresh",
     form: "Loose pods",
     blurb:
@@ -420,7 +420,7 @@ seeds.push(
   },
   {
     slug: "wild-roquette-arugula-leaves",
-    name: "Wild Roquette (Arugula) Leaves",
+    name: "Wild Roquette Arugula Leaves",
     category: "fresh",
     form: "Loose leaf",
     blurb:
@@ -428,7 +428,7 @@ seeds.push(
   },
   {
     slug: "shisho-leaves",
-    name: "Shiso Leaves",
+    name: "Shisho Leaves",
     category: "fresh",
     form: "Loose leaf",
     blurb:
@@ -436,7 +436,7 @@ seeds.push(
   },
   {
     slug: "shitake-mushroom",
-    name: "Shiitake Mushroom",
+    name: "Shitake Mushroom",
     category: "fresh",
     form: "Loose caps",
     blurb:
@@ -468,7 +468,7 @@ seeds.push(
   },
   {
     slug: "king-ceps-oyster-mushroom",
-    name: "King Oyster Mushroom",
+    name: "King Ceps Oyster Mushroom",
     category: "fresh",
     form: "Whole stems",
     blurb:
@@ -484,7 +484,7 @@ seeds.push(
   },
   {
     slug: "porchini-mushroom",
-    name: "Porcini Mushroom",
+    name: "Porchini Mushroom",
     category: "fresh",
     form: "Whole caps",
     blurb:
@@ -508,7 +508,7 @@ seeds.push(
   },
   {
     slug: "pomello-thai",
-    name: "Pomelo Thai",
+    name: "Pomello Thai",
     category: "fresh",
     form: "Whole fruit",
     blurb:
@@ -572,7 +572,7 @@ seeds.push(
   /* ── Frozen bakery, Japanese and pantry lines ───────────────────────────── */
   {
     slug: "gyoza-skin-sheet-happy-belly",
-    name: "Gyoza Skin Sheets (Happy Belly)",
+    name: "Gyoza Skin Sheet Happy Belly",
     category: "japanese",
     form: "Frozen sheets",
     blurb:
@@ -580,7 +580,7 @@ seeds.push(
   },
   {
     slug: "wonton-skin-sheet-happy-belly",
-    name: "Wonton Skin Sheets (Happy Belly)",
+    name: "Wonton Skin Sheet Happy Belly",
     category: "japanese",
     form: "Frozen sheets",
     blurb:
@@ -588,7 +588,7 @@ seeds.push(
   },
   {
     slug: "peking-duck-sheet-happy-belly",
-    name: "Peking Duck Sheets (Happy Belly)",
+    name: "Peking Duck Sheet Happy Belly",
     category: "japanese",
     form: "Frozen sheets",
     blurb:
@@ -596,7 +596,7 @@ seeds.push(
   },
   {
     slug: "lotus-leaf-bun-bao-bun-happy-belly",
-    name: "Lotus Leaf Bao Bun (Happy Belly)",
+    name: "Lotus Leaf Bun Bao Bun Happy Belly",
     category: "japanese",
     form: "Frozen buns",
     blurb:
@@ -604,7 +604,7 @@ seeds.push(
   },
   {
     slug: "fillo-pastry-sheets-antoniou",
-    name: "Fillo Pastry Sheets (Antoniou)",
+    name: "Fillo Pastry Sheets Antoniou",
     category: "japanese",
     form: "Frozen sheets",
     blurb:
@@ -612,7 +612,7 @@ seeds.push(
   },
   {
     slug: "kataifi-pastry-antoniou",
-    name: "Kataifi Pastry (Antoniou)",
+    name: "Kataifi Pastry Antoniou",
     category: "japanese",
     form: "Frozen shredded pastry",
     blurb:
@@ -652,7 +652,7 @@ seeds.push(
   },
   {
     slug: "lotusroot-sliced-frozen",
-    name: "Lotus Root Sliced",
+    name: "Lotusroot Sliced Frozen",
     category: "japanese",
     form: "Sliced, frozen",
     blurb:
@@ -678,7 +678,7 @@ seeds.push(
   /* ── Frozen seafood ─────────────────────────────────────────────────────── */
   {
     slug: "norwegian-salmon-fillet-atlantic",
-    name: "Norwegian Atlantic Salmon Fillet",
+    name: "Norwegian Salmon Fillet Atlantic",
     category: "seafood",
     form: "Whole fillet",
     blurb:
@@ -686,7 +686,7 @@ seeds.push(
   },
   {
     slug: "norwegian-smoked-salmon-presliced",
-    name: "Norwegian Smoked Salmon, Pre-sliced",
+    name: "Norwegian Smoked Salmon Presliced",
     category: "seafood",
     form: "Pre-sliced, interleaved",
     blurb:
@@ -750,7 +750,7 @@ seeds.push(
   },
   {
     slug: "orange-tobikko-japanese",
-    name: "Orange Tobikko",
+    name: "Orange Tobikko Japanese",
     category: "seafood",
     form: "Roe, frozen",
     blurb:
@@ -758,7 +758,7 @@ seeds.push(
   },
   {
     slug: "black-tobikko-japanese",
-    name: "Black Tobikko",
+    name: "Black Tobikko Japanese",
     category: "seafood",
     form: "Roe, frozen",
     blurb:
@@ -766,7 +766,7 @@ seeds.push(
   },
   {
     slug: "green-tobikko-japanese",
-    name: "Green Tobikko",
+    name: "Green Tobikko Japanese",
     category: "seafood",
     form: "Roe, frozen",
     blurb:

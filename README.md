@@ -180,9 +180,15 @@ both the card crop and the taller detail crop, and writes
 
 Two things to know:
 
-- **Artisanal Cheese** was supplied as an empty archive — it contains a folder
-  and no images, so it has no products yet. The category still appears in the
-  portfolio without a catalogue link.
+- **Artisanal Cheese** and **Specialty Asian Dry Groceries** are still pending.
+  The cheese archive arrived empty (a folder, no images) and the dry grocery
+  range has not been supplied, so neither has products. Both still appear in the
+  portfolio, without a catalogue link. Drop the archives into `../images` and
+  re-run the two scripts to add them.
+- **Product names match the supplied image names exactly**, at the client's
+  instruction — including spellings such as "Porchini", "Shisho", "Snowpeas"
+  and "Lotusroot". `node scripts/check-product-names.mjs` enforces this and
+  fails if a name, image or slug drifts.
 - **Pack sizes read "On request"** rather than published weights, and storage
   temperatures follow the category. Confirm both against real spec sheets
   before launch.
