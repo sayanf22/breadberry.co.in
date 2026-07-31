@@ -1,11 +1,12 @@
 import type { CSSProperties } from "react";
 import { clients, site } from "@/lib/site";
+import { clientLogoMap } from "@/components/illustrations/clientLogos";
 
 /**
- * Full-bleed client band.
+ * Full-bleed client band with unified single-color vector brand logos.
  *
- * Spaced with generous vertical padding and ample margin between the title heading
- * and the brand marquee so the logos float with clear separation and breathing room.
+ * All client logos are rendered in a single, high-end monochrome color (text-navy/80)
+ * for a cohesive, executive brand trust strip across both desktop and mobile viewports.
  */
 export function ClientStrip() {
   const track = [...clients, ...clients];
@@ -31,7 +32,7 @@ export function ClientStrip() {
         </h2>
       </div>
 
-      {/* Marquee row with expanded vertical gap separating heading from logos */}
+      {/* Marquee row rendering single-color vector logos */}
       <div className="edge-fade mt-[clamp(3.5rem,8vw,6rem)] overflow-hidden">
         <ul
           className="marquee-track items-center"
@@ -42,17 +43,24 @@ export function ClientStrip() {
             } as CSSProperties
           }
         >
-          {track.map((name, index) => (
-            <li
-              key={`${name}-${index}`}
-              aria-hidden={index >= clients.length}
-              className="shrink-0 px-[clamp(1rem,4vw,3.5rem)]"
-            >
-              <span className="whitespace-nowrap font-display text-[1.0625rem] leading-none text-navy/80 sm:text-[1.625rem] lg:text-[2.25rem]">
-                {name}
-              </span>
-            </li>
-          ))}
+          {track.map((name, index) => {
+            const LogoComponent = clientLogoMap[name];
+            return (
+              <li
+                key={`${name}-${index}`}
+                aria-hidden={index >= clients.length}
+                className="flex shrink-0 items-center px-[clamp(1.25rem,4vw,3.75rem)] text-navy/80 transition-opacity duration-300 hover:opacity-100"
+              >
+                {LogoComponent ? (
+                  <LogoComponent className="h-[1.75rem] sm:h-[2.25rem] lg:h-[2.625rem] w-auto max-w-[12rem] text-navy/85" />
+                ) : (
+                  <span className="whitespace-nowrap font-display text-[1.0625rem] leading-none text-navy/80 sm:text-[1.625rem] lg:text-[2.25rem]">
+                    {name}
+                  </span>
+                )}
+              </li>
+            );
+          })}
         </ul>
       </div>
     </section>
