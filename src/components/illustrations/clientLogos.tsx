@@ -1,4 +1,4 @@
-import type { SVGProps } from "react";
+import type { ComponentType, SVGProps } from "react";
 
 export type ClientLogoProps = SVGProps<SVGSVGElement> & {
   className?: string;
@@ -379,7 +379,7 @@ export function EveLogo({ className = "h-7 w-auto", ...props }: ClientLogoProps)
   );
 }
 
-export const clientLogoMap: Record<string, (props: ClientLogoProps) => JSX.Element> = {
+export const clientLogoMap: Record<string, ComponentType<ClientLogoProps>> = {
   "Taj Hotels": TajLogo,
   Theobroma: TheobromaLogo,
   "JW Marriott": JwMarriottLogo,
