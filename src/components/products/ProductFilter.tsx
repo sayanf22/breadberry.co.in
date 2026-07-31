@@ -123,6 +123,31 @@ export function ProductFilter() {
       ? products
       : products.filter((product) => product.category === active);
 
+  /* "All Products" reads as a catalogue rather than one long run of cards, so
+     it is split into labelled range sections in tab order. A single selected
+     range needs no heading — the tab already names it. */
+  const showHeadings = active === "all";
+
+  const ranges = (
+    showHeadings
+      ? categories.filter((category) => category.id !== "all")
+      : categories.filter((category) => category.id === active)
+  ).map((category) => ({
+    ...category,
+    items: showHeadings
+      ? products.filter((product) => product.category === category.id)
+      : visible,
+  }));
+
+  /* Offsets stay derived rather than accumulated in place, so the first four
+     cards on screen keep image priority without mutating during render. */
+  const groups = ranges.map((range, index) => ({
+    ...range,
+    offset: ranges
+      .slice(0, index)
+      .reduce((total, previous) => total + previous.items.length, 0),
+  }));
+
   return (
     <>
       <div
@@ -193,28 +218,62 @@ export function ProductFilter() {
         aria-labelledby={`tab-${active}`}
         className="mt-[clamp(1.75rem,3.5vw,2.5rem)]"
       >
-        {/* The keyed grid remounts on selection. Individual items then enter
-            in a short sequence rather than the whole panel flashing at once. */}
-        <div
-          key={`grid-${active}`}
-          className="grid grid-cols-2 gap-[clamp(0.75rem,1.6vw,1.25rem)] lg:grid-cols-3 xl:grid-cols-4"
-        >
-          {visible.map((product, index) => (
-            <div
-              key={product.slug}
-              className="product-grid-item h-full"
-              style={
-                {
-                  "--product-index": Math.min(index, 12),
-                } as CSSProperties
-              }
+        {/* The keyed wrapper remounts on selection. Cards then enter in a
+            short sequence rather than the whole panel flashing at once. */}
+        <div key={`ranges-${active}`}>
+          {groups.map((group, groupIndex) => (
+            <section
+              key={group.id}
+              id={`range-${group.id}`}
+              aria-labelledby={showHeadings ? `range-heading-${group.id}` : undefined}
+              className={cn(
+                "scroll-mt-28",
+                groupIndex > 0 && "mt-[clamp(2.25rem,4.5vw,3.5rem)]"
+              )}
             >
-              <ProductCard
-                product={product}
-                priority={index < 4}
-                sizes="(min-width: 1280px) 19rem, (min-width: 1024px) 26vw, 46vw"
-              />
-            </div>
+              {showHeadings && (
+                <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-1.5 border-t border-line-soft pt-[clamp(0.875rem,1.6vw,1.125rem)]">
+                  <h2
+                    id={`range-heading-${group.id}`}
+                    className="flex items-center gap-2.5 font-sans text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-navy"
+                  >
+                    <span
+                      aria-hidden
+                      className="size-2 shrink-0 rounded-full bg-[#c3ffab]"
+                    />
+                    {group.label}
+                  </h2>
+                  <p className="text-[0.75rem] tabular-nums text-muted-soft">
+                    {group.items.length} lines
+                  </p>
+                </div>
+              )}
+
+              <div
+                className={cn(
+                  "grid grid-cols-2 gap-[clamp(0.75rem,1.6vw,1.25rem)] lg:grid-cols-3 xl:grid-cols-4",
+                  showHeadings && "mt-[clamp(1rem,2vw,1.5rem)]"
+                )}
+              >
+                {group.items.map((product, index) => (
+                  <div
+                    key={product.slug}
+                    className="product-grid-item h-full"
+                    style={
+                      {
+                        "--product-index": Math.min(index, 12),
+                      } as CSSProperties
+                    }
+                  >
+                    <ProductCard
+                      product={product}
+                      priority={group.offset + index < 4}
+                      sizes="(min-width: 1280px) 19rem, (min-width: 1024px) 26vw, 46vw"
+                    />
+                  </div>
+                ))}
+              </div>
+            </section>
           ))}
         </div>
 
