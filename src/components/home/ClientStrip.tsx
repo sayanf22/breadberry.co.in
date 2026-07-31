@@ -22,10 +22,10 @@ export function ClientStrip() {
           {site.company} · SINCE {site.founded}
         </p>
 
-        {/* Heading */}
+        {/* Heading — strictly one-liner on mobile phone screens */}
         <h2
           id="clients-heading"
-          className="mx-auto mt-3 max-w-[34ch] font-display text-[0.9375rem] font-normal leading-[1.3] text-navy sm:mt-4 sm:text-[1.5rem] sm:leading-[1.2] lg:text-[2.25rem]"
+          className="mx-auto mt-2.5 max-w-full whitespace-nowrap font-display text-[clamp(0.5625rem,2.7vw,0.875rem)] font-normal leading-none text-navy sm:mt-4 sm:max-w-[34ch] sm:whitespace-normal sm:text-[1.5rem] sm:leading-[1.2] lg:text-[2.25rem]"
         >
           <span className="font-medium text-navy">{site.clientsServed} kitchens</span>{" "}
           served across hotels, restaurants, bakeries &amp; cafés
