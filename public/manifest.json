@@ -1,0 +1,16 @@
+{
+  "name": "Breadberry Co. by Adhira Enterprises",
+  "short_name": "Breadberry Co.",
+  "description": "Wholesale supplier of IQF frozen berries, fruit purees, imported fresh produce and frozen seafood in Mumbai, India.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0b2c4f",
+  "icons": [
+    {
+      "src": "/assets/logo-mark.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

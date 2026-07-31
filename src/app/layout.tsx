@@ -77,7 +77,20 @@ export const metadata: Metadata = {
   verification: process.env.GOOGLE_SITE_VERIFICATION
     ? { google: process.env.GOOGLE_SITE_VERIFICATION }
     : undefined,
-  icons: { icon: "/assets/logo-mark.png" },
+  manifest: "/manifest.json",
+  formatDetection: {
+    telephone: false,
+    date: false,
+    email: false,
+    address: false,
+  },
+  referrer: "origin-when-cross-origin",
+  appleWebApp: {
+    title: site.name,
+    statusBarStyle: "default",
+    capable: true,
+  },
+  icons: { icon: "/assets/logo-mark.png", apple: "/assets/logo-mark.png" },
 };
 
 export const viewport: Viewport = {
