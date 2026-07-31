@@ -24,6 +24,10 @@ export type Product = {
   /** Alt text — deliberately not "retail pack": some shots are loose product. */
   imageAlt: string;
   tint: string;
+  /** How the line is supplied. Shown on the card and as the first spec. */
+  form: string;
+  /** Short buying signal carried as the card badge. */
+  chain: ColdChain;
   blurb: string;
   specs: { label: string; value: string }[];
   handling: string[];
@@ -55,15 +59,23 @@ const CATEGORY_TINT: Record<ProductCategory, string> = {
   seafood: "bg-tint-ocean",
 };
 
-const FROZEN = "Frozen −18 °C";
-const CHILLED = "Chilled 2 – 6 °C";
+/**
+ * Cold chain per range. Single source for both the card badge and the storage
+ * spec, so the short and long forms can never drift apart.
+ */
+export type ColdChain = "Frozen" | "Chilled";
 
-const CATEGORY_STORAGE: Record<ProductCategory, string> = {
-  iqf: FROZEN,
-  puree: FROZEN,
-  fresh: CHILLED,
-  japanese: FROZEN,
-  seafood: FROZEN,
+const CATEGORY_CHAIN: Record<ProductCategory, ColdChain> = {
+  iqf: "Frozen",
+  puree: "Frozen",
+  fresh: "Chilled",
+  japanese: "Frozen",
+  seafood: "Frozen",
+};
+
+const CHAIN_STORAGE: Record<ColdChain, string> = {
+  Frozen: "Frozen −18 °C",
+  Chilled: "Chilled 2 – 6 °C",
 };
 
 /**
@@ -109,6 +121,8 @@ type Seed = {
 };
 
 function define({ slug, name, category, form, blurb, tint }: Seed): Product {
+  const chain = CATEGORY_CHAIN[category];
+
   return {
     slug,
     name,
@@ -117,10 +131,12 @@ function define({ slug, name, category, form, blurb, tint }: Seed): Product {
     image: `/assets/products/${slug}.webp`,
     imageAlt: `${name} — ${CATEGORY_LABEL[category]}`,
     tint: tint ?? CATEGORY_TINT[category],
+    form,
+    chain,
     blurb,
     specs: [
       { label: "Form", value: form },
-      { label: "Storage", value: CATEGORY_STORAGE[category] },
+      { label: "Storage", value: CHAIN_STORAGE[chain] },
       { label: "Pack", value: "On request" },
     ],
     handling: CATEGORY_HANDLING[category],

@@ -150,13 +150,14 @@ export function ProductFilter() {
 
   return (
     <>
-      <div
-        ref={listRef}
-        role="tablist"
-        aria-label="Filter products by range"
-        onKeyDown={onKeyDown}
-        className="no-scrollbar relative flex w-full max-w-full gap-1 overflow-x-auto rounded-[1rem] border border-line-soft bg-white p-1 shadow-soft sm:w-fit"
-      >
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+        <div
+          ref={listRef}
+          role="tablist"
+          aria-label="Filter products by range"
+          onKeyDown={onKeyDown}
+          className="no-scrollbar relative flex w-full max-w-full gap-1 overflow-x-auto rounded-[1rem] border border-line-soft bg-white p-1 shadow-soft sm:w-fit"
+        >
         {/* One restrained brand-green indicator connects every option. */}
         <span
           aria-hidden
@@ -210,6 +211,17 @@ export function ProductFilter() {
             </button>
           );
         })}
+        </div>
+
+        {/* The only running total on the page — the per-range counts sit in
+            their own headings, so nothing repeats it under the grid. */}
+        <p
+          key={`count-${active}`}
+          className="product-count-enter text-[0.8125rem] tabular-nums text-muted-soft sm:shrink-0 sm:text-right"
+          aria-live="polite"
+        >
+          {visible.length} products
+        </p>
       </div>
 
       <div
@@ -276,14 +288,6 @@ export function ProductFilter() {
             </section>
           ))}
         </div>
-
-        <p
-          key={`count-${active}`}
-          className="product-count-enter mt-8 text-[0.8125rem] text-muted-soft"
-          aria-live="polite"
-        >
-          Showing {visible.length} of {products.length} products
-        </p>
       </div>
     </>
   );
