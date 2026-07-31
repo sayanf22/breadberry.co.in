@@ -2,16 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { CSSProperties, KeyboardEvent } from "react";
-import Image from "next/image";
 import { cn } from "@/lib/cn";
-import { BasketIcon } from "@/components/icons";
+import { categoryArt } from "@/components/illustrations/categories";
 import { ProductCard } from "@/components/products/ProductCard";
-import {
-  categories,
-  categoryImage,
-  products,
-  type ProductCategory,
-} from "@/lib/products";
+import { categories, products, type ProductCategory } from "@/lib/products";
 
 type TabId = "all" | ProductCategory;
 
@@ -131,20 +125,21 @@ export function ProductFilter() {
   return (
     <>
       <div className="flex flex-col gap-2.5 sm:gap-3">
-        {/* Range rail. The recessed band gives the row a floor, so the raised
-            tiles read as physical cards rather than flat outlines. */}
-        <div className="rounded-[1.5rem] border border-line-soft bg-surface p-2 shadow-[inset_0_1px_3px_rgb(11_44_79_/_0.06)] sm:p-2.5">
+        {/* Range rail on the brand green, so the white tiles read as cards
+            lifted off a coloured band rather than outlines on white. */}
+        <div className="rounded-[1.5rem] bg-lime-soft p-2 shadow-[inset_0_1px_4px_rgb(11_44_79_/_0.1)] sm:p-3">
           <div
             ref={listRef}
             role="tablist"
             aria-label="Filter products by range"
             onKeyDown={onKeyDown}
-            className="no-scrollbar flex snap-x snap-mandatory gap-2 overflow-x-auto sm:flex-wrap sm:gap-2.5"
+            /* Scrolls on phones, then spreads to fill the band from `sm` so no
+               dead space is left at the end of the row. */
+            className="no-scrollbar flex snap-x snap-mandatory gap-2 overflow-x-auto sm:grid sm:grid-cols-3 sm:gap-2.5 sm:overflow-visible lg:grid-cols-6"
           >
             {categories.map((category) => {
               const selected = category.id === active;
-              const image =
-                category.id === "all" ? undefined : categoryImage(category.id);
+              const { Art, tone } = categoryArt[category.id];
 
               return (
                 <button
@@ -160,37 +155,27 @@ export function ProductFilter() {
                   tabIndex={selected ? 0 : -1}
                   onClick={() => select(category.id)}
                   className={cn(
-                    "group/tile flex w-[5.5rem] shrink-0 snap-start flex-col items-center gap-2 rounded-[1rem] border bg-white p-1.5 pb-2 transition-[border-color,box-shadow,transform] duration-500 ease-[var(--ease-out-soft)] sm:w-[7.25rem] sm:p-2 sm:pb-2.5",
+                    "group/tile flex w-[5.5rem] shrink-0 snap-start flex-col items-center gap-2 rounded-[1rem] border bg-white p-1.5 pb-2 transition-[border-color,box-shadow,transform] duration-500 ease-[var(--ease-out-soft)] sm:w-full sm:p-2 sm:pb-2.5",
                     selected
-                      ? "-translate-y-0.5 border-[#c3ffab] shadow-card ring-2 ring-[#c3ffab]/45"
-                      : "border-line-soft shadow-soft hover:-translate-y-0.5 hover:border-[#c3ffab] hover:shadow-card"
+                      ? "-translate-y-0.5 border-navy shadow-card"
+                      : "border-white/70 shadow-soft hover:-translate-y-0.5 hover:border-navy/25 hover:shadow-card"
                   )}
                 >
-                  {/* Square crop, matching the reference proportions — the pack
-                      fills the tile instead of floating in a small circle. */}
+                  {/* Square illustration panel, matching the reference
+                      proportions — the artwork fills the tile. */}
                   <span
                     className={cn(
-                      "relative grid aspect-square w-full place-items-center overflow-hidden rounded-[0.75rem]",
-                      image ? "bg-cream-soft" : "bg-lime-soft"
+                      "grid aspect-square w-full place-items-center overflow-hidden rounded-[0.75rem]",
+                      tone
                     )}
                   >
-                    {image ? (
-                      <Image
-                        src={image}
-                        alt=""
-                        fill
-                        sizes="(min-width: 640px) 116px, 88px"
-                        className="object-cover object-center transition-transform duration-700 ease-[var(--ease-out-soft)] group-hover/tile:scale-105"
-                      />
-                    ) : (
-                      <BasketIcon className="size-8 text-navy sm:size-9" />
-                    )}
+                    <Art className="size-[78%] transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover/tile:scale-105" />
                   </span>
 
                   <span
                     className={cn(
                       "flex min-h-[2.25rem] items-start px-0.5 text-center text-[0.6875rem] font-semibold leading-tight transition-colors duration-400 sm:text-[0.75rem]",
-                      selected ? "text-navy" : "text-muted"
+                      selected ? "text-navy" : "text-navy/70"
                     )}
                   >
                     {category.label}

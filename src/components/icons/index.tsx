@@ -233,40 +233,6 @@ export function LinkedInIcon(props: IconProps) {
   );
 }
 
-/**
- * Illustrated produce basket — a filled, two-tone mark rather than a line
- * glyph, so the "All products" tile reads as artwork next to the pack shots.
- * Draws in `currentColor` with white weave lines, so it inherits tile colour.
- */
-export function BasketIcon(props: IconProps) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden focusable="false" {...props}>
-      {/* Fruit heaped above the rim */}
-      <circle cx="9.3" cy="8.1" r="2.9" fill="currentColor" opacity="0.28" />
-      <circle cx="15" cy="8.8" r="2.3" fill="currentColor" opacity="0.28" />
-      <path
-        d="M12.5 6.5c.3-1.9 1.7-3.1 3.5-3.3.1 1.9-1.1 3.4-2.9 3.8"
-        fill="currentColor"
-        opacity="0.5"
-      />
-
-      {/* Basket body and rim */}
-      <path
-        d="M4.2 12.5h15.6l-1.4 6.4a2.4 2.4 0 0 1-2.4 1.9H8a2.4 2.4 0 0 1-2.4-1.9L4.2 12.5Z"
-        fill="currentColor"
-      />
-      <path
-        d="M9.7 15.2l.6 3.1M14.3 15.2l-.6 3.1"
-        stroke="#fff"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        opacity="0.9"
-      />
-      <rect x="3" y="10.7" width="18" height="2.6" rx="1.3" fill="currentColor" />
-    </svg>
-  );
-}
-
 export function WhatsAppIcon(props: IconProps) {
   return (
     <svg
