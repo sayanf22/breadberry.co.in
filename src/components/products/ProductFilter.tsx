@@ -196,7 +196,7 @@ export function ProductFilter() {
         {/* The keyed grid remounts on selection. Individual items then enter
             in a short sequence rather than the whole panel flashing at once. */}
         <div
-          key={active}
+          key={`grid-${active}`}
           className="grid grid-cols-2 gap-[clamp(0.75rem,1.6vw,1.25rem)] lg:grid-cols-3 xl:grid-cols-4"
         >
           {visible.map((product, index) => (
@@ -219,7 +219,7 @@ export function ProductFilter() {
         </div>
 
         <p
-          key={active}
+          key={`count-${active}`}
           className="product-count-enter mt-8 text-[0.8125rem] text-muted-soft"
           aria-live="polite"
         >
