@@ -8,6 +8,14 @@ import { Eyebrow, SectionHeading } from "@/components/ui/SectionHeading";
 import { ProductCard } from "@/components/products/ProductCard";
 import { CheckIcon, ChevronRightIcon } from "@/components/icons";
 import { products, relatedProducts } from "@/lib/products";
+import { JsonLd } from "@/components/seo/JsonLd";
+import {
+  breadcrumbSchema,
+  canonical,
+  pageMetadata,
+  productSchema,
+} from "@/lib/seo";
+import { site } from "@/lib/site";
 import Link from "next/link";
 
 type Params = { params: Promise<{ slug: string }> };
@@ -21,13 +29,27 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const product = products.find((item) => item.slug === slug);
   if (!product) return { title: "Product not found" };
 
+  /* Long-tail intent: buyers search the line plus a commercial qualifier and a
+     place, so the title carries the range, the city and the trade context. */
   return {
-    title: product.name,
-    description: product.blurb,
+    ...pageMetadata({
+      title: `${product.name} — Bulk ${product.categoryLabel} Supplier, ${site.city}`,
+      description: `${product.blurb} Supplied in trade packs by ${site.company}, ${site.city}, with delivery across India. ${product.specs[1].value}.`,
+      path: `/products/${product.slug}`,
+      keywords: [
+        `${product.name} supplier`,
+        `${product.name} wholesale price India`,
+        `buy ${product.name} in bulk ${site.city}`,
+        `${product.categoryLabel} supplier India`,
+      ],
+    }),
     openGraph: {
-      title: product.name,
+      type: "website",
+      siteName: site.name,
+      title: `${product.name} · ${site.name}`,
       description: product.blurb,
-      images: [{ url: product.image }],
+      url: canonical(`/products/${product.slug}`),
+      images: [{ url: product.image, alt: product.imageAlt }],
     },
   };
 }
@@ -168,6 +190,17 @@ export default async function ProductPage({ params }: Params) {
           </div>
         </Container>
       </section>
+
+      <JsonLd
+        data={[
+          productSchema(product),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Products", path: "/products" },
+            { name: product.name, path: `/products/${product.slug}` },
+          ]),
+        ]}
+      />
     </>
   );
 }

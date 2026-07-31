@@ -3,9 +3,25 @@ export const site = {
   name: "Breadberry Co.",
   /** Parent company. Breadberry Co. is its signature brand. */
   company: "Adhira Enterprises",
+  /**
+   * Spellings people actually search for. "Adira Enterprises" is a common
+   * variant of the registered name, so both are declared as entity aliases and
+   * used in copy/metadata — searching either should find this site.
+   */
+  alternateNames: [
+    "Adira Enterprises",
+    "Adhira Enterprise",
+    "Breadberry",
+    "Breadberry by Adhira Enterprises",
+    "Breadberry by Adira Enterprises",
+  ],
   founded: "2020",
   founder: "Mrs. Sonal Yerunkar",
   city: "Mumbai",
+  region: "Maharashtra",
+  country: "IN",
+  /** Machine-readable form of `hours`, for opening-hours structured data. */
+  openingHours: "Mo-Sa 09:00-18:30",
   tagline: "Premium Frozen Berries & Purees",
   description:
     "Breadberry Co., a signature brand of Adhira Enterprises, supplies premium frozen berries and fruit purees to Mumbai's 5-star hotels, fine-dining restaurants, premium confectioneries and artisanal bakers.",

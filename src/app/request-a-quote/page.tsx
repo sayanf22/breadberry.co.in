@@ -9,13 +9,21 @@ import {
   PhoneIcon,
   WhatsAppIcon,
 } from "@/components/icons";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbSchema, pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Request a Quote",
-  description:
-    "Tell us your volumes and delivery city and we'll return bulk pricing, pack sizes and the next available dispatch slot within one working day.",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Request a Bulk Quote — Wholesale Price List & Pack Sizes",
+  description: `Tell us your volumes and delivery city and ${site.contact} returns bulk pricing, pack sizes and the next dispatch slot within one working day. Trade enquiries across India.`,
+  path: "/request-a-quote",
+  keywords: [
+    "frozen berries wholesale price list India",
+    "bulk fruit puree quote Mumbai",
+    "restaurant ingredient supplier quote",
+    "HORECA supplier bulk pricing India",
+  ],
+});
 
 const promises = [
   "Pricing back within one working day",
@@ -98,6 +106,13 @@ export default function RequestQuotePage() {
           </div>
         </Container>
       </section>
+
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Request a Quote", path: "/request-a-quote" },
+        ])}
+      />
     </>
   );
 }

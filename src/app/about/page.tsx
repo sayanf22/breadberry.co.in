@@ -6,13 +6,24 @@ import { PageHero } from "@/components/layout/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { QuoteCta } from "@/components/home/QuoteCta";
 import { MissionVision } from "@/components/about/MissionVision";
-import { VideoDialog } from "@/components/ui/VideoDialog";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbSchema, pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "About",
-  description: `Founded in ${site.founded} by ${site.founder}, ${site.company} bridges world-class culinary ingredients and Mumbai's elite gastronomic landscape. Breadberry Co. is its signature brand.`,
-};
+export const metadata: Metadata = pageMetadata({
+  title: `About ${site.company} — Premium Ingredient Importer in ${site.city}`,
+  description: `Founded in ${site.founded} by ${site.founder}, ${site.company} (also known as Adhira Enterprises) imports premium frozen berries, purees, fresh produce and seafood for India's finest kitchens. Breadberry Co. is its signature brand.`,
+  path: "/about",
+  keywords: [
+    site.company,
+    "Adira Enterprises",
+    "Adira Enterprises Mumbai",
+    "Adhira Enterprises Mumbai",
+    "Breadberry by Adira Enterprises",
+    `${site.founder}`,
+    "premium food importer India",
+  ],
+});
 
 const timeline = [
   {
@@ -38,6 +49,13 @@ const timeline = [
 ];
 
 export default function AboutPage() {
+  const heroStats = [
+    { value: site.clientsServed, label: "Kitchens served" },
+    { value: "5-star", label: "Hotel group clients" },
+    { value: "77+", label: "Product lines" },
+    { value: site.founded, label: "Est. Mumbai" },
+  ];
+
   return (
     <>
       <PageHero
@@ -46,7 +64,19 @@ export default function AboutPage() {
         description={`Founded in ${site.founded} by ${site.founder}, we bring the world's finest flavours directly to Mumbai's most demanding kitchens.`}
         crumbs={[{ label: "Home", href: "/" }, { label: "About" }]}
       >
-        <VideoDialog label="Watch our story" />
+        {/* Quick-read facts strip instead of a video */}
+        <dl className="mt-2 flex flex-wrap gap-x-8 gap-y-3">
+          {heroStats.map(({ value, label }) => (
+            <div key={label}>
+              <dt className="text-[0.6875rem] font-medium uppercase tracking-[0.13em] text-muted-soft">
+                {label}
+              </dt>
+              <dd className="mt-0.5 font-display text-[1.375rem] font-semibold leading-none text-navy">
+                {value}
+              </dd>
+            </div>
+          ))}
+        </dl>
       </PageHero>
 
       {/* Story */}
@@ -63,11 +93,12 @@ export default function AboutPage() {
               />
               <div className="mt-6 space-y-4 text-muted">
                 <p>
-                  {site.company} was established in {site.founded} by{" "}
-                  {site.founder} with a singular vision: to bridge the gap
-                  between world-class culinary ingredients and Mumbai&rsquo;s
-                  elite gastronomic landscape. We understand that exceptional
-                  creations begin with uncompromising ingredients.
+                  {site.company} — also known as Adhira Enterprises — was
+                  established in {site.founded} by {site.founder} with a
+                  singular vision: to bridge the gap between world-class
+                  culinary ingredients and Mumbai&rsquo;s elite gastronomic
+                  landscape. We understand that exceptional creations begin
+                  with uncompromising ingredients.
                 </p>
                 <p>
                   From our base in Mumbai, we have grown into a trusted
@@ -143,6 +174,13 @@ export default function AboutPage() {
       <MissionVision />
 
       <QuoteCta />
+
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "About", path: "/about" },
+        ])}
+      />
     </>
   );
 }

@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/layout/PageHero";
 import { ContactForm } from "@/components/forms/ContactForm";
+import { CoverageSection } from "@/components/seo/CoverageSection";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbSchema, pageMetadata } from "@/lib/seo";
 import {
   ClockIcon,
   MailIcon,
@@ -11,10 +14,18 @@ import {
 } from "@/components/icons";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description: `Talk to the ${site.company} team about frozen berries and purees, imported vegetables, artisanal cheeses, Asian dry groceries and frozen seafood.`,
-};
+export const metadata: Metadata = pageMetadata({
+  title: `Contact ${site.contact} — ${site.company}, ${site.city}`,
+  description: `Call or WhatsApp ${site.contact} on ${site.phone} for frozen berries, purees, imported vegetables and seafood. ${site.company} supplies kitchens in ${site.city} and across India. ${site.hours}.`,
+  path: "/contact",
+  keywords: [
+    `${site.company} contact number`,
+    "Adira Enterprises contact",
+    "frozen berries supplier contact Mumbai",
+    "food ingredient supplier near me Mumbai",
+    "wholesale frozen fruit enquiry India",
+  ],
+});
 
 const channels = [
   {
@@ -94,6 +105,15 @@ export default function ContactPage() {
           </div>
         </Container>
       </section>
+
+      <CoverageSection />
+
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Contact", path: "/contact" },
+        ])}
+      />
     </>
   );
 }

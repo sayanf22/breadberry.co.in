@@ -28,13 +28,19 @@ export function ProductFilter() {
   const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
 
   useEffect(() => {
-    const fromUrl = () => {
+    const sync = () => {
       const value = new URLSearchParams(window.location.search).get("category");
       setActive(isTabId(value) ? value : "all");
     };
-    fromUrl();
-    window.addEventListener("popstate", fromUrl);
-    return () => window.removeEventListener("popstate", fromUrl);
+
+    /* Defer the first sync past the current React commit so setActive never
+       fires during the Router render that mounts this component. */
+    const timer = setTimeout(sync, 0);
+    window.addEventListener("popstate", sync);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("popstate", sync);
+    };
   }, []);
 
   /* Keep the selected tile visible in the horizontally scrollable rail without

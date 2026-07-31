@@ -8,12 +8,23 @@ import { ButtonLink } from "@/components/ui/Button";
 import { QuoteCta } from "@/components/home/QuoteCta";
 import { differenceFeatures } from "@/lib/features";
 import { portfolio } from "@/lib/portfolio";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { FaqSection, supplyFaqs } from "@/components/seo/FaqSection";
+import { breadcrumbSchema, faqSchema, pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Why Us",
-  description: `${site.company} supplies Mumbai's finest kitchens and cake studios. Rigorous cold-chain control, verified provenance and uncompromising hygiene on every consignment.`,
-};
+export const metadata: Metadata = pageMetadata({
+  title: `Why Chefs Choose Us — Cold Chain & Provenance | ${site.company}`,
+  description: `Unbroken −18 °C cold chain, verified provenance and documented handling on every consignment. Why ${site.clientsServed} kitchens across Mumbai and India source from ${site.company}.`,
+  path: "/why-us",
+  keywords: [
+    "cold chain frozen food supplier India",
+    "HORECA ingredient supplier Mumbai",
+    "verified provenance imported ingredients",
+    "bulk frozen berries supplier for hotels",
+    `${site.company} reviews`,
+  ],
+});
 
 const stats = [
   { value: site.clientsServed, label: "Kitchens served since 2020" },
@@ -143,7 +154,19 @@ export default function WhyUsPage() {
         </Container>
       </section>
 
+      <FaqSection />
+
       <QuoteCta />
+
+      <JsonLd
+        data={[
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Why Us", path: "/why-us" },
+          ]),
+          faqSchema(supplyFaqs),
+        ]}
+      />
     </>
   );
 }

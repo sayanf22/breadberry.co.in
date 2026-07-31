@@ -14,10 +14,10 @@ export function Logo({
     <Link
       href="/"
       className={cn(
-        "inline-flex shrink-0 items-center transition-opacity duration-300 hover:opacity-85",
+        "inline-flex shrink-0 flex-col items-start transition-opacity duration-300 hover:opacity-85",
         className
       )}
-      aria-label={`${site.name} — home`}
+      aria-label={`${site.name} by ${site.company} — home`}
     >
       <Image
         src="/assets/logo-mark.webp"
@@ -31,6 +31,11 @@ export function Logo({
           imageClassName
         )}
       />
+      {/* "by Adira" sub-label: uses the alternate spelling intentionally so
+          visitors who search "Adira Enterprises" recognise the brand. */}
+      <span className="mt-0.5 text-[0.5625rem] font-medium uppercase tracking-[0.15em] text-muted-soft sm:text-[0.625rem]">
+        by Adhira Enterprises
+      </span>
     </Link>
   );
 }

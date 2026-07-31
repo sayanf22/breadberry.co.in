@@ -8,13 +8,24 @@ import { ProductFilter } from "@/components/products/ProductFilter";
 import { QuoteCta } from "@/components/home/QuoteCta";
 import { products, signatureProducts } from "@/lib/products";
 import { portfolio } from "@/lib/portfolio";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbSchema, itemListSchema, pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Products",
-  description:
-    "Premium frozen berries and purees, fresh imported vegetables, artisanal cheeses, specialty Asian dry groceries and frozen seafood — supplied in bulk to professional kitchens.",
-};
+export const metadata: Metadata = pageMetadata({
+  title: `Products — ${products.length} Bulk Frozen & Fresh Lines for Kitchens`,
+  description: `Buy IQF frozen berries, fruit purees, imported fresh vegetables, bakery and Japanese staples and frozen seafood in bulk. ${products.length} trade lines supplied by ${site.company} from ${site.city} across India.`,
+  path: "/products",
+  keywords: [
+    "buy frozen berries in bulk India",
+    "IQF strawberry supplier Mumbai",
+    "fruit puree wholesale India",
+    "imported vegetables wholesale Mumbai",
+    "frozen seafood wholesale India",
+    "gyoza sheets fillo pastry supplier",
+    "HORECA frozen food price list",
+  ],
+});
 
 export default function ProductsPage() {
   return (
@@ -70,6 +81,16 @@ export default function ProductsPage() {
       </section>
 
       <QuoteCta />
+
+      <JsonLd
+        data={[
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Products", path: "/products" },
+          ]),
+          itemListSchema(products),
+        ]}
+      />
     </>
   );
 }
