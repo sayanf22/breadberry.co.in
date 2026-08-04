@@ -34,8 +34,8 @@ export const site = {
   /** Enquiries hand off to this WhatsApp thread. Digits only, no spaces. */
   whatsapp: "918554044055",
   whatsappHref: "https://wa.me/918554044055",
-  // TODO: confirm the mailbox before launch.
-  email: "orders@breadberry.co.in",
+  // Primary mailbox for sales and order enquiries.
+  email: "sales@breadberry.co.in",
   address: "Mumbai, Maharashtra, India",
   hours: "Mon–Sat · 9:00 – 18:30 IST",
   url: "https://breadberry.co.in",
