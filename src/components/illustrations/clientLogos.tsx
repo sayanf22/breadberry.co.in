@@ -10,55 +10,60 @@ export type ClientLogoProps = SVGProps<SVGSVGElement> & {
    and single-color monochrome rendering (`currentColor`).
 ───────────────────────────────────────────────────────────────────────────── */
 
-/* 1. TAJ HOTELS — Wordmark with official diamond/kite motif */
+/* 1. TAJ HOTELS — Crest directly above the elegant serif text */
 export function TajLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="Taj Hotels" className={className} {...props}>
-      <g transform="translate(20,30)">
-        <polygon points="0,-15 8,-2 0,2" />
-        <polygon points="0,-15 -8,-2 0,2" />
-        <polygon points="0,15 8,2 0,-2" />
-        <polygon points="0,15 -8,2 0,-2" />
-        <polygon points="-15,0 -2,-8 2,0" />
-        <polygon points="-15,0 -2,8 2,0" />
-        <polygon points="15,0 2,-8 -2,0" />
-        <polygon points="15,0 2,8 -2,0" />
+      {/* Official circular sunburst star crest on top */}
+      <g transform="translate(120,16) scale(0.65)">
+        <polygon points="0,-18 9,-2 0,2" />
+        <polygon points="0,-18 -9,-2 0,2" />
+        <polygon points="0,18 9,2 0,-2" />
+        <polygon points="0,18 -9,2 0,-2" />
+        <polygon points="-18,0 -2,-9 2,0" />
+        <polygon points="-18,0 -2,9 2,0" />
+        <polygon points="18,0 2,-9 -2,0" />
+        <polygon points="18,0 2,9 -2,0" />
+        <circle cx="0" cy="0" r="4" fill="none" stroke="currentColor" strokeWidth="1.5" />
       </g>
-      <text x="46" y="33" fontFamily="Georgia, 'Times New Roman', serif" fontSize="23" fontWeight="bold" letterSpacing="4.5">TAJ</text>
-      <text x="46" y="45" fontFamily="'Arial Narrow', Arial, sans-serif" fontSize="6.5" fontWeight="600" letterSpacing="1.8">HOTELS · PALACES · RESORTS · SAFARIS</text>
+      <text x="120" y="38" textAnchor="middle" fontFamily="Georgia, 'Times New Roman', serif" fontSize="18" fontWeight="bold" letterSpacing="4">TAJ</text>
+      <text x="120" y="49" textAnchor="middle" fontFamily="'Arial Narrow', Arial, sans-serif" fontSize="6" fontWeight="600" letterSpacing="1.5">HOTELS · PALACES · RESORTS · SAFARIS</text>
     </svg>
   );
 }
 
-/* 2. THEOBROMA — Lowercase italic humanist serif wordmark */
+/* 2. THEOBROMA — lowercase elegant hand-written script/cursive style */
 export function TheobromaLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="Theobroma" className={className} {...props}>
-      <text x="14" y="33" fontFamily="Georgia, 'Times New Roman', serif" fontSize="27" fontStyle="italic" fontWeight="400" letterSpacing="0.2">theobroma</text>
-      <text x="16" y="47" fontFamily="'Arial', 'Helvetica', sans-serif" fontSize="8" fontWeight="700" letterSpacing="4">PATISSERIE</text>
+      <text x="120" y="32" textAnchor="middle" fontFamily="'Brush Script MT', cursive, Georgia, serif" fontSize="29" fontStyle="italic" fontWeight="500" letterSpacing="0.5">theobroma</text>
+      <text x="120" y="46" textAnchor="middle" fontFamily="'Arial', 'Helvetica', sans-serif" fontSize="8" fontWeight="700" letterSpacing="4">PATISSERIE</text>
     </svg>
   );
 }
 
-/* 3. JW MARRIOTT — Clean bold sans-serif with griffin silhouette */
+/* 3. JW MARRIOTT — Griffin logo directly above the bold sans-serif text */
 export function JwMarriottLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="JW Marriott" className={className} {...props}>
-      <g transform="translate(10,8) scale(0.85)">
-        <path d="M 20,42 C 8,42 4,32 4,24 C 4,14 12,8 20,8 C 24,8 28,10 30,13" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
-        <path d="M 20,15 L 38,6 L 36,18 L 28,16 Z" />
-        <path d="M 22,22 L 40,18 L 36,28 L 26,26 Z" />
-        <path d="M 20,8 C 18,4 22,2 24,4 L 22,9 Z" />
-        <path d="M 20,38 L 14,50 M 20,38 L 8,48" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
-        <path d="M 18,44 L 14,50 L 16,50 L 20,46" />
+      {/* Griffin emblem centered on top */}
+      <g transform="translate(120,3) scale(0.48)">
+        <g transform="translate(-20,0)">
+          <path d="M 20,42 C 8,42 4,32 4,24 C 4,14 12,8 20,8 C 24,8 28,10 30,13" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round"/>
+          <path d="M 20,15 L 38,6 L 36,18 L 28,16 Z" />
+          <path d="M 22,22 L 40,18 L 36,28 L 26,26 Z" />
+          <path d="M 20,8 C 18,4 22,2 24,4 L 22,9 Z" />
+          <path d="M 20,38 L 14,50 M 20,38 L 8,48" stroke="currentColor" strokeWidth="3" fill="none" strokeLinecap="round"/>
+          <path d="M 18,44 L 14,50 L 16,50 L 20,46" />
+        </g>
       </g>
-      <text x="50" y="31" fontFamily="'Arial', 'Helvetica', sans-serif" fontSize="17" fontWeight="900" letterSpacing="1.5">JW MARRIOTT</text>
-      <text x="50" y="44" fontFamily="'Arial', 'Helvetica', sans-serif" fontSize="7.5" fontWeight="400" letterSpacing="2.5">HOTELS &amp; RESORTS</text>
+      <text x="120" y="38" textAnchor="middle" fontFamily="'Arial Black', 'Arial Bold', sans-serif" fontSize="13.5" fontWeight="900" letterSpacing="1.8">JW MARRIOTT</text>
+      <text x="120" y="49" textAnchor="middle" fontFamily="'Arial', 'Helvetica', sans-serif" fontSize="6.5" fontWeight="400" letterSpacing="2.5">HOTELS &amp; RESORTS</text>
     </svg>
   );
 }
 
-/* 4. BLUE TOKAI — Circle badge with peacock cutout via SVG mask */
+/* 4. BLUE TOKAI — Peacock badge side-by-side with wordmark */
 export function BlueTokaiLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="Blue Tokai" className={className} {...props}>
@@ -90,29 +95,30 @@ export function BlueTokaiLogo({ className = "h-10 w-auto", ...props }: ClientLog
   );
 }
 
-/* 5. OBEROI HOTELS — Sun symbol & elegant mixed-case serif */
+/* 5. OBEROI HOTELS — Multi-petaled sunburst directly above the script wordmark */
 export function OberoiLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="Oberoi" className={className} {...props}>
-      <g transform="translate(26,30)">
-        <circle cx="0" cy="0" r="6"/>
+      {/* Oberoi Sun crest centered on top */}
+      <g transform="translate(120,15) scale(0.6)">
+        <circle cx="0" cy="0" r="5"/>
         {[0,30,60,90,120,150,180,210,240,270,300,330].map((angle, i) => {
           const rad = (angle * Math.PI) / 180;
-          const x1 = Math.cos(rad) * 9;
-          const y1 = Math.sin(rad) * 9;
-          const x2 = Math.cos(rad) * 17;
-          const y2 = Math.sin(rad) * 17;
+          const x1 = Math.cos(rad) * 8;
+          const y1 = Math.sin(rad) * 8;
+          const x2 = Math.cos(rad) * 16;
+          const y2 = Math.sin(rad) * 16;
           return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>;
         })}
-        <circle cx="0" cy="0" r="20" fill="none" stroke="currentColor" strokeWidth="1.2"/>
+        <circle cx="0" cy="0" r="18" fill="none" stroke="currentColor" strokeWidth="1.2"/>
       </g>
-      <text x="56" y="31" fontFamily="Georgia, 'Times New Roman', serif" fontSize="22" fontWeight="bold" letterSpacing="1">Oberoi</text>
-      <text x="56" y="45" fontFamily="'Arial Narrow', Arial, sans-serif" fontSize="7.5" fontWeight="600" letterSpacing="2.5">HOTELS &amp; RESORTS</text>
+      <text x="120" y="38" textAnchor="middle" fontFamily="Georgia, 'Times New Roman', serif" fontSize="19" fontWeight="bold" letterSpacing="1">Oberoi</text>
+      <text x="120" y="49" textAnchor="middle" fontFamily="'Arial Narrow', Arial, sans-serif" fontSize="7" fontWeight="600" letterSpacing="2.5">HOTELS &amp; RESORTS</text>
     </svg>
   );
 }
 
-/* 6. PAUL BAKERY — Classic French serif inside double border */
+/* 6. PAUL BAKERY — Roman Serif inside double border (Monochrome Cutout) */
 export function PaulLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="PAUL" className={className} {...props}>
@@ -124,90 +130,112 @@ export function PaulLogo({ className = "h-10 w-auto", ...props }: ClientLogoProp
   );
 }
 
-/* 7. HYATT — Wordmark with arched crossbar detail */
+/* 7. HYATT — Wordmark with arched crossbar running directly through the text */
 export function HyattLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="Hyatt" className={className} {...props}>
       <text x="120" y="38" textAnchor="middle" fontFamily="'Arial Black', 'Arial Bold', sans-serif" fontSize="28" fontWeight="900" letterSpacing="5">HYATT</text>
-      <path d="M 125,23 Q 131,18 137,23" stroke="currentColor" strokeWidth="3" fill="none" strokeLinecap="round"/>
+      {/* Swoosh/arc integrated directly into the wordmark */}
+      <path d="M 75,32 Q 120,20 165,32" stroke="currentColor" strokeWidth="3" fill="none" strokeLinecap="round" opacity="0.85"/>
     </svg>
   );
 }
 
-/* 8. PIZZAEXPRESS — One-word CamelCase brand name with Art Nouveau badge */
+/* 8. PIZZAEXPRESS — Stacked wordmark with ornate circular filigree on the left */
 export function PizzaExpressLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
-    <svg viewBox="0 0 240 60" fill="currentColor" aria-label="Pizza Express" className={className} {...props}>
-      <g transform="translate(26,30)">
+    <svg viewBox="0 0 240 60" fill="currentColor" aria-label="PizzaExpress" className={className} {...props}>
+      <g transform="translate(24,30) scale(0.95)">
         <circle cx="0" cy="0" r="21" fill="none" stroke="currentColor" strokeWidth="1.8"/>
         <circle cx="0" cy="0" r="17" fill="none" stroke="currentColor" strokeWidth="0.8"/>
-        <circle cx="0" cy="-9" r="1.5"/>
-        <circle cx="0" cy="9" r="1.5"/>
-        <circle cx="-9" cy="0" r="1.5"/>
-        <circle cx="9" cy="0" r="1.5"/>
+        {/* Symmetrical filigree swirls */}
+        <path d="M 0,-17 C -5,-12 -3,-8 0,-11 C 3,-8 5,-12 0,-17 Z" />
+        <path d="M 0,17 C 5,12 3,8 0,11 C -3,8 -5,12 0,17 Z" />
+        <path d="M -17,0 C -12,5 -8,3 -11,0 C -8,-3 -12,-5 -17,0 Z" />
+        <path d="M 17,0 C 12,-5 8,-3 11,0 C 8,3 12,5 17,0 Z" />
       </g>
-      <text x="56" y="35" fontFamily="Georgia, 'Times New Roman', serif" fontSize="22" fontWeight="bold" letterSpacing="0.2">PizzaExpress</text>
+      <text x="56" y="36" fontFamily="Georgia, 'Times New Roman', serif" fontSize="24" fontWeight="bold" fontStyle="italic" letterSpacing="-0.3">PizzaExpress</text>
     </svg>
   );
 }
 
-/* 9. FORTUNE HOTELS — Brand rules & typography */
+/* 9. FORTUNE HOTELS — precise letter alignment to prevent O badge overlap across browsers */
 export function FortuneLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
-    <svg viewBox="0 0 240 60" fill="currentColor" aria-label="Fortune Park Lakecity" className={className} {...props}>
-      <line x1="20" y1="12" x2="220" y2="12" stroke="currentColor" strokeWidth="0.8"/>
-      <text x="120" y="32" textAnchor="middle" fontFamily="Georgia, 'Times New Roman', serif" fontSize="19" fontWeight="700" fontStyle="italic" letterSpacing="2">Fortune</text>
-      <text x="120" y="44" textAnchor="middle" fontFamily="'Arial Narrow', Arial, sans-serif" fontSize="6.5" fontWeight="400" letterSpacing="2">AN ITC HOTELS BRAND</text>
-      <line x1="20" y1="49" x2="220" y2="49" stroke="currentColor" strokeWidth="0.8"/>
+    <svg viewBox="0 0 240 60" fill="currentColor" aria-label="Fortune Hotels" className={className} {...props}>
+      <defs>
+        {/* Mask for the O badge to create a clean wave cutout */}
+        <mask id="fortune-o-mask">
+          <circle cx="77" cy="24" r="10" fill="white" />
+          <path d="M 65,24 Q 77,14 89,24 Q 77,34 65,24" fill="black" />
+        </mask>
+      </defs>
+      <g fontFamily="system-ui, -apple-system, sans-serif" fontSize="22" fontWeight="900" letterSpacing="0">
+        <text x="48" y="32">F</text>
+        {/* Circle representing the O */}
+        <circle cx="77" cy="24" r="10" mask="url(#fortune-o-mask)" />
+        <text x="94" y="32">R</text>
+        <text x="115" y="32">T</text>
+        <text x="134" y="32">U</text>
+        <text x="156" y="32">N</text>
+        <text x="178" y="32">E</text>
+      </g>
+      <line x1="45" y1="41" x2="195" y2="41" stroke="currentColor" strokeWidth="0.8"/>
+      <text x="120" y="50" textAnchor="middle" fontFamily="system-ui, -apple-system, sans-serif" fontSize="6" fontWeight="600" letterSpacing="0.8">Member ITC Hotels' Group</text>
     </svg>
   );
 }
 
-/* 10. MERWANS — Custom bold italic serif */
+/* 10. MERWANS — Custom script/cursive wordmark with underline detail */
 export function MerwansLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="Merwans" className={className} {...props}>
-      <text x="14" y="34" fontFamily="Georgia, 'Times New Roman', serif" fontSize="26" fontWeight="700" fontStyle="italic" letterSpacing="1">Merwans</text>
-      <text x="16" y="48" fontFamily="'Arial', 'Helvetica', sans-serif" fontSize="8" fontWeight="700" letterSpacing="3.5">CONFECTIONERS</text>
+      <text x="120" y="32" textAnchor="middle" fontFamily="'Brush Script MT', cursive, Georgia, serif" fontSize="30" fontStyle="italic" fontWeight="600" letterSpacing="0.5">Merwans</text>
+      <text x="120" y="45" textAnchor="middle" fontFamily="'Arial', 'Helvetica', sans-serif" fontSize="7" fontWeight="800" letterSpacing="3">CONFECTIONERS</text>
     </svg>
   );
 }
 
-/* 11. BASTIAN — Minimal wide-spaced bold wordmark */
+/* 11. BASTIAN — Elegant script/cursive wordmark */
 export function BastianLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="Bastian" className={className} {...props}>
-      <line x1="20" y1="14" x2="220" y2="14" stroke="currentColor" strokeWidth="0.8"/>
-      <text x="120" y="34" textAnchor="middle" fontFamily="'Arial', 'Helvetica', sans-serif" fontSize="20" fontWeight="600" letterSpacing="8">BASTIAN</text>
-      <line x1="20" y1="42" x2="220" y2="42" stroke="currentColor" strokeWidth="0.8"/>
-      <text x="120" y="52" textAnchor="middle" fontFamily="'Arial Narrow', Arial, sans-serif" fontSize="6.5" fontWeight="400" letterSpacing="3">MUMBAI</text>
+      <text x="120" y="34" textAnchor="middle" fontFamily="'Brush Script MT', cursive, Georgia, serif" fontSize="36" fontStyle="italic" fontWeight="500">Bastian</text>
     </svg>
   );
 }
 
-/* 12. PARSI DAIRY FARM — Condensed bold block wordmark with drop motif */
+/* 12. PARSI DAIRY FARM — Standing cow silhouette on left + bold condensed text */
 export function ParsiDairyLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="Parsi Dairy Farm" className={className} {...props}>
-      <path d="M 22,12 C 22,12 15,21 15,28 C 15,33 18,37 22,37 C 26,37 29,33 29,28 C 29,21 22,12 22,12 Z"/>
-      <text x="42" y="24" fontFamily="'Arial Black', 'Arial Bold', sans-serif" fontSize="12" fontWeight="900" letterSpacing="1">PARSI DAIRY</text>
-      <text x="42" y="39" fontFamily="'Arial Black', 'Arial Bold', sans-serif" fontSize="12" fontWeight="900" letterSpacing="1">FARM</text>
-      <text x="42" y="49" fontFamily="'Arial', sans-serif" fontSize="6.5" fontWeight="400" letterSpacing="1.5">ESTABLISHED 1916</text>
+      {/* Standing Cow Silhouette */}
+      <g transform="translate(12,18) scale(0.65)">
+        <path d="M 5,18 C 10,18 12,14 14,14 C 18,14 26,11 32,12 C 34,12 36,15 37,17 L 39,17 C 41,17 41,13 40,11 C 39,9 38,7 34,6 C 30,5 24,5 18,6 C 14,7 9,9 6,11 C 4,12 2,12 1,14 C 0,15 0,17 2,17 M 6,18 L 6,29 M 9,18 L 9,29 M 31,18 L 31,29 M 34,18 L 34,29 M 38,11 L 39,13" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+      </g>
+      <text x="60" y="27" fontFamily="'Arial Black', sans-serif" fontSize="13" fontWeight="950" letterSpacing="0.5">PARSI DAIRY</text>
+      <text x="60" y="40" fontFamily="'Arial Black', sans-serif" fontSize="13" fontWeight="950" letterSpacing="0.5">FARM</text>
+      <text x="60" y="50" fontFamily="'Arial', sans-serif" fontSize="6.5" fontWeight="500" letterSpacing="1">ESTABLISHED 1916</text>
     </svg>
   );
 }
 
-/* 13. OLIVE BAR & KITCHEN — Thin clean lowercase sans-serif */
+/* 13. OLIVE BAR & KITCHEN — Stylized leaf icon above lowercase clean sans-serif */
 export function OliveLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="Olive Bar &amp; Cafe" className={className} {...props}>
-      <text x="14" y="34" fontFamily="'Gill Sans', 'Optima', 'Futura', sans-serif" fontSize="28" fontWeight="300" letterSpacing="4">olive</text>
-      <text x="16" y="48" fontFamily="'Arial', 'Helvetica', sans-serif" fontSize="8" fontWeight="600" letterSpacing="4">BAR &amp; KITCHEN</text>
+      {/* Hand-drawn leaf outline centered on top */}
+      <g transform="translate(120,12) scale(0.7)">
+        <path d="M 0,-6 C -4,-2 -2,4 0,2 C 2,4 4,-2 0,-6 Z" fill="none" stroke="currentColor" strokeWidth="2"/>
+        <path d="M -6,0 C -3,2 0,0 0,0" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+      </g>
+      <text x="120" y="38" textAnchor="middle" fontFamily="'Gill Sans', 'Optima', 'Futura', sans-serif" fontSize="25" fontWeight="300" letterSpacing="3">olive</text>
+      <text x="120" y="49" textAnchor="middle" fontFamily="'Arial', 'Helvetica', sans-serif" fontSize="7.5" fontWeight="600" letterSpacing="3.5">BAR &amp; KITCHEN</text>
     </svg>
   );
 }
 
-/* 14. MILKY MIST — Bold rounded friendly wordmark & drop */
+/* 14. MILKY MIST — Custom curved organic friendly wordmark */
 export function MilkyMistLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="Milky Mist" className={className} {...props}>
@@ -218,48 +246,55 @@ export function MilkyMistLogo({ className = "h-10 w-auto", ...props }: ClientLog
   );
 }
 
-/* 15. MAINLAND CHINA — Uppercase fine-dining serif wordmark */
+/* 15. MAINLAND CHINA — Crown/gateway icon directly above uppercase wordmark */
 export function MainlandChinaLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="Mainland China" className={className} {...props}>
-      <line x1="12" y1="12" x2="228" y2="12" stroke="currentColor" strokeWidth="1"/>
-      <text x="120" y="31" textAnchor="middle" fontFamily="Georgia, 'Times New Roman', serif" fontSize="17" fontWeight="bold" letterSpacing="2.5">MAINLAND CHINA</text>
-      <line x1="12" y1="39" x2="228" y2="39" stroke="currentColor" strokeWidth="1"/>
-      <text x="120" y="50" textAnchor="middle" fontFamily="'Arial Narrow', sans-serif" fontSize="7" fontWeight="400" letterSpacing="2.5">FINE CHINESE DINING</text>
+      {/* 3-pronged crown/gateway icon centered on top */}
+      <path d="M 112,14 L 112,8 L 116,10 L 120,6 L 124,10 L 128,8 L 128,14 Z" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+      <text x="120" y="33" textAnchor="middle" fontFamily="Georgia, 'Times New Roman', serif" fontSize="17" fontWeight="bold" letterSpacing="2">MAINLAND CHINA</text>
+      <line x1="40" y1="41" x2="200" y2="41" stroke="currentColor" strokeWidth="0.8"/>
+      <text x="120" y="50" textAnchor="middle" fontFamily="'Arial Narrow', sans-serif" fontSize="7" fontWeight="600" letterSpacing="2">FINE CHINESE DINING</text>
     </svg>
   );
 }
 
-/* 16. MAPRO FOODS — Bold rounded lowercase wordmark */
+/* 16. MAPRO FOODS — Bold rounded lowercase centered inside oval border */
 export function MaproLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="Mapro" className={className} {...props}>
-      <text x="120" y="36" textAnchor="middle" fontFamily="'Arial Black', 'Futura', sans-serif" fontSize="28" fontWeight="900" letterSpacing="1">mapro</text>
-      <text x="120" y="49" textAnchor="middle" fontFamily="'Arial', sans-serif" fontSize="7.5" fontWeight="600" letterSpacing="3">FOODS</text>
+      <rect x="25" y="8" width="190" height="44" rx="22" ry="22" fill="none" stroke="currentColor" strokeWidth="1.8"/>
+      {/* macron bar over the o */}
+      <line x1="152" y1="16" x2="162" y2="16" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+      <text x="120" y="37" textAnchor="middle" fontFamily="'Arial Black', 'Futura', sans-serif" fontSize="27" fontWeight="950" letterSpacing="0.8">mapro</text>
     </svg>
   );
 }
 
-/* 17. MIZU IZAKAYA — Wide-spaced modern sans-serif & wave path */
+/* 17. MIZU IZAKAYA — Kanji '水' icon above modern sans-serif */
 export function MizuLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="Mizu" className={className} {...props}>
-      <path d="M 12,24 Q 22,14 32,24 Q 42,34 52,24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/>
-      <path d="M 12,30 Q 22,20 32,30 Q 42,40 52,30" stroke="currentColor" strokeWidth="1" fill="none" strokeLinecap="round" opacity="0.5"/>
-      <text x="60" y="32" fontFamily="'Arial', 'Helvetica', sans-serif" fontSize="23" fontWeight="300" letterSpacing="5">MIZU</text>
-      <text x="60" y="45" fontFamily="'Arial', sans-serif" fontSize="7" fontWeight="400" letterSpacing="3">IZAKAYA</text>
+      {/* Kanji 水 (Water) custom calligraphic path */}
+      <g transform="translate(120,12) scale(0.8)">
+        {/* vertical line with hook */}
+        <path d="M 0,-8 L 0,8 C 0,10 -1,11 -3,11" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+        {/* left brush strokes */}
+        <path d="M -8,-2 C -3,-2 -3,2 -6,3 M -9,4 C -4,4 -2,6 -5,8" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
+        {/* right brush stroke */}
+        <path d="M 0,-4 Q 6,-3 8,1 L 10,7" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
+      </g>
+      <text x="120" y="36" textAnchor="middle" fontFamily="'Arial', 'Helvetica', sans-serif" fontSize="20" fontWeight="300" letterSpacing="5">MIZU</text>
+      <text x="120" y="47" textAnchor="middle" fontFamily="'Arial', sans-serif" fontSize="7" fontWeight="400" letterSpacing="2">IZAKAYA</text>
     </svg>
   );
 }
 
-/* 18. EVE — Elegant widely-spaced serif wordmark */
+/* 18. EVE — Lowercase brush script handwriting wordmark */
 export function EveLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="EVE" className={className} {...props}>
-      <line x1="20" y1="14" x2="220" y2="14" stroke="currentColor" strokeWidth="0.8"/>
-      <text x="120" y="35" textAnchor="middle" fontFamily="Georgia, 'Times New Roman', serif" fontSize="22" fontWeight="400" letterSpacing="10">EVE</text>
-      <line x1="20" y1="42" x2="220" y2="42" stroke="currentColor" strokeWidth="0.8"/>
-      <text x="120" y="52" textAnchor="middle" fontFamily="'Arial Narrow', sans-serif" fontSize="6.5" fontWeight="400" letterSpacing="3">MUMBAI</text>
+      <text x="120" y="38" textAnchor="middle" fontFamily="'Brush Script MT', cursive, Georgia, serif" fontSize="42" fontStyle="italic" fontWeight="400">eve</text>
     </svg>
   );
 }
