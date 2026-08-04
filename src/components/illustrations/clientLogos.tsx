@@ -5,42 +5,42 @@ export type ClientLogoProps = SVGProps<SVGSVGElement> & {
 };
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   Unified 240x60 Vector Client Logos
+   Unified 240x60 Vector Client Logos (Matched to Official Brands)
    All logos share identical 240x60 viewBox, cap-heights, baseline alignment,
    and single-color monochrome rendering (`currentColor`).
 ───────────────────────────────────────────────────────────────────────────── */
 
-/* 1. TAJ HOTELS */
+/* 1. TAJ HOTELS — Wordmark with official diamond/kite motif */
 export function TajLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="Taj Hotels" className={className} {...props}>
-      <g transform="translate(22,30)">
-        <polygon points="0,-16  9,-2  0,2" />
-        <polygon points="0,-16 -9,-2  0,2" />
-        <polygon points="0,16   9,2   0,-2" />
-        <polygon points="0,16  -9,2   0,-2" />
-        <polygon points="-16,0 -2,-9  2,0" />
-        <polygon points="-16,0 -2,9   2,0" />
-        <polygon points=" 16,0  2,-9 -2,0" />
-        <polygon points=" 16,0  2,9  -2,0" />
+      <g transform="translate(20,30)">
+        <polygon points="0,-15 8,-2 0,2" />
+        <polygon points="0,-15 -8,-2 0,2" />
+        <polygon points="0,15 8,2 0,-2" />
+        <polygon points="0,15 -8,2 0,-2" />
+        <polygon points="-15,0 -2,-8 2,0" />
+        <polygon points="-15,0 -2,8 2,0" />
+        <polygon points="15,0 2,-8 -2,0" />
+        <polygon points="15,0 2,8 -2,0" />
       </g>
-      <text x="48" y="32" fontFamily="Georgia, 'Times New Roman', serif" fontSize="22" fontWeight="bold" letterSpacing="5">TAJ</text>
-      <text x="48" y="45" fontFamily="'Arial Narrow', Arial, sans-serif" fontSize="6.5" fontWeight="600" letterSpacing="2">HOTELS · PALACES · RESORTS · SAFARIS</text>
+      <text x="46" y="33" fontFamily="Georgia, 'Times New Roman', serif" fontSize="23" fontWeight="bold" letterSpacing="4.5">TAJ</text>
+      <text x="46" y="45" fontFamily="'Arial Narrow', Arial, sans-serif" fontSize="6.5" fontWeight="600" letterSpacing="1.8">HOTELS · PALACES · RESORTS · SAFARIS</text>
     </svg>
   );
 }
 
-/* 2. THEOBROMA */
+/* 2. THEOBROMA — Lowercase italic humanist serif wordmark */
 export function TheobromaLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="Theobroma" className={className} {...props}>
-      <text x="12" y="34" fontFamily="Georgia, 'Times New Roman', serif" fontSize="26" fontStyle="italic" fontWeight="400" letterSpacing="0.5">theobroma</text>
-      <text x="14" y="48" fontFamily="'Arial', 'Helvetica', sans-serif" fontSize="8" fontWeight="700" letterSpacing="4.5">PATISSERIE</text>
+      <text x="14" y="33" fontFamily="Georgia, 'Times New Roman', serif" fontSize="27" fontStyle="italic" fontWeight="400" letterSpacing="0.2">theobroma</text>
+      <text x="16" y="47" fontFamily="'Arial', 'Helvetica', sans-serif" fontSize="8" fontWeight="700" letterSpacing="4">PATISSERIE</text>
     </svg>
   );
 }
 
-/* 3. JW MARRIOTT */
+/* 3. JW MARRIOTT — Clean bold sans-serif with griffin silhouette */
 export function JwMarriottLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="JW Marriott" className={className} {...props}>
@@ -58,25 +58,39 @@ export function JwMarriottLogo({ className = "h-10 w-auto", ...props }: ClientLo
   );
 }
 
-/* 4. BLUE TOKAI */
+/* 4. BLUE TOKAI — Circle badge with peacock cutout via SVG mask */
 export function BlueTokaiLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="Blue Tokai" className={className} {...props}>
-      <g transform="translate(24,30)">
-        <circle cx="0" cy="0" r="21" />
-        {/* Cutout details using masking/opacity */}
-        <circle cx="0" cy="0" r="18" fill="none" stroke="currentColor" strokeWidth="0.5"/>
-        <ellipse cx="0" cy="4" rx="4" ry="7" fill="none" stroke="currentColor" strokeWidth="1.5"/>
-        <circle cx="0" cy="-6" r="2.5" fill="none" stroke="currentColor" strokeWidth="1.5"/>
-        <path d="M -8,-8 L -13,-14 M -4,-11 L -7,-17 M 0,-12 L 0,-18 M 4,-11 L 7,-17 M 8,-8 L 13,-14" stroke="currentColor" strokeWidth="1" fill="none" opacity="0.6"/>
-      </g>
-      <text x="54" y="30" fontFamily="'Arial', 'Helvetica', sans-serif" fontSize="17" fontWeight="900" letterSpacing="1">BLUE TOKAI</text>
-      <text x="54" y="44" fontFamily="'Arial', 'Helvetica', sans-serif" fontSize="8" fontWeight="600" letterSpacing="2.5">COFFEE ROASTERS</text>
+      <defs>
+        <mask id="blue-tokai-peacock-mask">
+          <rect x="0" y="0" width="240" height="60" fill="white" />
+          <g fill="black" stroke="black" strokeLinecap="round">
+            <path d="M 28,36 L 14,18 M 28,36 L 19,15 M 28,36 L 25,13 M 28,36 L 31,13 M 28,36 L 37,15 M 28,36 L 42,18" strokeWidth="1.5" />
+            <circle cx="14" cy="17" r="2.2" />
+            <circle cx="19" cy="14" r="2.2" />
+            <circle cx="25" cy="12" r="2.2" />
+            <circle cx="31" cy="12" r="2.2" />
+            <circle cx="37" cy="14" r="2.2" />
+            <circle cx="42" cy="17" r="2.2" />
+            <ellipse cx="28" cy="36" rx="5" ry="8" />
+            <ellipse cx="28" cy="26" rx="2.5" ry="4" />
+            <circle cx="28" cy="22" r="3" />
+            <path d="M 26,20 L 24,14 M 28,19 L 28,13 M 30,20 L 32,14" strokeWidth="1" />
+            <circle cx="24" cy="14" r="1.5" />
+            <circle cx="28" cy="13" r="1.5" />
+            <circle cx="32" cy="14" r="1.5" />
+          </g>
+        </mask>
+      </defs>
+      <circle cx="28" cy="30" r="21" mask="url(#blue-tokai-peacock-mask)" />
+      <text x="56" y="29" fontFamily="'Arial Black', 'Arial Bold', sans-serif" fontSize="17" fontWeight="900" letterSpacing="0.8">BLUE TOKAI</text>
+      <text x="56" y="43" fontFamily="'Arial', 'Helvetica', sans-serif" fontSize="8" fontWeight="700" letterSpacing="2">COFFEE ROASTERS</text>
     </svg>
   );
 }
 
-/* 5. OBEROI HOTELS */
+/* 5. OBEROI HOTELS — Sun symbol & elegant mixed-case serif */
 export function OberoiLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="Oberoi" className={className} {...props}>
@@ -98,7 +112,7 @@ export function OberoiLogo({ className = "h-10 w-auto", ...props }: ClientLogoPr
   );
 }
 
-/* 6. PAUL BAKERY */
+/* 6. PAUL BAKERY — Classic French serif inside double border */
 export function PaulLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="PAUL" className={className} {...props}>
@@ -110,17 +124,17 @@ export function PaulLogo({ className = "h-10 w-auto", ...props }: ClientLogoProp
   );
 }
 
-/* 7. HYATT */
+/* 7. HYATT — Wordmark with arched crossbar detail */
 export function HyattLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="Hyatt" className={className} {...props}>
-      <text x="120" y="38" textAnchor="middle" fontFamily="'Arial', 'Helvetica', sans-serif" fontSize="28" fontWeight="700" letterSpacing="5">HYATT</text>
-      <path d="M 125,23 Q 131,18 137,23" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+      <text x="120" y="38" textAnchor="middle" fontFamily="'Arial Black', 'Arial Bold', sans-serif" fontSize="28" fontWeight="900" letterSpacing="5">HYATT</text>
+      <path d="M 125,23 Q 131,18 137,23" stroke="currentColor" strokeWidth="3" fill="none" strokeLinecap="round"/>
     </svg>
   );
 }
 
-/* 8. PIZZAEXPRESS */
+/* 8. PIZZAEXPRESS — One-word CamelCase brand name with Art Nouveau badge */
 export function PizzaExpressLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="Pizza Express" className={className} {...props}>
@@ -132,13 +146,12 @@ export function PizzaExpressLogo({ className = "h-10 w-auto", ...props }: Client
         <circle cx="-9" cy="0" r="1.5"/>
         <circle cx="9" cy="0" r="1.5"/>
       </g>
-      <text x="56" y="27" fontFamily="Georgia, 'Times New Roman', serif" fontSize="16" fontWeight="700" letterSpacing="0.5" fontStyle="italic">Pizza</text>
-      <text x="56" y="44" fontFamily="Georgia, 'Times New Roman', serif" fontSize="16" fontWeight="700" letterSpacing="0.5" fontStyle="italic">Express</text>
+      <text x="56" y="35" fontFamily="Georgia, 'Times New Roman', serif" fontSize="22" fontWeight="bold" letterSpacing="0.2">PizzaExpress</text>
     </svg>
   );
 }
 
-/* 9. FORTUNE HOTELS */
+/* 9. FORTUNE HOTELS — Brand rules & typography */
 export function FortuneLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="Fortune Park Lakecity" className={className} {...props}>
@@ -150,7 +163,7 @@ export function FortuneLogo({ className = "h-10 w-auto", ...props }: ClientLogoP
   );
 }
 
-/* 10. MERWANS */
+/* 10. MERWANS — Custom bold italic serif */
 export function MerwansLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="Merwans" className={className} {...props}>
@@ -160,7 +173,7 @@ export function MerwansLogo({ className = "h-10 w-auto", ...props }: ClientLogoP
   );
 }
 
-/* 11. BASTIAN */
+/* 11. BASTIAN — Minimal wide-spaced bold wordmark */
 export function BastianLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="Bastian" className={className} {...props}>
@@ -172,7 +185,7 @@ export function BastianLogo({ className = "h-10 w-auto", ...props }: ClientLogoP
   );
 }
 
-/* 12. PARSI DAIRY FARM */
+/* 12. PARSI DAIRY FARM — Condensed bold block wordmark with drop motif */
 export function ParsiDairyLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="Parsi Dairy Farm" className={className} {...props}>
@@ -184,7 +197,7 @@ export function ParsiDairyLogo({ className = "h-10 w-auto", ...props }: ClientLo
   );
 }
 
-/* 13. OLIVE BAR & KITCHEN */
+/* 13. OLIVE BAR & KITCHEN — Thin clean lowercase sans-serif */
 export function OliveLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="Olive Bar &amp; Cafe" className={className} {...props}>
@@ -194,7 +207,7 @@ export function OliveLogo({ className = "h-10 w-auto", ...props }: ClientLogoPro
   );
 }
 
-/* 14. MILKY MIST */
+/* 14. MILKY MIST — Bold rounded friendly wordmark & drop */
 export function MilkyMistLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="Milky Mist" className={className} {...props}>
@@ -205,19 +218,19 @@ export function MilkyMistLogo({ className = "h-10 w-auto", ...props }: ClientLog
   );
 }
 
-/* 15. MAINLAND CHINA */
+/* 15. MAINLAND CHINA — Uppercase fine-dining serif wordmark */
 export function MainlandChinaLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="Mainland China" className={className} {...props}>
       <line x1="12" y1="12" x2="228" y2="12" stroke="currentColor" strokeWidth="1"/>
-      <text x="120" y="31" textAnchor="middle" fontFamily="Georgia, 'Times New Roman', serif" fontSize="19" fontWeight="600" letterSpacing="1.5">Mainland China</text>
+      <text x="120" y="31" textAnchor="middle" fontFamily="Georgia, 'Times New Roman', serif" fontSize="17" fontWeight="bold" letterSpacing="2.5">MAINLAND CHINA</text>
       <line x1="12" y1="39" x2="228" y2="39" stroke="currentColor" strokeWidth="1"/>
       <text x="120" y="50" textAnchor="middle" fontFamily="'Arial Narrow', sans-serif" fontSize="7" fontWeight="400" letterSpacing="2.5">FINE CHINESE DINING</text>
     </svg>
   );
 }
 
-/* 16. MAPRO FOODS */
+/* 16. MAPRO FOODS — Bold rounded lowercase wordmark */
 export function MaproLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="Mapro" className={className} {...props}>
@@ -227,7 +240,7 @@ export function MaproLogo({ className = "h-10 w-auto", ...props }: ClientLogoPro
   );
 }
 
-/* 17. MIZU IZAKAYA */
+/* 17. MIZU IZAKAYA — Wide-spaced modern sans-serif & wave path */
 export function MizuLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="Mizu" className={className} {...props}>
@@ -239,7 +252,7 @@ export function MizuLogo({ className = "h-10 w-auto", ...props }: ClientLogoProp
   );
 }
 
-/* 18. EVE */
+/* 18. EVE — Elegant widely-spaced serif wordmark */
 export function EveLogo({ className = "h-10 w-auto", ...props }: ClientLogoProps) {
   return (
     <svg viewBox="0 0 240 60" fill="currentColor" aria-label="EVE" className={className} {...props}>
