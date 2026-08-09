@@ -59,9 +59,11 @@ export function pageMetadata({
       description,
       url,
       locale: "en_IN",
+      /* Purpose-built 1200x630 card. The bare logo used to be declared at
+         these dimensions, which made every share preview letterbox badly. */
       images: [
         {
-          url: `${site.url}/assets/logo-mark.png`,
+          url: `${site.url}/og.jpg`,
           width: 1200,
           height: 630,
           alt: `${site.name} by ${site.company}`,
@@ -72,7 +74,7 @@ export function pageMetadata({
       card: "summary_large_image",
       title: `${title} · ${site.name}`,
       description,
-      images: [`${site.url}/assets/logo-mark.png`],
+      images: [`${site.url}/og.jpg`],
     },
   };
 }
@@ -99,7 +101,7 @@ export function organizationSchema() {
     description: site.description,
     url: site.url,
     logo: `${site.url}/assets/logo-mark.png`,
-    image: `${site.url}/assets/logo-mark.png`,
+    image: `${site.url}/og.jpg`,
     telephone: site.phone,
     email: site.email,
     foundingDate: site.founded,

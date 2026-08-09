@@ -258,20 +258,11 @@ async function build(src, rect, name, opts = {}) {
 }
 
 /* ── Brand mark ────────────────────────────────────────────────────────────────
- * The mark occupies x 37–216, y 26–122 of the mobile mockup (measured with
- * preview.mjs). The rect below clears it on every side so the ribbon's lower
- * edge and drop shadow are never clipped, then the white header background is
- * knocked out and the result trimmed back to the artwork with 4px of clear
- * space held around it.
- *
- * Filenames are versioned: Next's image optimiser caches by URL, so a changed
- * file at the same path keeps serving the stale variant.
+ * No longer cropped out of the mockup. The logo now comes from the supplied
+ * artwork in `design/logo-source.png` and is built by
+ * `scripts/build-logo-assets.mjs`, which also emits the favicons, PWA icons and
+ * the Open Graph card. Re-running this extractor must not overwrite them.
  */
-const logoRect = { left: 20, top: 14, width: 212, height: 124 };
-const logoOpts = { knockout: { luma: 232, spread: 28 }, trim: 4 };
-
-await build(MOBILE, logoRect, "logo-mark.webp", { ...logoOpts, scale: 2.6 });
-await build(MOBILE, logoRect, "logo-mark.png", logoOpts);
 
 /* ── Hero visual, desktop ─────────────────────────────────────────────────── */
 await build(

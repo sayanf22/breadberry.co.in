@@ -90,7 +90,19 @@ export const metadata: Metadata = {
     statusBarStyle: "default",
     capable: true,
   },
-  icons: { icon: "/assets/logo-mark.png", apple: "/assets/logo-mark.png" },
+  icons: {
+    /* favicon.ico carries 16/32/48 for legacy browsers and bookmark bars; the
+       PNGs are what modern browsers and Android actually pick up. */
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icons/favicon-32.png", type: "image/png", sizes: "32x32" },
+      { url: "/icons/favicon-16.png", type: "image/png", sizes: "16x16" },
+      { url: "/icons/icon-192.png", type: "image/png", sizes: "192x192" },
+      { url: "/icons/icon-512.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180" }],
+    shortcut: ["/favicon.ico"],
+  },
 };
 
 export const viewport: Viewport = {

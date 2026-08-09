@@ -67,7 +67,7 @@ npm run lint
 ## Project layout
 
 ```
-design/            Source mockups the image assets are cut from
+design/            Supplied logo artwork + source mockups assets are cut from
 scripts/           Asset pipeline (see below)
 src/app/           Routes, root layout, route transition, Server Actions
 src/components/
@@ -80,16 +80,63 @@ src/components/
 src/lib/           Site + client config, portfolio categories, products, features
 ```
 
-## Image assets
+## Brand mark, favicons and social card
 
-The mockups arrived as flat PNGs with no separate layers, so every asset is cut
-from them programmatically. All output lands in `public/assets`.
+The logo is built from the supplied artwork at `design/logo-source.png`, not cut
+from a mockup:
 
 ```bash
-node scripts/extract-assets.mjs           # regenerate every asset
+node scripts/build-logo-assets.mjs
+```
+
+One command produces every branded asset:
+
+| Output                             | Purpose                                  |
+| ---------------------------------- | ---------------------------------------- |
+| `public/assets/logo-mark.webp`     | Header and footer, 384×225, transparent   |
+| `public/assets/logo-mark.png`      | `Organization.logo` for crawlers, 512w    |
+| `public/favicon.ico`               | 16/32/48 bundled, legacy and bookmarks    |
+| `public/icons/favicon-{16,32,48}.png` | Modern browser tabs                    |
+| `public/icons/icon-{192,512}.png`  | PWA manifest, `purpose: any`              |
+| `public/icons/maskable-512.png`    | Android adaptive, inset to the safe zone  |
+| `public/icons/apple-touch-icon.png`| 180×180, flattened — iOS ignores alpha    |
+| `public/og.jpg`                    | 1200×630 share card                       |
+
+The white backdrop is removed with a **border-seeded flood fill**, not a global
+"near-white is transparent" threshold. That distinction matters: the wordmark is
+white script type inside the purple banner, and a global threshold punches
+straight through it. Only white reachable from the canvas edge is cut, then edge
+pixels get a partial alpha so the artwork keeps its anti-aliased edge instead of
+going jagged.
+
+Two constraints worth knowing before changing sizes:
+
+- `images.unoptimized` is on, so Next serves `src` verbatim and `sizes` cannot
+  shrink the download. The WebP is generated at the size the UI actually paints
+  (96 CSS px at most, so 384px covers a 3× phone). A 960px master put 128 KB on
+  the critical path for a 96 px image; the shipped file is 32 KB.
+- `LOGO_W` / `LOGO_H` in `src/components/layout/Logo.tsx` must match the
+  generated WebP or the reserved box shifts on load.
+
+`<Logo>` is the single source for both placements. The footer passes `onDark`,
+which sits the mark on a cream plate — the deep purple banner otherwise sinks
+into the near-black slab — and `subLabel={false}`, because the copy beside it
+already names the parent company.
+
+## Image assets
+
+The mockups arrived as flat PNGs with no separate layers, so the hero and
+product crops are cut from them programmatically. All output lands in
+`public/assets`.
+
+```bash
+node scripts/extract-assets.mjs           # regenerate hero and tint assets
 node scripts/analyse-regions.mjs          # score a crop for foliage vs. text
 node scripts/preview.mjs <file> [cols] [--rect=l,t,w,h]
 ```
+
+> `extract-assets.mjs` no longer touches the logo. Re-running it will not
+> overwrite the generated brand assets.
 
 `preview.mjs` renders any image as ASCII (luminance plus alpha), which is how
 the crop rectangles were measured and verified. Useful when adjusting a rect:

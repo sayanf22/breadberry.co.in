@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Container } from "@/components/ui/Container";
+import { Logo } from "@/components/layout/Logo";
 import {
   ClockIcon,
   InstagramIcon,
@@ -83,14 +83,9 @@ export function SiteFooter() {
           <div className="grid gap-[clamp(2rem,4vw,3rem)] sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1.2fr_1.4fr]">
             {/* About */}
             <div>
-              <Image
-                src="/assets/logo-mark.webp"
-                alt={site.name}
-                width={481}
-                height={276}
-                sizes="128px"
-                className="h-[2.75rem] w-auto"
-              />
+              {/* Same component as the header — the copy below already names
+                  the parent company, so the sub-label is off here. */}
+              <Logo onDark subLabel={false} />
               <p className="mt-5 max-w-[38ch] text-[0.8125rem] leading-relaxed text-cream/60">
                 <span className="font-medium text-lime-soft">{site.name}</span> is a
                 signature brand of{" "}
