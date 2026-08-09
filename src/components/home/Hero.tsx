@@ -65,16 +65,16 @@ export function Hero() {
         aria-hidden
         className="pointer-events-none absolute inset-y-0 left-0 right-0 -z-10 mx-auto hidden max-w-[106rem] lg:block"
       >
-        {/* The supplied composition is landscape, so it is given a little more
-            width from `xl` up where there is room. At `lg` it stays at 54% so
-            it can never run under the headline column. */}
-        <div className="hero-art absolute inset-y-0 right-0 w-[54%] max-w-[46rem] xl:w-[56%] xl:max-w-[50rem]">
+        {/* The composition is landscape, so it grows with the viewport. At `lg`
+            it stays at 54% — that is the widest it can be without running under
+            the headline column on a 1024px iPad in landscape. */}
+        <div className="hero-art absolute inset-y-0 right-0 w-[54%] max-w-[46rem] xl:w-[56%] xl:max-w-[50rem] 2xl:w-[57%] 2xl:max-w-[56rem]">
           <Image
-            src="/assets/hero-desktop-4.webp"
+            src="/assets/hero-desktop-5.webp"
             alt=""
             fill
             priority
-            sizes="(min-width: 1280px) 56vw, (min-width: 1024px) 54vw, 1px"
+            sizes="(min-width: 1536px) 57vw, (min-width: 1280px) 56vw, (min-width: 1024px) 54vw, 1px"
             className="object-contain object-right"
           />
         </div>
@@ -131,15 +131,19 @@ export function Hero() {
             aria-hidden
           >
             <Image
-              src="/assets/hero-mobile-4.webp"
+              src="/assets/hero-mobile-5.webp"
               alt=""
               /* Intrinsic size of the generated asset — rebuild with
                  `node scripts/build-hero-assets.mjs` if the source changes. */
               width={768}
-              height={730}
+              height={670}
               priority
               sizes="(max-width: 1023px) 100vw, 1px"
-              className="mx-auto w-full max-w-[36rem]"
+              /* Grows with the viewport instead of stopping at 36rem, which
+                 left the composition marooned in white space on an iPad in
+                 portrait. Capped at the asset's own width so it never upscales
+                 past its native pixels. */
+              className="mx-auto w-full max-w-[34rem] sm:max-w-[40rem] md:max-w-[46rem]"
             />
           </div>
 

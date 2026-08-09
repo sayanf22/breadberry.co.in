@@ -1,21 +1,29 @@
 /**
  * Builds the home hero artwork from the supplied compositions:
  *
- *   ../images/lookonpc.jpeg    -> public/assets/hero-desktop-4.webp
- *   ../images/lookonphone.png  -> public/assets/hero-mobile-4.webp
+ *   ../images/lookonpc.jpeg    -> public/assets/hero-desktop-5.webp
+ *   ../images/lookonphone.png  -> public/assets/hero-mobile-5.webp
  *
- * Both arrive on a flat near-white card. Rather than fading a rectangle, the
- * surround is removed with a border-seeded flood fill, so the packs, tubs and
- * berries sit on transparency and blend against any page background. Only the
- * edges where the artwork is genuinely clipped get a light feather, so nothing
- * reads as sliced off.
+ * Approach: keep the artwork's own pale backdrop, trim only the margin that
+ * carries nothing, then feather every visible edge so the backdrop dissolves
+ * into the page wash. The background is deliberately NOT knocked out — these
+ * compositions have soft shadows and translucent foliage that a flood fill
+ * cannot separate cleanly, and feathering preserves them intact.
+ *
+ * Measured extent of the composition (saturation + luminance, see tmp-bounds):
+ *   lookonpc.jpeg     x  94..1307 of 1310,  y  50..789 of 816   (near full bleed)
+ *   lookonphone.png   x   0..767  of 768,   y  80..1375 of 1376 (full bleed)
+ *
+ * Because the desktop frame is essentially full, its crop is limited to the
+ * genuinely empty margin. Cropping harder cuts the packs, which is what made an
+ * earlier revision look sliced in half.
  *
  *   node scripts/build-hero-assets.mjs
  */
 import path from "node:path";
 import { mkdirSync, existsSync } from "node:fs";
 import sharp from "sharp";
-import { feather, knockout } from "./lib/image-ops.mjs";
+import { feather } from "./lib/image-ops.mjs";
 
 const OUT = path.resolve("public", "assets");
 mkdirSync(OUT, { recursive: true });
@@ -23,43 +31,33 @@ mkdirSync(OUT, { recursive: true });
 const SRC = path.resolve("..", "images");
 
 /**
- * Measured on this artwork (see `git log` for the analysis run):
- *
- *   encoder            desktop   mobile
- *   lossless             931 KB   584 KB
- *   nearLossless q60     682 KB   408 KB
- *   lossy q95            236 KB   155 KB
- *
- * q95 with `alphaQuality: 100` is visually indistinguishable from lossless on
- * this photographic content while keeping the hero — which is the largest
- * paint on the page and on the critical path — roughly a quarter of the weight.
- * The alpha ramp itself is stored losslessly, so the knockout edge stays clean.
- * Flip this one object to `{ lossless: true }` if byte-exact output is ever
- * required.
+ * q95 with a lossless alpha channel. Measured against true lossless on this
+ * artwork: 931 KB -> 236 KB desktop, 584 KB -> 123 KB phone, with no visible
+ * difference. The hero is the largest paint on the page, so the weight matters.
  */
 const ENCODE = { quality: 95, effort: 6, alphaQuality: 100 };
 
 const jobs = [
   {
     source: path.join(SRC, "lookonpc.jpeg"),
-    name: "hero-desktop-4.webp",
-    /* Composition fills the frame (74–97% opaque throughout), so it is kept
-       whole. Anchored right in the layout, so only the left edge has to
-       dissolve into the page. */
-    edges: { left: 0.06 },
-    maxWidth: 1310,
+    name: "hero-desktop-5.webp",
+    /* Only the empty margin comes off: ~6% at the left, ~5% at the top and ~2%
+       at the bottom. Everything inside that is composition. */
+    crop: { left: 0.06, top: 0.05, width: 0.94, height: 0.93 },
+    /* All four edges are visible in the layout, so all four dissolve. The left
+       ramp is the widest because that edge meets the headline column. */
+    edges: { left: 0.16, right: 0.06, top: 0.12, bottom: 0.12 },
+    maxWidth: 1240,
   },
   {
     source: path.join(SRC, "lookonphone.png"),
-    name: "hero-mobile-4.webp",
-    /* The supplied frame is 1350px tall once trimmed, but the top fifth and
-       bottom quarter are sparse trailing foliage (18–35% coverage, little
-       colour) while the packs, tubs and berries all sit between. Keeping the
-       full height would push the page's trust badges far below the fold, so
-       the band that holds the whole product composition is kept and only the
-       thin decorative tails are dropped. Nothing of the product is cut. */
-    band: { top: 0.207, height: 0.541 },
-    edges: { top: 0.07, bottom: 0.05 },
+    name: "hero-mobile-5.webp",
+    /* Full width is kept — the composition bleeds to both sides. Vertically the
+       products sit between y 500 and y 1030, so the tall foliage band above and
+       the sparse trailing berries below are dropped. This is what brings the
+       packs and tubs up to size on a phone without cutting them. */
+    crop: { left: 0, top: 0.276, width: 1, height: 0.487 },
+    edges: { left: 0.07, right: 0.07, top: 0.12, bottom: 0.1 },
     maxWidth: 768,
   },
 ];
@@ -73,60 +71,31 @@ if (missing.length) {
   process.exit(1);
 }
 
-for (const { source, name, edges, band, maxWidth } of jobs) {
-  const original = await sharp(source).metadata();
+for (const { source, name, crop, edges, maxWidth } of jobs) {
+  const meta = await sharp(source).metadata();
 
-  /* 1. Remove the flat card behind the composition. */
-  const cut = await knockout(
-    await sharp(source).ensureAlpha().png().toBuffer(),
-    { luma: 236, spread: 22, softness: 1 }
+  /* 1. Trim the empty margin. */
+  const left = Math.round(meta.width * crop.left);
+  const top = Math.round(meta.height * crop.top);
+  const width = Math.min(Math.round(meta.width * crop.width), meta.width - left);
+  const height = Math.min(
+    Math.round(meta.height * crop.height),
+    meta.height - top
   );
 
-  /* 2. Crop to the artwork, keeping a little clear space so any feather has
-        somewhere to fall off and the edge never looks shaved. */
-  let buffer = cut.buffer;
-  if (cut.bbox) {
-    const pad = 8;
-    buffer = await sharp(buffer)
-      .extract({
-        left: Math.max(0, cut.bbox.left - pad),
-        top: Math.max(0, cut.bbox.top - pad),
-        width: Math.min(
-          original.width - Math.max(0, cut.bbox.left - pad),
-          cut.bbox.width + pad * 2
-        ),
-        height: Math.min(
-          original.height - Math.max(0, cut.bbox.top - pad),
-          cut.bbox.height + pad * 2
-        ),
-      })
-      .png()
-      .toBuffer();
-  }
+  let buffer = await sharp(source)
+    .extract({ left, top, width, height })
+    .ensureAlpha()
+    .png()
+    .toBuffer();
 
-  /* 3. Optionally keep only the meaningful vertical band. */
-  if (band) {
-    const meta = await sharp(buffer).metadata();
-    const top = Math.round(meta.height * band.top);
-    const height = Math.min(
-      Math.round(meta.height * band.height),
-      meta.height - top
-    );
-    buffer = await sharp(buffer)
-      .extract({ left: 0, top, width: meta.width, height })
-      .png()
-      .toBuffer();
-  }
+  /* 2. Fade every edge so the artwork's own backdrop blends into the page. */
+  buffer = await feather(buffer, edges);
 
-  /* 4. Soften only the clipped edges. */
-  if (edges && Object.keys(edges).length) {
-    buffer = await feather(buffer, edges);
-  }
-
-  /* 5. Ship no more pixels than the layout paints. `images.unoptimized` is on,
-        so the file is served verbatim. */
-  const beforeResize = await sharp(buffer).metadata();
-  if (beforeResize.width > maxWidth) {
+  /* 3. Ship no more pixels than the layout paints — `images.unoptimized` is on,
+        so the file is served exactly as written. */
+  const cropped = await sharp(buffer).metadata();
+  if (cropped.width > maxWidth) {
     buffer = await sharp(buffer)
       .resize({ width: maxWidth, kernel: sharp.kernel.lanczos3 })
       .png()
@@ -137,8 +106,8 @@ for (const { source, name, edges, band, maxWidth } of jobs) {
 
   console.log(
     `${path.basename(source).padEnd(20)} -> ${name.padEnd(22)} ` +
-      `${original.width}x${original.height} -> ${info.width}x${info.height}  ` +
-      `bg -${cut.cleared}%  ${Math.round(info.size / 1024)} KB`
+      `${meta.width}x${meta.height} -> crop ${width}x${height} -> ` +
+      `${info.width}x${info.height}  ${Math.round(info.size / 1024)} KB`
   );
 }
 
