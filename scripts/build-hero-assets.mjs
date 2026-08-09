@@ -1,7 +1,7 @@
 /**
  * Builds the home hero artwork from the supplied compositions:
  *
- *   ../images/lookonpc.jpeg    -> public/assets/hero-desktop-5.webp
+ *   ../images/lookonpc.jpeg    -> public/assets/hero-desktop-6.webp
  *   ../images/lookonphone.png  -> public/assets/hero-mobile-5.webp
  *
  * Approach: keep the artwork's own pale backdrop, trim only the margin that
@@ -40,13 +40,15 @@ const ENCODE = { quality: 95, effort: 6, alphaQuality: 100 };
 const jobs = [
   {
     source: path.join(SRC, "lookonpc.jpeg"),
-    name: "hero-desktop-5.webp",
+    name: "hero-desktop-6.webp",
     /* Only the empty margin comes off: ~6% at the left, ~5% at the top and ~2%
        at the bottom. Everything inside that is composition. */
     crop: { left: 0.06, top: 0.05, width: 0.94, height: 0.93 },
-    /* All four edges are visible in the layout, so all four dissolve. The left
-       ramp is the widest because that edge meets the headline column. */
-    edges: { left: 0.16, right: 0.06, top: 0.12, bottom: 0.12 },
+    /* Edge-only ramps. An earlier revision faded 16% of the width on the left,
+       which is ~197px and washed out the foliage well inside the composition.
+       These are just wide enough to hide the cut against the page — roughly
+       60px on the left and 30px elsewhere — and no wider. */
+    edges: { left: 0.05, right: 0.028, top: 0.04, bottom: 0.04 },
     maxWidth: 1240,
   },
   {

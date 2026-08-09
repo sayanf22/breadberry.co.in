@@ -70,7 +70,7 @@ export function Hero() {
             the headline column on a 1024px iPad in landscape. */}
         <div className="hero-art absolute inset-y-0 right-0 w-[54%] max-w-[46rem] xl:w-[56%] xl:max-w-[50rem] 2xl:w-[57%] 2xl:max-w-[56rem]">
           <Image
-            src="/assets/hero-desktop-5.webp"
+            src="/assets/hero-desktop-6.webp"
             alt=""
             fill
             priority
