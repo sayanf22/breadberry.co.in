@@ -145,7 +145,7 @@ export const proofPoints: Proof[] = [
     title: "1000+ kitchens served",
     note: "Hotels, fine-dining restaurants, confectioneries, bakeries and cafés across Mumbai.",
     href: "/about",
-    cta: "About us",
+    cta: "About Us",
     size: "lg",
   },
   {

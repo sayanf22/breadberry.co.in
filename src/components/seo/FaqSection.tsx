@@ -35,7 +35,7 @@ export const supplyFaqs = [
   },
   {
     question: "Are you the same company as Adira Enterprises?",
-    answer: `Yes. ${site.company} is the registered name, sometimes written as Adhira Enterprises or Adira Enterprises in shorthand. Breadberry Co. is our signature brand for premium frozen berries and fruit purees.`,
+    answer: `${site.name} is the signature brand of ${site.company}, the registered parent company. “Adira Enterprises” is a common spelling variant of the company name. The same team supplies Breadberry frozen berries, fruit purees and specialist food-service ingredients.`,
   },
 ];
 

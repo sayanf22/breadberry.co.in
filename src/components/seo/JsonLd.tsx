@@ -5,11 +5,18 @@
  * returns, so this stays a plain server component — never injected after load.
  */
 export function JsonLd({ data }: { data: object | object[] }) {
+  /* JSON-LD is non-interactive server markup. Escape `<` so structured values
+     can never terminate the script, and key by content so a development HMR
+     update replaces the script instead of reconciling stale innerHTML. */
+  const json = JSON.stringify(data).replace(/</g, "\\u003c");
+
   return (
     <script
+      key={json}
       type="application/ld+json"
-      // Server-rendered from our own typed builders, never user input.
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      suppressHydrationWarning
+      // Built from typed server data; React does not need to hydrate it.
+      dangerouslySetInnerHTML={{ __html: json }}
     />
   );
 }

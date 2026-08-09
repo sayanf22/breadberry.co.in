@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { PageHero } from "@/components/layout/PageHero";
@@ -11,16 +10,16 @@ import { breadcrumbSchema, pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
-  title: `About ${site.company} — Premium Ingredient Importer in ${site.city}`,
-  description: `Founded in ${site.founded} by ${site.founder}, ${site.company} (also known as Adhira Enterprises) imports premium frozen berries, purees, fresh produce and seafood for India's finest kitchens. Breadberry Co. is its signature brand.`,
+  title: `About ${site.name} by ${site.company} — Our Founder & Story`,
+  description: `${site.name} is the signature food-service brand of ${site.company}, founded in ${site.city} by ${site.founder}. Meet the team supplying premium ingredients to 5-star hotels, fine-dining restaurants and cafés.`,
   path: "/about",
   keywords: [
+    site.name,
     site.company,
     "Adira Enterprises",
-    "Adira Enterprises Mumbai",
+    "Breadberry by Adhira Enterprises",
     "Adhira Enterprises Mumbai",
-    "Breadberry by Adira Enterprises",
-    `${site.founder}`,
+    site.founder,
     "premium food importer India",
   ],
 });
@@ -28,30 +27,30 @@ export const metadata: Metadata = pageMetadata({
 const timeline = [
   {
     year: site.founded,
-    title: "Founded in Mumbai",
-    body: `${site.founder} establishes ${site.company} with a singular vision: to bridge the gap between world-class culinary ingredients and Mumbai's elite gastronomic landscape.`,
+    title: `${site.company} founded`,
+    body: `${site.founder} establishes the Mumbai business to connect professional kitchens with dependable, globally sourced ingredients.`,
   },
   {
     year: "Growth",
-    title: "A trusted procurement partner",
-    body: "From a Mumbai base, the business grows into a procurement partner for 5-star hotels, fine-dining restaurants, premium confectioneries and artisanal bakers.",
+    title: "Trusted by hospitality teams",
+    body: "The business grows into a procurement partner for 5-star hotel groups, fine-dining restaurants, cafés, confectioneries and artisanal bakers.",
   },
   {
-    year: "Expansion",
-    title: "Breadberry Co. introduced",
-    body: "As our footprint in the premium food sector widens, Breadberry Co. launches as a signature brand under the Adhira Enterprises umbrella.",
+    year: "Breadberry",
+    title: `${site.name} takes shape`,
+    body: `${site.name} becomes the signature brand of ${site.company}, focused on premium frozen berries, fruit purees and specialist culinary lines.`,
   },
   {
     year: "Today",
     title: `${site.clientsServed} kitchens served`,
-    body: "Five curated ingredient categories, supplied to over a thousand kitchens, cake studios, cafés and retail brands.",
+    body: "A curated catalogue now serves professional kitchens with careful sourcing, cold-chain handling and responsive trade support.",
   },
 ];
 
 export default function AboutPage() {
   const heroStats = [
     { value: site.clientsServed, label: "Kitchens served" },
-    { value: "5-star", label: "Hotel group clients" },
+    { value: "5-star", label: "Hotels & fine-dine restaurants" },
     { value: "77+", label: "Product lines" },
     { value: site.founded, label: "Est. Mumbai" },
   ];
@@ -59,10 +58,10 @@ export default function AboutPage() {
   return (
     <>
       <PageHero
-        eyebrow={`Welcome to ${site.company}`}
-        title="Elevating culinary experiences through exceptional ingredients"
-        description={`Founded in ${site.founded} by ${site.founder}, we bring the world's finest flavours directly to Mumbai's most demanding kitchens.`}
-        crumbs={[{ label: "Home", href: "/" }, { label: "About" }]}
+        eyebrow={`${site.name} by ${site.company}`}
+        title="The story behind Breadberry Co."
+        description={`${site.name} is the signature brand of ${site.company}, founded in ${site.city} by ${site.founder} to bring dependable premium ingredients to professional kitchens.`}
+        crumbs={[{ label: "Home", href: "/" }, { label: "About Us" }]}
       >
         {/* Quick-read facts strip instead of a video */}
         <dl className="mt-2 flex flex-wrap gap-x-8 gap-y-3">
@@ -85,50 +84,34 @@ export default function AboutPage() {
         className="py-[clamp(3rem,7vw,5rem)]"
       >
         <Container>
-          <div className="grid items-center gap-[clamp(2rem,5vw,4rem)] lg:grid-cols-2">
+          <div className="max-w-[52rem]">
             <Reveal>
               <SectionHeading
-                eyebrow="About us"
-                title={<span id="story-heading">Built on a single vision</span>}
+                eyebrow="Breadberry & Adhira"
+                title={<span id="story-heading">One company, one signature brand</span>}
               />
               <div className="mt-6 space-y-4 text-muted">
                 <p>
-                  {site.company} — also known as Adhira Enterprises — was
-                  established in {site.founded} by {site.founder} with a
-                  singular vision: to bridge the gap between world-class
-                  culinary ingredients and Mumbai&rsquo;s elite gastronomic
-                  landscape. We understand that exceptional creations begin
-                  with uncompromising ingredients.
+                  <strong className="font-semibold text-navy">{site.company}</strong>{" "}
+                  is the parent company founded in {site.city} in {site.founded}{" "}
+                  by {site.founder}. It was created to help professional kitchens
+                  source premium ingredients with dependable quality, careful
+                  handling and responsive service.
                 </p>
                 <p>
-                  From our base in Mumbai, we have grown into a trusted
-                  procurement partner for 5-star hotels, fine-dining
-                  restaurants, premium confectioneries and artisanal bakers —
-                  dedicated to bringing the world&rsquo;s finest flavours
-                  directly to your kitchen.
+                  <strong className="font-semibold text-navy">{site.name}</strong>{" "}
+                  is the company&rsquo;s signature brand. Breadberry brings together
+                  frozen berries, fruit purees and specialist culinary lines for
+                  pastry teams, chefs and food-service buyers. You may therefore
+                  see the business described as &ldquo;Breadberry by {site.company}.&rdquo;
                 </p>
                 <p>
-                  As our footprint in the premium food sector expanded, we
-                  proudly introduced Breadberry Co. as a signature brand under
-                  the {site.company} umbrella. Through Breadberry Co. we extend
-                  our passion for quality and craftsmanship into specialised
-                  culinary and baking avenues, continuing our tradition of
-                  excellence.
+                  Today we supply 5-star hotel groups, fine-dining restaurants,
+                  cafés, premium confectioneries and artisanal bakers. Every
+                  range is selected for practical kitchen performance and moved
+                  with the storage and cold-chain care that the product requires.
                 </p>
               </div>
-            </Reveal>
-
-            <Reveal
-              delay={120}
-              className="relative aspect-[4/3] overflow-hidden rounded-hero bg-tint-blueberry"
-            >
-              <Image
-                src="/assets/hero-mobile.webp"
-                alt="Breadberry Co. frozen berry pouches and fruit puree tubs"
-                fill
-                sizes="(min-width: 1024px) 44vw, 92vw"
-                className="object-cover object-center"
-              />
             </Reveal>
           </div>
         </Container>
@@ -178,7 +161,7 @@ export default function AboutPage() {
       <JsonLd
         data={breadcrumbSchema([
           { name: "Home", path: "/" },
-          { name: "About", path: "/about" },
+          { name: "About Us", path: "/about" },
         ])}
       />
     </>

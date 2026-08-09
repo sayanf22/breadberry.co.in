@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { site, social } from "@/lib/site";
-import { servedRegions } from "@/lib/coverage";
 import type { Product } from "@/lib/products";
 
 /**
@@ -124,10 +123,7 @@ export function organizationSchema() {
       },
     ],
     priceRange: "₹₹ (Trade & Wholesale B2B Rates)",
-    areaServed: [
-      { "@type": "Country", name: "India" },
-      ...servedRegions.map((name) => ({ "@type": "State", name })),
-    ],
+    areaServed: { "@type": "Country", name: "India" },
     contactPoint: [
       {
         "@type": "ContactPoint",

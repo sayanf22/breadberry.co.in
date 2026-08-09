@@ -32,7 +32,7 @@ export function Logo({
     <Link
       href="/"
       className={cn(
-        "inline-flex shrink-0 flex-col items-start transition-opacity duration-300 hover:opacity-85",
+        "inline-flex shrink-0 flex-col items-center transition-opacity duration-300 hover:opacity-85",
         className
       )}
       aria-label={`${site.name} by ${site.company} — home`}
@@ -66,11 +66,11 @@ export function Logo({
            structured data rather than by misspelling it here. */
         <span
           className={cn(
-            "mt-1 text-[0.5625rem] font-medium uppercase tracking-[0.15em] sm:text-[0.625rem]",
+            "mt-1 w-full whitespace-nowrap text-center text-[0.5rem] font-semibold uppercase tracking-[0.18em] sm:text-[0.5625rem]",
             onDark ? "text-cream/60" : "text-muted-soft"
           )}
         >
-          by {site.company}
+          BY {site.company.toUpperCase()}
         </span>
       )}
     </Link>

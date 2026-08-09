@@ -1,48 +1,53 @@
 "use client";
 
-import { useActionState } from "react";
-import { submitContact, type FormState } from "@/app/actions";
+import { useRef, type FormEvent } from "react";
 import { Button } from "@/components/ui/Button";
 import { Field, inputClass } from "@/components/ui/Field";
-import { ErrorSummary, SuccessPanel } from "@/components/forms/FormStatus";
+import { WhatsAppIcon } from "@/components/icons";
+import { enquiryLinks } from "@/lib/enquiry";
+import { site } from "@/lib/site";
 
-const initialFormState: FormState = { status: "idle" };
+function valuesFrom(form: HTMLFormElement) {
+  const values: Record<string, string> = {};
+  for (const [key, value] of new FormData(form)) {
+    if (typeof value === "string") values[key] = value;
+  }
+  return values;
+}
 
 export function ContactForm() {
-  const [state, action, pending] = useActionState(
-    submitContact,
-    initialFormState
-  );
+  const formRef = useRef<HTMLFormElement>(null);
 
-  if (state.status === "success") {
-    return (
-      <SuccessPanel message={state.message} whatsapp={state.whatsapp} />
-    );
-  }
+  const links = () => {
+    const form = formRef.current;
+    if (!form || !form.reportValidity()) return null;
+    return enquiryLinks(`New enquiry for ${site.name}`, valuesFrom(form));
+  };
 
-  const value = (key: string) => state.values?.[key] ?? "";
-  const error = (key: string) => state.errors?.[key];
-  const aria = (key: string) =>
-    error(key)
-      ? ({ "aria-invalid": true, "aria-describedby": `${key}-error` } as const)
-      : {};
+  const openEmail = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const draft = links();
+    if (draft) window.location.href = draft.mailto;
+  };
+
+  const openWhatsApp = () => {
+    const draft = links();
+    if (draft) window.open(draft.whatsapp, "_blank", "noopener,noreferrer");
+  };
 
   return (
-    <form action={action} noValidate className="flex flex-col gap-5">
-      <ErrorSummary state={state} />
-
+    <form ref={formRef} onSubmit={openEmail} className="flex flex-col gap-5">
       <div className="grid gap-5 sm:grid-cols-2">
-        <Field label="Full name" htmlFor="name" required error={error("name")}>
+        <Field label="Full name" htmlFor="name" required>
           <input
             id="name"
             name="name"
             type="text"
             autoComplete="name"
             required
-            defaultValue={value("name")}
-            className={inputClass(error("name"))}
+            minLength={2}
+            className={inputClass()}
             placeholder="Aarav Mehta"
-            {...aria("name")}
           />
         </Field>
 
@@ -52,23 +57,20 @@ export function ContactForm() {
             name="company"
             type="text"
             autoComplete="organization"
-            defaultValue={value("company")}
             className={inputClass()}
             placeholder="Olive Bistro"
           />
         </Field>
 
-        <Field label="Work email" htmlFor="email" required error={error("email")}>
+        <Field label="Work email" htmlFor="email" required>
           <input
             id="email"
             name="email"
             type="email"
             autoComplete="email"
             required
-            defaultValue={value("email")}
-            className={inputClass(error("email"))}
+            className={inputClass()}
             placeholder="chef@yourvenue.com"
-            {...aria("email")}
           />
         </Field>
 
@@ -78,7 +80,6 @@ export function ContactForm() {
             name="phone"
             type="tel"
             autoComplete="tel"
-            defaultValue={value("phone")}
             className={inputClass()}
             placeholder="+91 98765 43210"
           />
@@ -89,7 +90,6 @@ export function ContactForm() {
         label="How can we help?"
         htmlFor="message"
         required
-        error={error("message")}
         hint="Products, volumes, delivery city — whatever is useful."
       >
         <textarea
@@ -97,22 +97,28 @@ export function ContactForm() {
           name="message"
           rows={5}
           required
-          defaultValue={value("message")}
-          className={`${inputClass(error("message"))} resize-y`}
+          minLength={10}
+          className={`${inputClass()} resize-y`}
           placeholder="We run three cafés in Mumbai and go through roughly 40 kg of frozen berries a month…"
-          {...aria("message")}
         />
       </Field>
 
-      <Button
-        type="submit"
-        size="lg"
-        withArrow
-        disabled={pending}
-        className="self-start"
-      >
-        {pending ? "Sending…" : "Send enquiry"}
-      </Button>
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+        <Button type="submit" size="lg" withArrow className="w-full sm:w-auto">
+          Open Email Draft
+        </Button>
+        <button
+          type="button"
+          onClick={openWhatsApp}
+          className="inline-flex h-[3.25rem] w-full items-center justify-center gap-2.5 rounded-pill bg-[#25d366] px-6 text-[0.9375rem] font-semibold text-white shadow-[0_4px_16px_rgba(37,211,102,0.3)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#20bd5a] sm:w-auto"
+        >
+          <WhatsAppIcon className="size-5" />
+          Send via WhatsApp
+        </button>
+      </div>
+      <p className="text-[0.75rem] text-muted-soft">
+        Opens your device&rsquo;s configured email or WhatsApp app. Nothing is sent until you confirm it there.
+      </p>
     </form>
   );
 }

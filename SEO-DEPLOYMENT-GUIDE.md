@@ -80,7 +80,7 @@ Get your token from [Google Search Console](https://search.google.com/search-con
 1. Create/claim GBP listing for Adhira Enterprises
 2. Ensure exact NAP match with `src/lib/site.ts`:
    - Name: Adhira Enterprises
-   - Phone: +91 85540 44055
+   - Phone: 8108187667
    - Address: Mumbai, Maharashtra, India
 3. Add both name spellings in business description
 4. Link to website

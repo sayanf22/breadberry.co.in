@@ -3,7 +3,6 @@ import type { CSSProperties, ReactNode } from "react";
 import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/SectionHeading";
-import { VideoDialog } from "@/components/ui/VideoDialog";
 import { LeafIcon, SnowflakeIcon, TruckIcon } from "@/components/icons";
 import { site } from "@/lib/site";
 

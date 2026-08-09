@@ -181,7 +181,7 @@ export function FortuneLogo({ className = "h-10 w-auto", ...props }: ClientLogoP
         <text x="178" y="32">E</text>
       </g>
       <line x1="45" y1="41" x2="195" y2="41" stroke="currentColor" strokeWidth="0.8"/>
-      <text x="120" y="50" textAnchor="middle" fontFamily="system-ui, -apple-system, sans-serif" fontSize="6" fontWeight="600" letterSpacing="0.8">Member ITC Hotels' Group</text>
+      <text x="120" y="50" textAnchor="middle" fontFamily="system-ui, -apple-system, sans-serif" fontSize="6" fontWeight="600" letterSpacing="0.8">Member ITC Hotels&apos; Group</text>
     </svg>
   );
 }

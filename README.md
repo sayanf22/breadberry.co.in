@@ -12,7 +12,7 @@ no theme or template.
 - Tailwind CSS v4, configured entirely through `@theme` tokens in
   `src/app/globals.css`
 - `next/font` — **Newsreader** for display, **Geist** for UI and body
-- Server Actions for form handling. No client-side form library
+- Direct device email/WhatsApp handoff — no client-side form library
 - Zero runtime dependencies beyond Next, React and Tailwind
 
 ## Browser support
@@ -69,13 +69,13 @@ npm run lint
 ```
 design/            Supplied logo artwork + source mockups assets are cut from
 scripts/           Asset pipeline (see below)
-src/app/           Routes, root layout, route transition, Server Actions
+src/app/           Routes, root layout and route transition
 src/components/
   layout/          Header, portalled mobile sheet, footer, page hero, logo
   home/            Hero, ClientStrip, CuratedSelection, ProductRange, Difference, QuoteCta
   products/        ProductCard, ProductFilter
-  forms/           ContactForm, QuoteForm, status panels
-  ui/              Button, Container, Reveal, Field, VideoDialog
+  forms/           ContactForm and QuoteForm device handoff
+  ui/              Button, Container, Reveal, Field
   icons/           Hand-built SVG set — no icon dependency
 src/lib/           Site + client config, portfolio categories, products, features
 ```
@@ -190,9 +190,9 @@ Replace before production:
   them before launch
 - **Product catalogue** (`src/lib/products.ts`) — the eight berry and puree SKUs
   carry indicative pack sizes and Brix ranges. Confirm against real spec sheets
-- **Form delivery** — `deliver()` in `src/app/actions.ts` only logs. Point it at
-  an email provider or CRM. Validation already runs server-side
-- **Video** — `VideoDialog` uses a stand-in URL
+- **Form handoff** — contact and quote forms validate on the server, then open
+  a prefilled email draft. WhatsApp remains a separate explicit option; the
+  website never claims a draft has been sent automatically.
 
 No customer testimonials are shown. Named quotes were removed rather than
 invented; add them once real, attributable ones are available.

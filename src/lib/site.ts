@@ -16,7 +16,7 @@ export const site = {
     "Breadberry by Adira Enterprises",
   ],
   founded: "2020",
-  founder: "Mrs. Sonal Yerunkar",
+  founder: "Mrs. Sonal Abhishek Yerunkar",
   city: "Mumbai",
   region: "Maharashtra",
   country: "IN",
@@ -29,11 +29,11 @@ export const site = {
 
   /** Named contact for every enquiry channel on the site. */
   contact: "Abhishek Yerunkar",
-  phone: "+91 85540 44055",
-  phoneHref: "tel:+918554044055",
+  phone: "8108187667",
+  phoneHref: "tel:+918108187667",
   /** Enquiries hand off to this WhatsApp thread. Digits only, no spaces. */
-  whatsapp: "918554044055",
-  whatsappHref: "https://wa.me/918554044055",
+  whatsapp: "918108187667",
+  whatsappHref: "https://wa.me/918108187667",
   // Primary mailbox for sales and order enquiries.
   email: "sales@breadberry.co.in",
   address: "Mumbai, Maharashtra, India",
@@ -57,7 +57,7 @@ export const navLinks: NavLink[] = [
   { label: "Home", href: "/" },
   { label: "Products", href: "/products" },
   { label: "Why Us", href: "/why-us" },
-  { label: "About", href: "/about" },
+  { label: "About Us", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
 

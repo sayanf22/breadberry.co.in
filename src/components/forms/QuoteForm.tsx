@@ -1,16 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { useActionState, useEffect, useState } from "react";
-import { submitQuote, type FormState } from "@/app/actions";
+import { useEffect, useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/Button";
 import { Field, inputClass, selectArrow, selectClass } from "@/components/ui/Field";
-import { ErrorSummary, SuccessPanel } from "@/components/forms/FormStatus";
 import { CheckIcon, WhatsAppIcon } from "@/components/icons";
+import { enquiryLinks } from "@/lib/enquiry";
 import { categories, products } from "@/lib/products";
 import { site } from "@/lib/site";
-
-const initialFormState: FormState = { status: "idle" };
 
 const volumes = [
   "Under 25 kg / month",
@@ -22,53 +19,41 @@ const volumes = [
 const frequencies = ["One-off trial", "Monthly", "Fortnightly", "Weekly"];
 
 export function QuoteForm() {
-  const [state, action, pending] = useActionState(submitQuote, initialFormState);
   const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
   const [activeCategory, setActiveCategory] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
   const [role, setRole] = useState("");
+  const [email, setEmail] = useState("");
   const [city, setCity] = useState("");
   const [phone, setPhone] = useState("");
   const [volume, setVolume] = useState("");
   const [frequency, setFrequency] = useState("");
   const [notes, setNotes] = useState("");
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
-  // Parse URL query parameter ?products= on client mount
+  // Defer URL hydration until after the initial React commit.
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const params = new URLSearchParams(window.location.search);
-      const queryProducts = params.get("products");
-      if (queryProducts) {
-        const items = queryProducts
-          .split(",")
-          .map((item) => item.trim())
-          .filter(Boolean);
-        setSelectedProducts((prev) => Array.from(new Set([...prev, ...items])));
-      }
-    }
+    const timer = window.setTimeout(() => {
+      const queryProducts = new URLSearchParams(window.location.search).get(
+        "products"
+      );
+      if (!queryProducts) return;
+
+      const items = queryProducts
+        .split(",")
+        .map((item) => item.trim())
+        .filter(Boolean);
+      setSelectedProducts((previous) =>
+        Array.from(new Set([...previous, ...items]))
+      );
+    }, 0);
+
+    return () => window.clearTimeout(timer);
   }, []);
 
-  // Sync initial server action errors / values if any
-  useEffect(() => {
-    if (state.values?.products) {
-      const serverSelected = state.values.products.split(", ").filter(Boolean);
-      setSelectedProducts((prev) => Array.from(new Set([...prev, ...serverSelected])));
-    }
-    if (state.values?.name) setName(state.values.name);
-    if (state.values?.company) setCompany(state.values.company);
-    if (state.values?.city) setCity(state.values.city);
-    if (state.values?.phone) setPhone(state.values.phone);
-    if (state.values?.volume) setVolume(state.values.volume);
-    if (state.values?.notes) setNotes(state.values.notes);
-  }, [state]);
-
-  if (state.status === "success") {
-    return <SuccessPanel message={state.message} whatsapp={state.whatsapp} />;
-  }
-
-  const error = (key: string) => state.errors?.[key];
+  const error = (key: string) => errors[key];
   const aria = (key: string) =>
     error(key)
       ? ({ "aria-invalid": true, "aria-describedby": `${key}-error` } as const)
@@ -92,43 +77,62 @@ export function QuoteForm() {
     return matchesCategory && matchesSearch;
   });
 
-  // Send Enquiry directly to WhatsApp with pre-formatted product list
+  const quoteValues = () => ({
+    name,
+    company,
+    role,
+    email,
+    phone,
+    city,
+    products: selectedProducts.join(", "),
+    volume,
+    frequency,
+    notes,
+  });
+
+  const draftLinks = () => {
+    const nextErrors: Record<string, string> = {};
+    if (name.trim().length < 2) nextErrors.name = "Please enter your name.";
+    if (company.trim().length < 2)
+      nextErrors.company = "Please enter your business name.";
+    if (!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(email.trim()))
+      nextErrors.email = "Please enter a valid work email address.";
+    if (phone.replace(/\D/g, "").length < 8)
+      nextErrors.phone = "Please enter a reachable phone number.";
+    if (city.trim().length < 2)
+      nextErrors.city = "Which city should we deliver to?";
+    if (!selectedProducts.length)
+      nextErrors.products = "Select at least one product.";
+    if (!volume) nextErrors.volume = "Choose an approximate monthly volume.";
+
+    setErrors(nextErrors);
+    if (Object.keys(nextErrors).length) return null;
+    return enquiryLinks(`Quote request for ${site.name}`, quoteValues());
+  };
+
+  const handleEmailEnquiry = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const draft = draftLinks();
+    if (draft) window.location.href = draft.mailto;
+  };
+
   const handleWhatsAppEnquiry = () => {
-    const productList =
-      selectedProducts.length > 0
-        ? selectedProducts.map((p) => `• ${p}`).join("\n")
-        : "• Wholesale Enquiry (General)";
-
-    const messageLines = [
-      `Hello ${site.company},`,
-      ``,
-      `I would like to request a wholesale bulk quote for the following products:`,
-      ``,
-      `📦 REQUIRED PRODUCTS:`,
-      productList,
-      ``,
-      `📋 CONTACT DETAILS:`,
-      name ? `• Name: ${name}` : null,
-      company ? `• Business: ${company}` : null,
-      role ? `• Role: ${role}` : null,
-      city ? `• Delivery City: ${city}` : null,
-      phone ? `• Phone: ${phone}` : null,
-      volume ? `• Volume: ${volume}` : null,
-      frequency ? `• Frequency: ${frequency}` : null,
-      notes ? `\n📝 NOTES:\n${notes}` : null,
-    ]
-      .filter((line) => line !== null)
-      .join("\n");
-
-    const whatsappUrl = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(messageLines)}`;
-    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    const draft = draftLinks();
+    if (draft) window.open(draft.whatsapp, "_blank", "noopener,noreferrer");
   };
 
   return (
-    <form action={action} noValidate className="flex flex-col gap-6">
-      <ErrorSummary state={state} />
+    <form onSubmit={handleEmailEnquiry} noValidate className="flex flex-col gap-6">
+      {Object.keys(errors).length > 0 && (
+        <p
+          role="alert"
+          className="rounded-2xl border border-berry/25 bg-[#fdf2f4] px-4 py-3 text-[0.8125rem] font-medium text-berry"
+        >
+          Please check the highlighted fields.
+        </p>
+      )}
 
-      {/* Hidden input to ensure state-managed selected products submit with form action */}
+      {/* State-managed selection is included in both generated drafts. */}
       <input type="hidden" name="products" value={selectedProducts.join(", ")} />
 
       <fieldset className="grid gap-5 sm:grid-cols-2">
@@ -206,6 +210,8 @@ export function QuoteForm() {
             type="email"
             autoComplete="email"
             required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className={inputClass(error("email"))}
             placeholder="chef@yourvenue.com"
             {...aria("email")}
@@ -449,10 +455,9 @@ export function QuoteForm() {
           type="submit"
           size="lg"
           withArrow
-          disabled={pending}
           className="w-full sm:w-auto"
         >
-          {pending ? "Sending…" : "Send Email Quote Request"}
+          Open Email Draft
         </Button>
 
         <button
