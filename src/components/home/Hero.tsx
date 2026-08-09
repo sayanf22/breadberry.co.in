@@ -65,13 +65,16 @@ export function Hero() {
         aria-hidden
         className="pointer-events-none absolute inset-y-0 left-0 right-0 -z-10 mx-auto hidden max-w-[106rem] lg:block"
       >
-        <div className="hero-art absolute inset-y-0 right-0 w-[54%] max-w-[46rem]">
+        {/* The supplied composition is landscape, so it is given a little more
+            width from `xl` up where there is room. At `lg` it stays at 54% so
+            it can never run under the headline column. */}
+        <div className="hero-art absolute inset-y-0 right-0 w-[54%] max-w-[46rem] xl:w-[56%] xl:max-w-[50rem]">
           <Image
-            src="/assets/hero-desktop-2.webp"
+            src="/assets/hero-desktop-4.webp"
             alt=""
             fill
             priority
-            sizes="(min-width: 1024px) 54vw, 1px"
+            sizes="(min-width: 1280px) 56vw, (min-width: 1024px) 54vw, 1px"
             className="object-contain object-right"
           />
         </div>
@@ -128,10 +131,12 @@ export function Hero() {
             aria-hidden
           >
             <Image
-              src="/assets/hero-mobile-2.webp"
+              src="/assets/hero-mobile-4.webp"
               alt=""
-              width={1056}
-              height={907}
+              /* Intrinsic size of the generated asset — rebuild with
+                 `node scripts/build-hero-assets.mjs` if the source changes. */
+              width={768}
+              height={730}
               priority
               sizes="(max-width: 1023px) 100vw, 1px"
               className="mx-auto w-full max-w-[36rem]"
