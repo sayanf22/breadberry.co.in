@@ -264,22 +264,30 @@ async function build(src, rect, name, opts = {}) {
  * the Open Graph card. Re-running this extractor must not overwrite them.
  */
 
-/* ── Hero visual, desktop ─────────────────────────────────────────────────── */
+/* ── Hero visual, desktop ──────────────────────────────────────────────────
+ * The crop slices the mockup's own tinted backdrop, so every edge that ends
+ * inside the viewport is faded out. The right edge stays hard because the art
+ * is anchored to the right and bleeds past the viewport, where nothing shows.
+ */
 await build(
   DESKTOP,
   { left: 434, top: 118, width: 590, height: 668 },
-  "hero-desktop.webp",
-  { scale: 1.6, feather: { left: 0.17, top: 0.05, bottom: 0.09 } }
+  "hero-desktop-2.webp",
+  { scale: 1.6, feather: { left: 0.24, top: 0.1, bottom: 0.16 } }
 );
 
-/* ── Hero visual, mobile ──────────────────────────────────────────────────── */
+/* ── Hero visual, mobile ───────────────────────────────────────────────────
+ * On phones the artwork sits inside the column with page background on all
+ * four sides, so a narrow fade left a visible rectangle of the mockup's tinted
+ * backdrop. These wider ramps dissolve all four edges into the page instead.
+ */
 await build(
   MOBILE,
   { left: 4, top: 744, width: 845, height: 726 },
-  "hero-mobile.webp",
+  "hero-mobile-2.webp",
   {
     scale: 1.25,
-    feather: { left: 0.035, right: 0.035, top: 0.045, bottom: 0.07 },
+    feather: { left: 0.14, right: 0.12, top: 0.13, bottom: 0.17 },
   }
 );
 

@@ -67,7 +67,7 @@ export function Hero() {
       >
         <div className="hero-art absolute inset-y-0 right-0 w-[54%] max-w-[46rem]">
           <Image
-            src="/assets/hero-desktop.webp"
+            src="/assets/hero-desktop-2.webp"
             alt=""
             fill
             priority
@@ -128,7 +128,7 @@ export function Hero() {
             aria-hidden
           >
             <Image
-              src="/assets/hero-mobile.webp"
+              src="/assets/hero-mobile-2.webp"
               alt=""
               width={1056}
               height={907}
