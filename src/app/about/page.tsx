@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { PageHero } from "@/components/layout/PageHero";
@@ -84,7 +85,7 @@ export default function AboutPage() {
         className="py-[clamp(3rem,7vw,5rem)]"
       >
         <Container>
-          <div className="max-w-[52rem]">
+          <div className="grid items-start gap-[clamp(2rem,5vw,4rem)] lg:grid-cols-[1.1fr_0.9fr]">
             <Reveal>
               <SectionHeading
                 eyebrow="Breadberry & Adhira"
@@ -112,6 +113,28 @@ export default function AboutPage() {
                   with the storage and cold-chain care that the product requires.
                 </p>
               </div>
+            </Reveal>
+
+            {/* Founder portrait */}
+            <Reveal
+              delay={120}
+              className="relative aspect-[4/5] overflow-hidden rounded-hero"
+            >
+              <Image
+                src="/assets/founder-portrait.webp"
+                alt={`${site.founder}, Founder of ${site.company}`}
+                fill
+                sizes="(min-width: 1024px) 40vw, 90vw"
+                className="object-cover object-top"
+              />
+              <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy/70 to-transparent px-5 pb-4 pt-12">
+                <span className="block text-[0.875rem] font-semibold text-white">
+                  {site.founder}
+                </span>
+                <span className="mt-0.5 block text-[0.75rem] text-cream/80">
+                  Founder, {site.company}
+                </span>
+              </span>
             </Reveal>
           </div>
         </Container>

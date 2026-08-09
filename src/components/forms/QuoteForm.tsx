@@ -34,7 +34,7 @@ export function QuoteForm() {
   const [volume, setVolume] = useState("");
   const [frequency, setFrequency] = useState("");
   const [notes, setNotes] = useState("");
-  const [showProductError, setShowProductError] = useState(false);
+  const [showMessageError, setShowMessageError] = useState(false);
 
   // Pre-fill from URL ?products=... (e.g. from a product detail page CTA).
   useEffect(() => {
@@ -53,7 +53,7 @@ export function QuoteForm() {
         ? prev.filter((item) => item !== productName)
         : [...prev, productName]
     );
-    setShowProductError(false);
+    setShowMessageError(false);
   };
 
   const filteredProducts = products.filter((p) => {
@@ -66,9 +66,9 @@ export function QuoteForm() {
   });
 
   const getDraft = () => {
-    /* Only requirement: at least one product selected. */
-    if (!selectedProducts.length) {
-      setShowProductError(true);
+    /* Only requirement: a message so the enquiry has substance. */
+    if (!notes.trim()) {
+      setShowMessageError(true);
       return null;
     }
     return enquiryLinks(`Quote request — ${site.name}`, {
@@ -80,7 +80,7 @@ export function QuoteForm() {
       products: selectedProducts.join(", "),
       volume,
       frequency,
-      notes,
+      message: notes,
     });
   };
 
@@ -97,10 +97,10 @@ export function QuoteForm() {
 
   return (
     <form onSubmit={handleEmail} noValidate className="flex flex-col gap-6">
-      {/* ── Product selector (the one required section) ──────────────── */}
+      {/* ── Product selector (optional) ─────────────────────────────── */}
       <fieldset className="rounded-panel border border-line-soft bg-surface/50 p-4 sm:p-5">
         <legend className="mb-3 text-eyebrow font-semibold uppercase text-blue">
-          Select products *
+          Select products (optional)
         </legend>
 
         {/* Selected chips */}
@@ -212,9 +212,9 @@ export function QuoteForm() {
           )}
         </div>
 
-        {showProductError && (
+        {showMessageError && (
           <p role="alert" className="mt-3 text-[0.75rem] font-medium text-berry">
-            Please select at least one product.
+            Please describe what you need so we can prepare your quote.
           </p>
         )}
       </fieldset>
@@ -260,8 +260,8 @@ export function QuoteForm() {
         </Field>
       </fieldset>
 
-      <Field label="Notes" htmlFor="notes" hint="Pack sizes, storage needs, start date — anything useful.">
-        <textarea id="notes" name="notes" rows={3} value={notes} onChange={(e) => setNotes(e.target.value)} className={`${inputClass()} resize-y`} placeholder="We'd like 10 kg cases and a standing Tuesday delivery." />
+      <Field label="Your message" htmlFor="notes" required hint="What do you need? Products, quantities, delivery city — anything useful.">
+        <textarea id="notes" name="notes" rows={4} required value={notes} onChange={(e) => { setNotes(e.target.value); setShowMessageError(false); }} className={`${inputClass(showMessageError ? "required" : undefined)} resize-y`} placeholder="We need 50 kg of IQF strawberries and 20 kg of blueberry puree delivered weekly to Mumbai." />
       </Field>
 
       {/* ── Actions ──────────────────────────────────────────────────── */}
