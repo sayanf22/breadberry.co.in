@@ -130,21 +130,24 @@ export function Hero() {
             className="hero-art relative mt-[clamp(1.5rem,6vw,2.75rem)] lg:hidden"
             aria-hidden
           >
-            <Image
-              src="/assets/hero-mobile-5.webp"
-              alt=""
-              /* Intrinsic size of the generated asset — rebuild with
-                 `node scripts/build-hero-assets.mjs` if the source changes. */
-              width={768}
-              height={670}
-              priority
-              sizes="(max-width: 1023px) 100vw, 1px"
-              /* Grows with the viewport instead of stopping at 36rem, which
-                 left the composition marooned in white space on an iPad in
-                 portrait. Capped at the asset's own width so it never upscales
-                 past its native pixels. */
-              className="mx-auto w-full max-w-[34rem] sm:max-w-[40rem] md:max-w-[46rem]"
-            />
+            {/* On phones the artwork cancels the page gutter and runs edge to
+                edge, which is the width the page gutter was otherwise taking
+                off the composition. Its feathered edges fade into the wash, so
+                the bleed reads as intentional. From `sm` up it recentres and
+                caps, and never exceeds its own native width. */}
+            <div className="mx-[calc(clamp(1.125rem,4vw,2.75rem)*-1)] sm:mx-auto sm:max-w-[40rem] md:max-w-[45rem]">
+              <Image
+                src="/assets/hero-mobile-6.webp"
+                alt=""
+                /* Intrinsic size of the generated asset — rebuild with
+                   `node scripts/build-hero-assets.mjs` if the source changes. */
+                width={730}
+                height={575}
+                priority
+                sizes="(max-width: 1023px) 100vw, 1px"
+                className="w-full"
+              />
+            </div>
           </div>
 
           {/* ── Trust highlights ─────────────────────────────────────── */}

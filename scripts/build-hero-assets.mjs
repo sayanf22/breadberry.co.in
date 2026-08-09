@@ -2,7 +2,7 @@
  * Builds the home hero artwork from the supplied compositions:
  *
  *   ../images/lookonpc.jpeg    -> public/assets/hero-desktop-6.webp
- *   ../images/lookonphone.png  -> public/assets/hero-mobile-5.webp
+ *   ../images/lookonphone.png  -> public/assets/hero-mobile-6.webp
  *
  * Approach: keep the artwork's own pale backdrop, trim only the margin that
  * carries nothing, then feather every visible edge so the backdrop dissolves
@@ -53,14 +53,15 @@ const jobs = [
   },
   {
     source: path.join(SRC, "lookonphone.png"),
-    name: "hero-mobile-5.webp",
-    /* Full width is kept — the composition bleeds to both sides. Vertically the
-       products sit between y 500 and y 1030, so the tall foliage band above and
-       the sparse trailing berries below are dropped. This is what brings the
-       packs and tubs up to size on a phone without cutting them. */
-    crop: { left: 0, top: 0.276, width: 1, height: 0.487 },
-    edges: { left: 0.07, right: 0.07, top: 0.12, bottom: 0.1 },
-    maxWidth: 768,
+    name: "hero-mobile-6.webp",
+    /* Zoomed by removing frame that holds no product, measured rather than
+       guessed: fruit and pack ink occupy y 600–1030, the pack tops begin around
+       y 519, and the right 6% of the width contains none at all. So the crop
+       starts at y 471 — about 50px of headroom above the packs — ends just past
+       the berries, and trims the empty right column. Nothing is cut. */
+    crop: { left: 0, top: 0.342, width: 0.95, height: 0.418 },
+    edges: { left: 0.055, right: 0.055, top: 0.09, bottom: 0.08 },
+    maxWidth: 730,
   },
 ];
 
