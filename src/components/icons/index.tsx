@@ -104,6 +104,15 @@ export function PlayIcon(props: IconProps) {
   );
 }
 
+export function SearchIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <circle cx="10.8" cy="10.8" r="6.8" />
+      <path d="M20 20l-4.3-4.3" />
+    </svg>
+  );
+}
+
 export function PhoneIcon(props: IconProps) {
   return (
     <svg {...base} {...props}>

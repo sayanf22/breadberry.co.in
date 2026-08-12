@@ -9,6 +9,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/layout/Logo";
 import { MobileNav } from "@/components/layout/MobileNav";
+import { SiteSearch } from "@/components/layout/SiteSearch";
 import { PhoneIcon } from "@/components/icons";
 
 function isActive(pathname: string, href: string) {
@@ -87,6 +88,8 @@ export function SiteHeader() {
                   Request a Quote
                 </ButtonLink>
               </div>
+
+              <SiteSearch />
 
               <a
                 href={site.phoneHref}
