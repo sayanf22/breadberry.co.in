@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { createPortal } from "react-dom";
 import {
@@ -168,13 +169,11 @@ export function SiteSearch() {
         >
           {results.map((result, index) => {
             const active = index === activeIndex;
-            /* Label the point where real matches end and general suggestions
-               begin, so filler never looks like a bad match. */
             const showSuggestionDivider =
               !result.matched && (index === 0 || results[index - 1]?.matched);
 
             return (
-              <div key={result.href}>
+              <div key={`${index}-${result.href}`}>
                 {showSuggestionDivider && (
                   <p className="px-3 pb-1 pt-3 text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-muted-soft">
                     {query.trim() ? "You might also want" : "Jump to"}
@@ -192,6 +191,18 @@ export function SiteSearch() {
                     active ? "bg-lime-mist" : "hover:bg-surface"
                   )}
                 >
+                  {/* Product thumbnail */}
+                  {result.image && (
+                    <div className="relative size-10 shrink-0 overflow-hidden rounded-lg bg-surface">
+                      <Image
+                        src={result.image}
+                        alt=""
+                        fill
+                        sizes="40px"
+                        className="object-cover"
+                      />
+                    </div>
+                  )}
                   <span className="min-w-0 flex-1">
                     <span className="block truncate text-[0.875rem] font-medium text-navy">
                       {result.title}

@@ -8,6 +8,8 @@ export type SearchResult = {
   href: string;
   /** Shown as a small badge and used only as a ranking tie-breaker. */
   group: "Page" | "Product" | "Category";
+  /** Product image path for thumbnail display. */
+  image?: string;
 };
 
 const PAGES: SearchResult[] = navLinks
@@ -26,17 +28,25 @@ const PAGES: SearchResult[] = navLinks
     group: "Page" as const,
   }));
 
-const CATEGORY_RESULTS: SearchResult[] = portfolio.map((category) => ({
-  title: category.name,
-  description: category.summary,
-  href: catalogueHref(category),
-  group: "Category" as const,
-}));
+/**
+ * Only include categories that have their own unique catalogue href, so
+ * "Artisanal Cheeses" (which falls back to `/products`) doesn't create a
+ * duplicate key and a confusing duplicate entry in results.
+ */
+const CATEGORY_RESULTS: SearchResult[] = portfolio
+  .filter((c) => c.catalogueCategory)
+  .map((category) => ({
+    title: category.name,
+    description: category.summary,
+    href: catalogueHref(category),
+    group: "Category" as const,
+  }));
 
 const PRODUCT_RESULTS: SearchResult[] = products.map((product) => ({
   title: product.name,
   description: `${product.categoryLabel} · ${product.form}`,
   href: `/products/${product.slug}`,
+  image: product.image,
   group: "Product" as const,
 }));
 
@@ -175,14 +185,21 @@ export function search(query: string, limit = 8): RankedResult[] {
     )
     .map((r) => ({ ...r.entry.item, matched: true }));
 
-  if (matched.length >= limit) return matched.slice(0, limit);
+  /* Deduplicate by href — categories without a specific tab share `/products`
+     with the Products page entry, which caused the "two children with the same
+     key" React error and visual duplicates in the panel. */
+  const seen = new Set<string>();
+  const unique = matched.filter((r) => {
+    if (seen.has(r.href)) return false;
+    seen.add(r.href);
+    return true;
+  });
 
-  /* Sparse result set: top up with general suggestions so the panel still
-     offers somewhere to go instead of showing an empty state. */
-  const already = new Set(matched.map((m) => m.href));
+  if (unique.length >= limit) return unique.slice(0, limit);
+
   const filler = [...PAGES, ...CATEGORY_RESULTS]
-    .filter((item) => !already.has(item.href))
+    .filter((item) => !seen.has(item.href))
     .map((item) => ({ ...item, matched: false }));
 
-  return [...matched, ...filler].slice(0, limit);
+  return [...unique, ...filler].slice(0, limit);
 }
