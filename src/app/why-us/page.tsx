@@ -6,6 +6,7 @@ import { FeatureCard } from "@/components/ui/FeatureCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
 import { QuoteCta } from "@/components/home/QuoteCta";
+import { TrustedBrands } from "@/components/home/TrustedBrands";
 import { differenceFeatures } from "@/lib/features";
 import { portfolio } from "@/lib/portfolio";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -153,6 +154,11 @@ export default function WhyUsPage() {
           </Reveal>
         </Container>
       </section>
+
+      <TrustedBrands
+        title="Trusted across Mumbai's finest kitchens"
+        description={`The proof of a supply standard is who keeps ordering. These are the hotel groups, restaurants, cafés and retail brands supplied by ${site.company}.`}
+      />
 
       <FaqSection />
 

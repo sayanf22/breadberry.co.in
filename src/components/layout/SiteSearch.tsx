@@ -11,16 +11,10 @@ import {
   type KeyboardEvent,
 } from "react";
 import { cn } from "@/lib/cn";
-import { search, type SearchResult } from "@/lib/search";
+import { search } from "@/lib/search";
 import { ArrowRightIcon, CloseIcon, SearchIcon } from "@/components/icons";
 
 const noopSubscribe = () => () => {};
-
-const GROUP_LABEL: Record<SearchResult["group"], string> = {
-  Page: "Pages",
-  Category: "Categories",
-  Product: "Products",
-};
 
 /**
  * Site-wide search, triggered from the header icon. Results update as you
@@ -119,10 +113,6 @@ export function SiteSearch() {
     }
   };
 
-  // Group results in a stable order for display.
-  const groups: SearchResult["group"][] = ["Page", "Category", "Product"];
-  let flatIndex = -1;
-
   const panel = (
     <div
       role="dialog"
@@ -174,56 +164,50 @@ export function SiteSearch() {
           ref={listRef}
           id={`${dialogId}-results`}
           role="listbox"
-          className="max-h-[24rem] overflow-y-auto no-scrollbar py-2"
+          className="max-h-[24rem] overflow-y-auto no-scrollbar px-2 py-2"
         >
-          {groups.map((group) => {
-            const items = results.filter((r) => r.group === group);
-            if (!items.length) return null;
+          {results.map((result, index) => {
+            const active = index === activeIndex;
+            /* Label the point where real matches end and general suggestions
+               begin, so filler never looks like a bad match. */
+            const showSuggestionDivider =
+              !result.matched && (index === 0 || results[index - 1]?.matched);
 
             return (
-              <div key={group} className="px-2">
-                <p className="px-3 pt-2.5 pb-1 text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-muted-soft">
-                  {GROUP_LABEL[group]}
-                </p>
-                {items.map((result) => {
-                  flatIndex++;
-                  const index = flatIndex;
-                  const active = index === activeIndex;
-                  return (
-                    <Link
-                      key={result.href}
-                      id={`${dialogId}-opt-${index}`}
-                      role="option"
-                      aria-selected={active}
-                      href={result.href}
-                      onClick={close}
-                      onMouseEnter={() => setActiveIndex(index)}
-                      className={cn(
-                        "flex items-center justify-between gap-3 rounded-xl px-3 py-2.5 transition-colors duration-200",
-                        active ? "bg-lime-mist" : "hover:bg-surface"
-                      )}
-                    >
-                      <span className="min-w-0">
-                        <span className="block truncate text-[0.875rem] font-medium text-navy">
-                          {result.title}
-                        </span>
-                        <span className="block truncate text-[0.75rem] text-muted">
-                          {result.description}
-                        </span>
-                      </span>
-                      <ArrowRightIcon className="size-4 shrink-0 text-muted-soft" />
-                    </Link>
-                  );
-                })}
+              <div key={result.href}>
+                {showSuggestionDivider && (
+                  <p className="px-3 pb-1 pt-3 text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-muted-soft">
+                    {query.trim() ? "You might also want" : "Jump to"}
+                  </p>
+                )}
+                <Link
+                  id={`${dialogId}-opt-${index}`}
+                  role="option"
+                  aria-selected={active}
+                  href={result.href}
+                  onClick={close}
+                  onMouseEnter={() => setActiveIndex(index)}
+                  className={cn(
+                    "flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors duration-200",
+                    active ? "bg-lime-mist" : "hover:bg-surface"
+                  )}
+                >
+                  <span className="min-w-0 flex-1">
+                    <span className="block truncate text-[0.875rem] font-medium text-navy">
+                      {result.title}
+                    </span>
+                    <span className="block truncate text-[0.75rem] text-muted">
+                      {result.description}
+                    </span>
+                  </span>
+                  <span className="shrink-0 rounded-pill bg-surface px-2 py-0.5 text-[0.625rem] font-semibold uppercase tracking-[0.1em] text-muted-soft">
+                    {result.group}
+                  </span>
+                  <ArrowRightIcon className="size-4 shrink-0 text-muted-soft" />
+                </Link>
               </div>
             );
           })}
-
-          {results.length === 0 && (
-            <p className="px-5 py-6 text-center text-[0.875rem] text-muted">
-              Try a different search term.
-            </p>
-          )}
         </div>
 
         <p className="border-t border-line-soft px-5 py-2.5 text-[0.6875rem] text-muted-soft">

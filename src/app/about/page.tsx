@@ -6,6 +6,7 @@ import { PageHero } from "@/components/layout/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { QuoteCta } from "@/components/home/QuoteCta";
 import { MissionVision } from "@/components/about/MissionVision";
+import { TrustedBrands } from "@/components/home/TrustedBrands";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema, pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
@@ -178,6 +179,12 @@ export default function AboutPage() {
       </section>
 
       <MissionVision />
+
+      <TrustedBrands
+        eyebrow="Trusted by brands"
+        title="Who we supply"
+        description={`From 5-star hotel groups to neighbourhood cafés — the kitchens that have made ${site.company} their procurement partner.`}
+      />
 
       <QuoteCta />
 
