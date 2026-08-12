@@ -4,10 +4,10 @@ import { Reveal } from "@/components/ui/Reveal";
 import { PageHero } from "@/components/layout/PageHero";
 import { Eyebrow } from "@/components/ui/SectionHeading";
 import { PortfolioGrid } from "@/components/products/PortfolioGrid";
-import { ProductCard } from "@/components/products/ProductCard";
+import { ProductSlider } from "@/components/products/ProductSlider";
 import { ProductFilter } from "@/components/products/ProductFilter";
 import { QuoteCta } from "@/components/home/QuoteCta";
-import { products, signatureProducts, highlightedProducts } from "@/lib/products";
+import { products, signatureProducts } from "@/lib/products";
 import { portfolio } from "@/lib/portfolio";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema, itemListSchema, pageMetadata } from "@/lib/seo";
@@ -38,8 +38,8 @@ export default function ProductsPage() {
         crumbs={[{ label: "Home", href: "/" }, { label: "Products" }]}
       />
 
-      {/* Breadberry lines buyers ask for most — kept above the full catalogue
-          so Lotusroot and both Edamame formats are visible immediately. */}
+      {/* Breadberry Co. signature line — every berry and puree pouch, as a
+          slider so the full range is browsable without lengthening the page. */}
       <section
         aria-labelledby="breadberry-highlights-heading"
         className="pt-[clamp(2.5rem,6vw,4.5rem)]"
@@ -53,24 +53,17 @@ export default function ProductsPage() {
                   id="breadberry-highlights-heading"
                   className="mt-2 max-w-[24ch] text-h2"
                 >
-                  Lotusroot &amp; Edamame favourites
+                  All Breadberry Co. products
                 </h2>
               </div>
               <p className="max-w-[38ch] text-[0.875rem] text-muted sm:text-right">
-                Four chef-ready lines for consistent prep, garnish and service.
+                {signatureProducts.length} signature berry &amp; puree lines,
+                packed under the Breadberry Co. label.
               </p>
             </div>
 
-            <div className="mt-[clamp(1rem,2.5vw,1.75rem)] grid grid-cols-2 gap-[clamp(0.75rem,1.6vw,1.25rem)] lg:grid-cols-4">
-              {highlightedProducts.map((product, index) => (
-                <Reveal key={product.slug} delay={index * 70} className="h-full">
-                  <ProductCard
-                    product={product}
-                    priority={index < 2}
-                    sizes="(min-width: 1024px) 20vw, 46vw"
-                  />
-                </Reveal>
-              ))}
+            <div className="mt-[clamp(1rem,2.5vw,1.75rem)]">
+              <ProductSlider products={signatureProducts} />
             </div>
           </Reveal>
         </Container>

@@ -843,21 +843,6 @@ export const signatureProducts = products.filter(
 
 export const featuredProducts = signatureProducts.slice(0, 4);
 
-/**
- * Hand-picked Breadberry specialties to highlight on the catalogue hero.
- * These are the "difficult to source" items Breadberry is known for among chefs.
- */
-const highlightSlugs = [
-  "lotusroot-thai",
-  "lotusroot-sliced-frozen",
-  "edamame-whole-soyabean",
-  "edamame-peeled-soyabean",
-] as const;
-
-export const highlightedProducts = highlightSlugs
-  .map((slug) => products.find((p) => p.slug === slug))
-  .filter((p): p is Product => !!p);
-
 /** Same-category lines first, topped up from the rest of the catalogue. */
 export function relatedProducts(product: Product, count = 4): Product[] {
   const others = products.filter((item) => item.slug !== product.slug);
