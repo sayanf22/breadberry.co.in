@@ -43,11 +43,33 @@ export function ProductSlider({ products: items }: { products: Product[] }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps -- shuffle once on mount; `items` is the initial list and re-running on every reference change would reshuffle mid-session.
   }, []);
 
+  /**
+   * Distance to the next snap point, measured from the actual DOM rather than
+   * a hardcoded pixel value. The strip is `snap-x snap-mandatory` with cards
+   * at 15.5rem/17.5rem/18.5rem depending on breakpoint, so a fixed guess (the
+   * previous version used 200px) never lines up with a real card edge — the
+   * browser's own snap-back after each scroll fought the animation, which is
+   * what made "one by one" look broken instead of a clean single-card step.
+   */
+  const stepWidth = () => {
+    const el = scrollRef.current;
+    if (!el) return 0;
+    const first = el.children[0] as HTMLElement | undefined;
+    const second = el.children[1] as HTMLElement | undefined;
+    if (!first) return el.clientWidth;
+    // Card width plus the gap to the next card, read from real layout.
+    return second
+      ? second.offsetLeft - first.offsetLeft
+      : first.offsetWidth;
+  };
+
   const scroll = (direction: "left" | "right") => {
     const el = scrollRef.current;
     if (!el) return;
 
-    /* If we've reached the end going right, loop back to the start. */
+    const step = stepWidth();
+    if (!step) return;
+
     if (direction === "right") {
       const atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 8;
       if (atEnd) {
@@ -56,10 +78,8 @@ export function ProductSlider({ products: items }: { products: Product[] }) {
       }
     }
 
-    /* Scroll one card width (~200px) for a slow, smooth glide rather than
-       jumping 340px which felt abrupt. */
     el.scrollBy({
-      left: direction === "left" ? -200 : 200,
+      left: direction === "left" ? -step : step,
       behavior: "smooth",
     });
   };
@@ -107,6 +127,7 @@ export function ProductSlider({ products: items }: { products: Product[] }) {
         el.removeEventListener("touchend", start);
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- `scroll` only reads refs (scrollRef) on each call, so a stale closure here is a non-issue; adding it would restart the interval on every render.
   }, []);
 
   return (
