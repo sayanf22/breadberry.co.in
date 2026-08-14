@@ -14,7 +14,7 @@ export function Blessing() {
           aria-hidden
           className="h-px w-8 shrink-0 bg-gradient-to-r from-transparent to-line sm:w-12"
         />
-        <GanapatiIcon className="size-4 shrink-0 text-lime-soft" />
+        <GanapatiIcon className="size-5 shrink-0 text-[#d4a017] drop-shadow-[0_1px_2px_rgba(180,130,0,0.3)] sm:size-6" />
         <span className="text-center text-[0.6875rem] font-medium uppercase tracking-[0.16em] text-muted-soft sm:text-[0.75rem]">
           With blessings of Ganapati Bappa
         </span>

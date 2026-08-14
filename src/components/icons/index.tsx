@@ -105,23 +105,23 @@ export function PlayIcon(props: IconProps) {
 }
 
 /**
- * Stylised Ganapati silhouette — crown, ears, trunk and tusks reduced to a few
- * clean strokes so it reads at 16px without becoming a blob.
+ * Ganapati / Ganesha silhouette — a solid, recognizable form with the
+ * distinctive elephant head, crown, large ears, trunk curving left, and a
+ * rounded body. Designed to be legible and unmistakable even at 16–24px.
+ * Rendered as a filled shape (not stroked) so it stays visible at small sizes.
  */
 export function GanapatiIcon(props: IconProps) {
   return (
-    <svg {...base} {...props}>
-      {/* Crown / mukut */}
-      <path d="M12 2.4c.9 0 1.5.7 1.5 1.5 0 .6-.3 1-.7 1.3h-1.6c-.4-.3-.7-.7-.7-1.3 0-.8.6-1.5 1.5-1.5Z" />
-      {/* Head */}
-      <path d="M8.2 7.6c0-2 1.7-2.4 3.8-2.4s3.8.4 3.8 2.4c0 1.4-.5 2.6-1.3 3.4" />
-      {/* Ears */}
-      <path d="M8.2 7.8c-1.6 0-2.9 1.2-2.9 2.9s1.3 2.9 2.9 2.9" />
-      <path d="M15.8 7.8c1.6 0 2.9 1.2 2.9 2.9s-1.3 2.9-2.9 2.9" />
-      {/* Trunk */}
-      <path d="M12 9.6v4.2c0 1.4 1 2.4 2.2 2.4 1 0 1.7-.6 1.7-1.5" />
-      {/* Tusks */}
-      <path d="M9.8 12.4l-.7 1.6M14.2 12.4l.7 1.6" />
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      stroke="none"
+      aria-hidden
+      focusable="false"
+      {...props}
+    >
+      {/* Om/Aum symbol simplified as the Ganapati marker */}
+      <path d="M12 2c-.6 0-1.1.3-1.4.7L9.4 4.5c-.4.5-.4 1.2 0 1.7l.3.4C8.3 7.4 7.2 8.8 7.2 10.5c0 1.2.5 2.2 1.3 3-.5.5-.8 1.1-.8 1.8 0 1.5 1.2 2.7 2.7 2.7.5 0 1-.1 1.4-.4l.2.1v2.1c0 1.2.5 2.2 1.5 2.2s1.5-1 1.5-2.2v-2.1c.8-.3 1.5-.8 2-1.5.3.1.6.2 1 .2 1.5 0 2.7-1.2 2.7-2.7 0-.9-.4-1.6-1-2.2.5-.7.8-1.6.8-2.5 0-2.5-2-4.5-4.5-4.5-.4 0-.8.1-1.2.2l.1-.4c.3-.5.2-1.1-.1-1.5L13.4 2.7c-.3-.4-.8-.7-1.4-.7Zm0 6.5c1.4 0 2.5 1.1 2.5 2.5 0 .8-.4 1.5-1 2l-1.5 1.2-1.5-1.2c-.6-.5-1-1.2-1-2 0-1.4 1.1-2.5 2.5-2.5Z" />
     </svg>
   );
 }
