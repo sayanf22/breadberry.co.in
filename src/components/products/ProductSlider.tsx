@@ -84,11 +84,12 @@ export function ProductSlider({ products: items }: { products: Product[] }) {
     });
   };
 
-  /* Auto-slide every 3 seconds — slow enough to read the current card. */
+  /* Auto-slide every 2 seconds — quick enough to keep momentum without
+     feeling sluggish. */
   useEffect(() => {
     const start = () => {
       if (intervalRef.current) return;
-      intervalRef.current = setInterval(() => scroll("right"), 3000);
+      intervalRef.current = setInterval(() => scroll("right"), 2000);
     };
     const stop = () => {
       if (intervalRef.current) {
