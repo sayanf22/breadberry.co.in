@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/layout/Logo";
 import {
@@ -148,6 +149,20 @@ export function SiteFooter() {
           </div>
         </Container>
       </div>
+
+      {/* Certification badges */}
+      <Container>
+        <div className="border-t border-line-soft py-[clamp(1.25rem,2.5vw,2rem)]">
+          <Image
+            src="/assets/footer-badges.webp"
+            alt="FSSAI, ISO and food safety certifications"
+            width={900}
+            height={270}
+            sizes="(min-width: 640px) 480px, 90vw"
+            className="mx-auto h-auto w-full max-w-[30rem] opacity-70"
+          />
+        </div>
+      </Container>
 
       {/* Legal row sits on the page background, outside the dark block */}
       <Container>
