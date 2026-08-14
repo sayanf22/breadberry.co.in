@@ -96,14 +96,6 @@ export function ChevronRightIcon(props: IconProps) {
   );
 }
 
-export function PlayIcon(props: IconProps) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden focusable="false" {...props}>
-      <path d="M9 6.6c0-.8.9-1.3 1.6-.9l7.2 4.6c.6.4.6 1.3 0 1.7l-7.2 4.6c-.7.4-1.6-.1-1.6-.9V6.6Z" />
-    </svg>
-  );
-}
-
 /**
  * Ganapati / Ganesha silhouette — a solid, recognizable form with the
  * distinctive elephant head, crown, large ears, trunk curving left, and a
