@@ -1,25 +1,82 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { ProductCard } from "@/components/products/ProductCard";
 import { ArrowRightIcon } from "@/components/icons";
 import type { Product } from "@/lib/products";
 
 /**
- * Horizontally scrollable product strip with arrow controls. Same pattern as
- * the homepage `ProductRange` slider, generalised to take any product list so
- * it can be reused wherever a full range needs to be browsable without
- * lengthening the page with a long grid.
+ * Horizontally scrollable product strip with arrow controls and auto-slide.
+ * Advances every 2.5 seconds; pauses when the user hovers or touches the
+ * strip, and resumes when they leave.
  */
 export function ProductSlider({ products }: { products: Product[] }) {
   const scrollRef = useRef<HTMLDivElement | null>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const scroll = (direction: "left" | "right") => {
-    scrollRef.current?.scrollBy({
+    const el = scrollRef.current;
+    if (!el) return;
+
+    /* If we've reached the end going right, loop back to the start. */
+    if (direction === "right") {
+      const atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 8;
+      if (atEnd) {
+        el.scrollTo({ left: 0, behavior: "smooth" });
+        return;
+      }
+    }
+
+    el.scrollBy({
       left: direction === "left" ? -340 : 340,
       behavior: "smooth",
     });
   };
+
+  /* Auto-slide every 2.5 seconds. */
+  useEffect(() => {
+    const start = () => {
+      if (intervalRef.current) return;
+      intervalRef.current = setInterval(() => scroll("right"), 2500);
+    };
+    const stop = () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
+
+    start();
+
+    const el = scrollRef.current;
+    if (el) {
+      el.addEventListener("mouseenter", stop);
+      el.addEventListener("mouseleave", start);
+      el.addEventListener("touchstart", stop, { passive: true });
+      el.addEventListener("touchend", start);
+    }
+
+    /* Pause when the tab is hidden so it doesn't pile up offscreen scrolls. */
+    const onVisibility = () => {
+      if (document.hidden) {
+        stop();
+      } else {
+        start();
+      }
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+
+    return () => {
+      stop();
+      document.removeEventListener("visibilitychange", onVisibility);
+      if (el) {
+        el.removeEventListener("mouseenter", stop);
+        el.removeEventListener("mouseleave", start);
+        el.removeEventListener("touchstart", stop);
+        el.removeEventListener("touchend", start);
+      }
+    };
+  }, []);
 
   return (
     <div>
