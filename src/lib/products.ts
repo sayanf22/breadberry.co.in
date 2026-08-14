@@ -836,9 +836,27 @@ seeds.push(
 
 export const products: Product[] = seeds.map(define);
 
-/** The Breadberry Co. signature line — berries and purees. */
+/**
+ * Lines that ship in Breadberry Co. branded packaging outside the berry and
+ * puree ranges. These carry the same pack design as the signature line, so they
+ * belong in the Breadberry sections even though their category sits elsewhere
+ * in the catalogue.
+ */
+const BREADBERRY_BRANDED_SLUGS = new Set([
+  "edamame-whole-soyabean",
+  "edamame-peeled-soyabean",
+  "lotusroot-sliced-frozen",
+]);
+
+/**
+ * The Breadberry Co. signature line — every product sold under the Breadberry
+ * label: all berries and purees, plus the branded frozen Japanese lines.
+ */
 export const signatureProducts = products.filter(
-  (product) => product.category === "iqf" || product.category === "puree"
+  (product) =>
+    product.category === "iqf" ||
+    product.category === "puree" ||
+    BREADBERRY_BRANDED_SLUGS.has(product.slug)
 );
 
 export const featuredProducts = signatureProducts.slice(0, 4);
