@@ -10,7 +10,7 @@ export function Blessing() {
   return (
     <Container>
       <div className="flex flex-col items-center gap-1.5 pb-[clamp(1rem,2.5vw,1.75rem)] pt-[clamp(0.5rem,1.5vw,1rem)]">
-        <span className="blessing-text text-center text-[0.6875rem] font-medium uppercase tracking-[0.16em] text-muted-soft sm:text-[0.75rem]">
+        <span className="blessing-text text-center text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-navy/70 sm:text-[0.75rem]">
           With blessings of
         </span>
         <Image
@@ -21,6 +21,11 @@ export function Blessing() {
           sizes="48px"
           className="blessing-icon size-10 sm:size-12"
         />
+        {/* Two short decorative lines below the icon */}
+        <div className="mt-1 flex flex-col items-center gap-1">
+          <span aria-hidden className="h-px w-12 bg-navy/15 sm:w-16" />
+          <span aria-hidden className="h-px w-8 bg-navy/10 sm:w-10" />
+        </div>
       </div>
     </Container>
   );
