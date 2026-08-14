@@ -104,6 +104,28 @@ export function PlayIcon(props: IconProps) {
   );
 }
 
+/**
+ * Stylised Ganapati silhouette — crown, ears, trunk and tusks reduced to a few
+ * clean strokes so it reads at 16px without becoming a blob.
+ */
+export function GanapatiIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      {/* Crown / mukut */}
+      <path d="M12 2.4c.9 0 1.5.7 1.5 1.5 0 .6-.3 1-.7 1.3h-1.6c-.4-.3-.7-.7-.7-1.3 0-.8.6-1.5 1.5-1.5Z" />
+      {/* Head */}
+      <path d="M8.2 7.6c0-2 1.7-2.4 3.8-2.4s3.8.4 3.8 2.4c0 1.4-.5 2.6-1.3 3.4" />
+      {/* Ears */}
+      <path d="M8.2 7.8c-1.6 0-2.9 1.2-2.9 2.9s1.3 2.9 2.9 2.9" />
+      <path d="M15.8 7.8c1.6 0 2.9 1.2 2.9 2.9s-1.3 2.9-2.9 2.9" />
+      {/* Trunk */}
+      <path d="M12 9.6v4.2c0 1.4 1 2.4 2.2 2.4 1 0 1.7-.6 1.7-1.5" />
+      {/* Tusks */}
+      <path d="M9.8 12.4l-.7 1.6M14.2 12.4l.7 1.6" />
+    </svg>
+  );
+}
+
 export function SearchIcon(props: IconProps) {
   return (
     <svg {...base} {...props}>
