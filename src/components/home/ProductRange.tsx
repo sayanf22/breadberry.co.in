@@ -5,6 +5,11 @@ import { Eyebrow } from "@/components/ui/SectionHeading";
 import { ProductSlider } from "@/components/products/ProductSlider";
 import { signatureProducts } from "@/lib/products";
 
+/**
+ * Home page shows only the Breadberry Co.-branded signature line (berries and
+ * purees) — not the full 77-line catalogue, which includes unbranded fresh
+ * produce and seafood that don't carry the Breadberry pack design.
+ */
 export function ProductRange() {
   return (
     <section

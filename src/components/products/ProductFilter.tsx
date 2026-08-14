@@ -103,29 +103,40 @@ export function ProductFilter() {
       ? products
       : products.filter((product) => product.category === active);
 
-  /* "All Products" reads as a catalogue rather than one long run of cards, so
-     it is split into labelled range sections in tab order. A single selected
-     range needs no heading — the tab already names it. */
-  const showHeadings = active === "all";
+  /* "All Products" shows a shuffled mix across all categories instead of the
+     rigid category-by-category order, so visitors see variety on every visit.
+     Individual category tabs still show their products in the supplied order. */
+  const showHeadings = false;
 
-  const ranges = (
-    showHeadings
-      ? categories.filter((category) => category.id !== "all")
-      : categories.filter((category) => category.id === active)
-  ).map((category) => ({
-    ...category,
-    items: showHeadings
-      ? products.filter((product) => product.category === category.id)
-      : visible,
-  }));
+  const shuffled = (() => {
+    if (active !== "all") return visible;
+    /* Seeded shuffle using the current date so it changes daily but stays
+       stable within a single session (no layout shift on re-render). */
+    const seed = new Date().toDateString();
+    const items = [...products];
+    let hash = 0;
+    for (let i = 0; i < seed.length; i++) {
+      hash = ((hash << 5) - hash + seed.charCodeAt(i)) | 0;
+    }
+    for (let i = items.length - 1; i > 0; i--) {
+      hash = (hash * 1664525 + 1013904223) | 0;
+      const j = ((hash >>> 0) % (i + 1));
+      [items[i], items[j]] = [items[j], items[i]];
+    }
+    return items;
+  })();
 
-  /* Offsets stay derived rather than accumulated in place, so the first four
-     cards on screen keep image priority without mutating during render. */
-  const groups = ranges.map((range, index) => ({
+  const ranges = [
+    {
+      id: active,
+      label: active === "all" ? "All Products" : categories.find((c) => c.id === active)?.label ?? "",
+      items: shuffled,
+    },
+  ];
+
+  const groups = ranges.map((range) => ({
     ...range,
-    offset: ranges
-      .slice(0, index)
-      .reduce((total, previous) => total + previous.items.length, 0),
+    offset: 0,
   }));
 
   return (

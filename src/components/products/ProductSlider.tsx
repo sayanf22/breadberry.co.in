@@ -1,18 +1,30 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ProductCard } from "@/components/products/ProductCard";
 import { ArrowRightIcon } from "@/components/icons";
 import type { Product } from "@/lib/products";
 
 /**
- * Horizontally scrollable product strip with arrow controls and auto-slide.
- * Advances every 2.5 seconds; pauses when the user hovers or touches the
- * strip, and resumes when they leave.
+ * Horizontally scrollable product strip with arrow controls, auto-slide, and
+ * shuffled order. Advances every 3 seconds with smooth 200px glides; pauses
+ * when the user hovers or touches; loops when it reaches the end.
  */
-export function ProductSlider({ products }: { products: Product[] }) {
+export function ProductSlider({ products: items }: { products: Product[] }) {
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  /* Shuffle once per component instance using a lazy `useState` initializer —
+     the one place React explicitly allows a one-time impure computation, since
+     it runs exactly once and is never re-invoked on re-render. */
+  const [shuffled] = useState(() => {
+    const copy = [...items];
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+  });
 
   const scroll = (direction: "left" | "right") => {
     const el = scrollRef.current;
@@ -27,17 +39,19 @@ export function ProductSlider({ products }: { products: Product[] }) {
       }
     }
 
+    /* Scroll one card width (~200px) for a slow, smooth glide rather than
+       jumping 340px which felt abrupt. */
     el.scrollBy({
-      left: direction === "left" ? -340 : 340,
+      left: direction === "left" ? -200 : 200,
       behavior: "smooth",
     });
   };
 
-  /* Auto-slide every 2.5 seconds. */
+  /* Auto-slide every 3 seconds — slow enough to read the current card. */
   useEffect(() => {
     const start = () => {
       if (intervalRef.current) return;
-      intervalRef.current = setInterval(() => scroll("right"), 2500);
+      intervalRef.current = setInterval(() => scroll("right"), 3000);
     };
     const stop = () => {
       if (intervalRef.current) {
@@ -103,7 +117,7 @@ export function ProductSlider({ products }: { products: Product[] }) {
         ref={scrollRef}
         className="mt-3 flex snap-x snap-mandatory gap-4 overflow-x-auto no-scrollbar scroll-smooth pb-2 pt-1 sm:gap-5"
       >
-        {products.map((product, index) => (
+        {shuffled.map((product, index) => (
           <div
             key={product.slug}
             className="h-full w-[15.5rem] shrink-0 snap-start sm:w-[17.5rem] lg:w-[18.5rem]"
