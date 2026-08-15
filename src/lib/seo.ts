@@ -204,7 +204,21 @@ export function breadcrumbSchema(items: { name: string; path: string }[]) {
   };
 }
 
-/** Product entity formatted for Google Product Rich Snippets. */
+/**
+ * Product entity for structured data. Deliberately omits `offers`,
+ * `aggregateRating` and `review` because:
+ *
+ * 1. Prices are quoted per enquiry (not displayed on the page), so Google's
+ *    requirement that structured data must match visible content cannot be met.
+ * 2. There are no published reviews or ratings on the site.
+ *
+ * Without `offers`, this is a valid Product entity that provides name, image,
+ * brand, category and description to Google without triggering the "missing
+ * lowPrice/highPrice/review/aggregateRating" warnings in Search Console.
+ *
+ * If public pricing or a review system is added later, re-introduce `offers`
+ * with real `lowPrice`/`highPrice` and `review`/`aggregateRating` fields.
+ */
 export function productSchema(product: Product) {
   return {
     "@context": "https://schema.org",
@@ -215,14 +229,6 @@ export function productSchema(product: Product) {
     category: product.categoryLabel,
     brand: { "@type": "Brand", name: site.name },
     url: canonical(`/products/${product.slug}`),
-    offers: {
-      "@type": "AggregateOffer",
-      priceCurrency: "INR",
-      priceValidUntil: "2027-12-31",
-      availability: "https://schema.org/InStock",
-      seller: { "@id": ORG_ID },
-      offerCount: "1",
-    },
     additionalProperty: product.specs.map((spec) => ({
       "@type": "PropertyValue",
       name: spec.label,
