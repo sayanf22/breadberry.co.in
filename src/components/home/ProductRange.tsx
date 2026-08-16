@@ -28,7 +28,7 @@ export function ProductRange() {
             </div>
 
             <p className="text-muted text-[0.875rem] sm:max-w-[24ch] sm:text-right">
-              {`${signatureProducts.length} Berry & puree lines quoted to your volume.`}
+              {`${signatureProducts.length} Berries & Purees lines quoted to your volume.`}
             </p>
           </div>
         </Reveal>

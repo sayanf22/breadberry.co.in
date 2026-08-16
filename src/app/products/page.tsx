@@ -57,7 +57,7 @@ export default function ProductsPage() {
                 </h2>
               </div>
               <p className="max-w-[38ch] text-[0.875rem] text-muted sm:text-right">
-                {`${signatureProducts.length} Signature berry & puree lines, packed under the Breadberry Co. label.`}
+                {`${signatureProducts.length} Signature Berries & Purees lines, packed under the Breadberry Co. label.`}
               </p>
             </div>
 
