@@ -80,8 +80,9 @@ export function pageMetadata({
 
 const postalAddress = {
   "@type": "PostalAddress",
-  streetAddress: site.address,
+  streetAddress: "G/3, Bhagwanti Niwas, T H Kataria Marg, Mahim",
   addressLocality: site.city,
+  postalCode: "400016",
   addressRegion: site.region,
   addressCountry: site.country,
 };

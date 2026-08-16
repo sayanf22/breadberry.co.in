@@ -36,7 +36,7 @@ export const site = {
   whatsappHref: "https://wa.me/918108187667",
   // Primary mailbox for sales and order enquiries.
   email: "sales@breadberry.co.in",
-  address: "Mumbai, Maharashtra, India",
+  address: "G/3, Bhagwanti Niwas, T H Kataria Marg, Mahim, Mumbai, Maharashtra 400016",
   hours: "Mon–Sat · 9:00 – 18:30 IST",
   url: "https://breadberry.co.in",
 } as const;
@@ -47,8 +47,8 @@ export const site = {
  * shipping dead links.
  */
 export const social: { label: string; href: string }[] = [
-  { label: "Instagram", href: "https://instagram.com/breadberry.co" },
-  { label: "LinkedIn", href: "https://linkedin.com/company/adhira-enterprises" },
+  { label: "Instagram", href: "https://www.instagram.com/adhiraent.breadberryco" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/adhira-enterprisesbreadberry/" },
 ];
 
 export type NavLink = { label: string; href: string };
